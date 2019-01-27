@@ -1,0 +1,223 @@
+<!doctype html>
+<html>
+  <head>
+    <% include partials/head %>
+  </head>
+  <body>
+    <nav>
+      <% include partials/header %>
+    </nav>
+
+    <div id="content">
+      <content>
+      <h6>An Analysis of Sina Weibo Censorship Using WeiboScope Search Data</h6>
+      <p><a href="http://partnews.brownbag.me/2012/05/23/mas-s61-final-project/weibo1/" rel="attachment wp-att-1115"><img class="alignnone size-full wp-image-1115" src="http://partnews.brownbag.me/wp-content/uploads/2012/05/weibo1.jpg" alt="" width="100%" height="auto" srcset="http://partnews.brownbag.me/wp-content/uploads/2012/05/weibo1.jpg 1359w, http://partnews.brownbag.me/wp-content/uploads/2012/05/weibo1-300x44.jpg 300w, http://partnews.brownbag.me/wp-content/uploads/2012/05/weibo1-1024x151.jpg 1024w, http://partnews.brownbag.me/wp-content/uploads/2012/05/weibo1-500x73.jpg 500w" sizes="(max-width: 1359px) 100vw, 1359px" /></a></p>
+      <p>Starting at 4:28 PM May 19, 2012, I posted on <a href="http://www.weibo.com/u/2470768677">my Sina Weibo account</a> two names as well as the Chinese words for &#8220;Taiwanese independence.&#8221; The first name I posted was &#8220;Chen Guangcheng&#8221; (in English and Chinese), the blind lawyer who escaped house arrest in Shandong province and made his way to the U.S. Embassy in Beijing. The second name was &#8220;Bo Xilai&#8221; (in English and Chinese), the former Party Secretary of Chongqing who recently fell from power. Less than 14 hours later, I received a message from <a href="http://www.weibo.com">Sina Weibo&#8217;s</a> system administrator informing me that my two posts on &#8220;Chen Guangcheng&#8221; were &#8220;inappropriate&#8221; and had been censored. While I can still see the two “Chen Guangcheng&#8221; posts on <a href="http://www.weibo.com/u/2470768677">my Sina Weibo account</a> page, no one else can. Surprisingly, my posts on &#8220;Bo Xilai&#8221; and &#8220;Taiwan independence&#8221; were not censored.</p>
+      <p>Herein lies the conundrum with censorship in China. We know that certain topics are censored from blogs hosted in China, Chinese search engines and Weibos. But we don&#8217;t know where the line lies. Part of the reason is because the line is constantly moving. <a href="http://www.baidu.com/">Baidu</a>, <a href="http://www.sina.com.cn/">Sina</a> and <a href="http://www.tencent.com">Tencent</a> could help identify the line by publishing a list of banned topics or keywords, but they don&#8217;t. Rather, they <a href="http://www.weibo.com/1666067221/ykdfs4YSk">hire &#8220;monitoring editors&#8221;</a> and rely on self-censorship to ensure that user generated content does not run afoul of Chinese authorities.</p>
+      <p>Some computer scientists in academia have tried to make sense of censorship in <a href="http://www.weibo.com">Sina Weibo</a> by analyzing the data. In March 2012, <a href="http://www.cs.cmu.edu/~dbamman/">David Bamman</a>, <a href="http://brenocon.com/">Brendan O&#8217;Connor</a> and <a href="http://www.cs.cmu.edu/~nasmith/">Noah Smith</a> at <a href="http://www.cmu.edu/">Carnegie Mellon University</a> published a paper entitled <a href="http://firstmonday.org/htbin/cgiwrap/bin/ojs/index.php/fm/article/view/3943/3169">&#8220;Censorship and deletion practices in Chinese social media&#8221;</a> in <a href="http://firstmonday.org/">First Monday</a> after analyzing 56 million <a href="http://www.weibo.com">Sina Weibo</a> messages and found that more than 16% had been deleted. <a href="http://jmsc.hku.hk/2010/02/bio-king-wa-fu/">King-Wa Fu</a> and <a href="http://jmsc.hku.hk/blogs/ricecooker/">Cedric Sam</a> at the <a href="http://jmsc.hku.hk/">University of Hong Kong&#8217;s Journalism and Media Studies Centre</a> have hacked the <a href="http://research.jmsc.hku.hk/social/search.py/sinaweibo/#lastpermissiondenied">Weibo Scope Search</a> that archives deleted posts on <a href="http://www.weibo.com">Sina Weibo</a>.</p>
+      <p style="text-align: left">For my MIT Media Lab final project, I&#8217;ve tried to build on <a href="http://jmsc.hku.hk/2010/02/bio-king-wa-fu/">King-Wa Fu</a> and <a href="http://jmsc.hku.hk/blogs/ricecooker/">Cedric Sam</a>&#8216;s work by analyzing the data collected from the <a href="http://research.jmsc.hku.hk/social/search.py/sinaweibo/#lastpermissiondenied">Weibo Scope Search</a> to try to make some sense of <a href="http://www.weibo.com">Sina Weibo</a> censorship. Since its inception February 1, 2012 to May 20, 2012, the <a href="http://research.jmsc.hku.hk/social/search.py/sinaweibo/#lastpermissiondenied">Weibo Scope Search</a> has collected 12,032 deleted messages from <a href="http://www.weibo.com">Sina Weibo</a>. The first thing I did was to simply plot all the deleted messages on a timeline from February 1, 2012 to May 20, 2012 and this is what I got:</p>
+      <div><a href="http://partnews.brownbag.me/2012/05/23/mas-s61-final-project/censored_weibo_timeline/" rel="attachment wp-att-1098"><img class="alignnone  wp-image-1098" style="border-color: #bbbbbb;background-color: #eeeeee" src="http://partnews.brownbag.me/wp-content/uploads/2012/05/censored_weibo_timeline-1024x233.png" alt="" width="100%" height="auto" srcset="http://partnews.brownbag.me/wp-content/uploads/2012/05/censored_weibo_timeline-1024x233.png 1024w, http://partnews.brownbag.me/wp-content/uploads/2012/05/censored_weibo_timeline-300x68.png 300w, http://partnews.brownbag.me/wp-content/uploads/2012/05/censored_weibo_timeline-500x113.png 500w" sizes="(max-width: 1024px) 100vw, 1024px" /></a></div>
+      <div style="text-align: right"><a href="http://public.tableausoftware.com/views/MASS61finalproject/censoredweibotimeline"><span style="font-size: x-small">Powered by Tableau</span></a></div>
+      <p>My findings were consistent with the Carnegie Mellon team&#8217;s findings. There are spikes in <a href="http://www.weibo.com">Sina Weibo</a> censorship as a result of media reports and rumors. During the Carnegie Mellon survey duration from June 27, 2011 to September 30, 2011, there was a rumor that former President Jiang Zemin passed away causing a spike in <a href="http://www.weibo.com">Sina Weibo</a> deletions. From February 1, 2012 to May 20, 2012, the following incidents in China caused in censors employed by <a href="http://www.weibo.com">Sina Weibo</a> to work overtime:</p>
+      <ul>
+      <li><strong>February 6, 2012 &#8211; </strong>Chongqing Public Security Bureau head Wang Lijun goes to U.S. Consulate in Chengdu with information about the death of British businessman Neil Heywood that implicates Chongqing Party Secretary Bo Xilai.</li>
+      <li><strong>March 8, 2012 &#8211; </strong>Chongqing Party Secretary Bo Xilai fails to show up at the National People&#8217;s Congress, sparking rumors that he has fallen from power.</li>
+      <li><strong>March 15, 2012 &#8211; </strong>Bo Xilai is removed from post as Chongqing Party Secretary.</li>
+      <li><strong>March 18, 2012 &#8211; </strong>A Ferrari crashed on Beijing&#8217;s Fourth Ring Road killing one and injuring two people.</li>
+      <li><strong>April 22, 2012 &#8211; </strong>Blind lawyer Chen Guangcheng escapes from house arrest in Shandong province and makes his way to U.S. Embassy in Beijing.</li>
+      <li><strong>May 14, 2012 &#8211; </strong>The Beijing Daily posts a message on its official Weibo charging that U.S. Ambassador to China Gary Locke is posing as an ordinary citizen and calls for Locke to disclose his wealth.</li>
+      </ul>
+      <div>
+      <p>Interestingly, deletion of <a href="http://www.weibo.com">Sina Weibo</a> messages tend to hit a low on Saturdays. I&#8217;m not too sure why that is except that maybe censors want to take time off on weekends as well. If you want to maximize the length of time your message will remain on <a href="http://www.weibo.com">Sina Weibo</a>, probably the best time is to post the message after 11 PM Friday night.</p>
+      <p>The second analysis I did with the <a href="http://research.jmsc.hku.hk/social/search.py/sinaweibo/#lastpermissiondenied">Weibo Scope Search</a> was to try and figure out how long it took the censors to delete messages on <a href="http://www.weibo.com">Sina Weibo</a>. Each <a href="http://www.weibo.com">Sina Weibo</a> has a time stamp for when it was created. The <a href="http://research.jmsc.hku.hk/social/search.py/sinaweibo/#lastpermissiondenied">Weibo Scope Search</a> checks <a href="http://www.weibo.com">Sina Weibo</a>&#8216;s timeline at most four times a day (but usually less due to limits that <a href="http://www.weibo.com">Sina Weibo</a> imposes). Let&#8217;s say for instance, a user posts a message on <a href="http://www.weibo.com">Sina Weibo</a> at 8 AM. <a href="http://research.jmsc.hku.hk/social/search.py/sinaweibo/#lastpermissiondenied">Weibo Scope Search</a> checks <a href="http://www.weibo.com">Sina Weibo</a>&#8216;s timeline at 9 AM, 3 PM, 9 PM, and 3 AM. If the message was deleted by the censor at 10 AM, it would show up on <a href="http://research.jmsc.hku.hk/social/search.py/sinaweibo/#lastpermissiondenied">Weibo Scope Search</a>&#8216;s &#8220;deleted time&#8221; as 3 PM.</p>
+      <table width="412" border="0" cellspacing="0" cellpadding="0">
+      <col span="2" width="174" />
+      <col width="64" />
+      <tbody>
+      <tr>
+      <td height="17">shortest time</td>
+      <td align="left">0:04:04</td>
+      <td align="right">hours</td>
+      </tr>
+      <tr>
+      <td height="17">longest time</td>
+      <td align="left">3401:51:45</td>
+      <td align="right">hours</td>
+      </tr>
+      </tbody>
+      </table>
+      <p></p>
+      <p>The fastest a post was deleted on <a href="http://www.weibo.com">Sina Weibo</a> was just over 4 minutes. The longest time it took for the censor to get around deleting a message on <a href="http://www.weibo.com">Sina Weibo</a> was over four months. For the posts created on May 20, 2012 and deleted on the same day, it took on average 11 hours for <a href="http://research.jmsc.hku.hk/social/search.py/sinaweibo/#lastpermissiondenied">Weibo Scope Search</a> to detect the deletion. It took the censors about 14 hours to delete my post &#8220;chen guangcheng.&#8221; Determining the average time it takes for censors to delete &#8220;irresponsible&#8221; messages is a bit tricky since we don&#8217;t have data on exactly how long it takes for each post to be deleted. Out of curiosity, I pulled up three messages that took over four months to delete to see what they said:</p>
+      </div>
+      <div>
+      <table width="344" border="0" cellspacing="0" cellpadding="0">
+      <col span="2" width="100" />
+      <col width="80" />
+      <col width="64" />
+      <tbody>
+      <tr>
+      <td width="100" height="17"><strong>time created</strong></td>
+      <td width="100"><strong>time deleted</strong></td>
+      <td style="text-align: center" width="80"><strong> hours</strong></td>
+      <td width="264"><strong> message</strong></td>
+      </tr>
+      <tr>
+      <td height="17">2011-12-29 00:30:41</td>
+      <td>2012-05-18 18:22:25</td>
+      <td style="text-align: center" align="right">3401:51:45</td>
+      <td>&#8220;如果明年欧美名校在三四月份一起召开家长会的话，那么中国的十八大就很可能开不了了。&#8221;</td>
+      </tr>
+      <tr>
+      <td height="17"></td>
+      <td></td>
+      <td></td>
+      <td>&#8220;If the top universities in Europe and the U.S. hold their parent-teacher conference next March or April, then China will not be able to hold it&#8217;s 18th Party Congress then.&#8221;</td>
+      </tr>
+      <tr>
+      <td height="17">2011-12-17 20:52:01</td>
+      <td>2012-04-27 20:40:12</td>
+      <td style="text-align: center" align="right">3167:48:11</td>
+      <td>&#8220;【媿尔公侯高窃位，怆然世事急抢滩】国际盲人日当天@张海迪 通过私信@我是闻正兵 公布了她之前为光诚的努力。当年我和袁伟静嫂子向她求助时抱了很大期望，但坦率说从未得到她哪怕一个电话询问或慰问，这肯定谈不上“做了应该做的一切”。如今舆论环境更好而光诚处境则更糟，难道她一点努力都不能做吗？&#8221;</td>
+      </tr>
+      <tr>
+      <td height="17"></td>
+      <td></td>
+      <td></td>
+      <td>&#8220;On World Blind Day, paraplegic writer Zhang Haidi told Wen Zhengbin in a private letter that she did her utmost to help Chen Guangcheng. At the time, Chen Guangcheng&#8217;s wife Yuan Weijing and I asked her for help, but she didn&#8217;t even call us or ask us how we were doing. She didn&#8217;t do everything she should have. Today, Chen Guangcheng&#8217;s situation is even worse while there is greater openess for debate. Shouldn&#8217;t she have done more?&#8221;</td>
+      </tr>
+      <tr>
+      <td height="17">2011-11-26 16:13:26</td>
+      <td>2012-03-28 07:55:28</td>
+      <td style="text-align: center" align="right">2943:42:02</td>
+      <td>RT:&#8221;演藝界人士周星馳表支持唐英年參選下屆行政長官，欣賞他的處事，為人豁達開通。他又說，唐英年一點也不蠢，是有智慧的人，自己亦不會與蠢的人做朋友。對於唐英年有感情缺失，會否流失支持，周星馳認為並無關係，因為現時是選特首，不是選男朋友。 http://t.cn/SUjFh1&#8243;</td>
+      </tr>
+      <tr>
+      <td height="17"></td>
+      <td></td>
+      <td></td>
+      <td>&#8220;Hong Kong actor Stephen Chow said he supports Henry Tang&#8217;s bid to be the next Chief Executive of Hong Kong. Chow admires Tang&#8217;s way of doing things and open mindedness. Chow added that Tang is not stupid, but a smart person. Chow says that he wouldn&#8217;t be friends with stupid people. Regarding whether Tang&#8217;s infidelities will cause him to lose support, Chow says that it shouldn&#8217;t matter because people are voting for the Chief Executive, not choosing a boyfriend.&#8221;</td>
+      </tr>
+      </tbody>
+      </table>
+      </div>
+      <div>
+      <p></p>
+      <p>I&#8217;m not too sure why it took so long to delete the posts. <a href="http://jmsc.hku.hk/blogs/ricecooker/">Cedric Sam</a> points out that the posts may have been in the <a href="http://research.jmsc.hku.hk/social/search.py/sinaweibo/#lastpermissiondenied">Weibo Scope Search</a> database to begin with and they just didn&#8217;t turn up until several months later. The researchers at <a href="http://jmsc.hku.hk/">University of Hong Kong&#8217;s Journalism and Media Studies Centre</a> are constantly adding new <a href="http://www.weibo.com">Sina Weibo</a> to their list. Or, they could have just turned on the deletion marking system in the <a href="http://research.jmsc.hku.hk/social/search.py/sinaweibo/#lastpermissiondenied">Weibo Scope Search</a> so that it would have caught some censored posts that weren&#8217;t caught before.</p>
+      <p>To be sure, there is no way to tell for sure whether some of the posts were deleted by the users themselves instead of &#8220;monitoring editors.&#8221; Sina&#8217;s API returns two types of error messages: &#8220;Weibo does not exist&#8221; and &#8220;Permission denied.&#8221; We assume that when a post is deleted by the user, the &#8220;Weibo does not exist&#8221; error message comes up. When a post is censored, the &#8220;Permission denied&#8221; error message comes up. <a href="http://research.jmsc.hku.hk/social/search.py/sinaweibo/#lastpermissiondenied">Weibo Scope Search</a> keeps track of all the deleted posts that have the &#8220;Permission denied&#8221; error message.</p>
+      <p>If I had more time (and knew how to code), I would have liked to have analyzed more of the data that <a href="http://research.jmsc.hku.hk/social/search.py/sinaweibo/#lastpermissiondenied">Weibo Scope Search</a> came up with. Among the things I would have liked to explore are:</p>
+      <ul>
+      <li><strong>Geographic distribution of deleted messages on <a href="http://www.weibo.com">Sina Weibo</a> &#8211;</strong> The Carnegie Mellon paper also looked at geographic distribution of censored <a href="http://www.weibo.com">Sina Weibo</a> and found that messages issued from Tibet, Qinghai and Ningxia are deleted at a higher rate. <a href="http://research.jmsc.hku.hk/social/search.py/sinaweibo/#lastpermissiondenied">Weibo Scope Search</a> also had data on the city and province that each message originated from. However, I didn&#8217;t have enough time to figure out how to convert Sina&#8217;s data in its city and province into a fungible type of data to transpose on a map.</li>
+      <li><strong>Relationships between the most censored <a href="http://www.weibo.com">Sina Weibo</a> accounts &#8211;</strong> Using <a href="http://research.jmsc.hku.hk/social/search.py/sinaweibo/#lastpermissiondenied">Weibo Scope Search</a>, we&#8217;re able to rank the 3,524 users whose <a href="http://www.weibo.com">Sina Weibo</a> messages are being deleted the most to last. One thing I&#8217;d be interested in exploring is how many followers these <a href="http://www.weibo.com">Sina Weibo</a> accounts have and whether they follow each other. It&#8217;s not clear to me if the censors have compiled a list of influential <a href="http://www.weibo.com">Sina Weibo</a> accounts and are tracking them daily or the censors are using key word searches to figure out what to censor.</li>
+      <li><strong>A deeper analysis into the most censored Chinese words on <a href="http://www.weibo.com">Sina Weibo</a> &#8211;</strong> Several weeks ago, I did a word cloud of the most censored Chinese words on <a href="http://www.weibo.com">Sina Weibo</a> to see what came up. By far, the most censored words were the Chinese words for &#8220;retweet&#8221; followed by &#8220;ha ha&#8221; or some variation. It makes sense, but it&#8217;s not very helpful. Given more time, I would have liked to dig a little deeper to see if there were any words or code words that consistently came up again and again after filtering out the &#8220;retweets,&#8221; &#8220;ha ha,&#8221; and other stop words.</li>
+      </ul>
+      <p><a href="http://partnews.brownbag.me/2012/05/23/mas-s61-final-project/top-73-censored-weibo/" rel="attachment wp-att-1447"><img class="alignnone size-full wp-image-1447" src="http://partnews.brownbag.me/wp-content/uploads/2012/05/top-73-censored-weibo.jpg" alt="" width="100%" height="auto"/></a></p>
+      </div>
+      <div>
+      <h6>How to Analyze WeiboScope Search Data</h6>
+      <p><a href="http://partnews.brownbag.me/2012/05/23/mas-s61-final-project/weibo3/" rel="attachment wp-att-1019"><img class="alignnone size-full wp-image-1019" src="http://partnews.brownbag.me/wp-content/uploads/2012/05/weibo3.jpg" alt="" width="100%" height="auto" srcset="http://partnews.brownbag.me/wp-content/uploads/2012/05/weibo3.jpg 1354w, http://partnews.brownbag.me/wp-content/uploads/2012/05/weibo3-300x142.jpg 300w, http://partnews.brownbag.me/wp-content/uploads/2012/05/weibo3-1024x487.jpg 1024w, http://partnews.brownbag.me/wp-content/uploads/2012/05/weibo3-500x238.jpg 500w" sizes="(max-width: 1354px) 100vw, 1354px" /></a></p>
+      <p><a href="http://jmsc.hku.hk/2010/02/bio-king-wa-fu/">King-Wa Fu</a> and <a href="http://jmsc.hku.hk/blogs/ricecooker/">Cedric Sam</a> at the <a href="http://jmsc.hku.hk/">University of Hong Kong&#8217;s Journalism and Media Studies Centre</a> have built a <a href="http://research.jmsc.hku.hk/social/search.py/sinaweibo/#lastpermissiondenied">WeiboScope Search</a> that sends all of the deleted Weibo posts to a server in Hong Kong and stores them.  However, the data is in JSON format, which looks like this:<a href="http://partnews.brownbag.me/2012/05/23/mas-s61-final-project/weibo4/" rel="attachment wp-att-1020"><img class="alignnone size-full wp-image-1020" src="http://partnews.brownbag.me/wp-content/uploads/2012/05/weibo4.jpg" alt="" width="100%" height="auto" srcset="http://partnews.brownbag.me/wp-content/uploads/2012/05/weibo4.jpg 1352w, http://partnews.brownbag.me/wp-content/uploads/2012/05/weibo4-300x142.jpg 300w, http://partnews.brownbag.me/wp-content/uploads/2012/05/weibo4-1024x487.jpg 1024w, http://partnews.brownbag.me/wp-content/uploads/2012/05/weibo4-500x237.jpg 500w" sizes="(max-width: 1352px) 100vw, 1352px" /></a></p>
+      <p>To make sense of the data collected, we need to first clean up the data. I used <a href="http://code.google.com/p/google-refine/">Google refine</a> to clean up the data by:</p>
+      <ol>
+      <ol>1) Download + install Google refine</ol>
+      <ol>2) Click on “Create Project”</ol>
+      <ol>3) Click on “Web Addresses (URLs)”</ol>
+      </ol>
+      <p><a href="http://partnews.brownbag.me/2012/05/23/mas-s61-final-project/weibo5/" rel="attachment wp-att-1021"><img class="alignnone size-full wp-image-1021" src="http://partnews.brownbag.me/wp-content/uploads/2012/05/weibo5.jpg" alt="" width="100%" height="auto" srcset="http://partnews.brownbag.me/wp-content/uploads/2012/05/weibo5.jpg 1364w, http://partnews.brownbag.me/wp-content/uploads/2012/05/weibo5-300x140.jpg 300w, http://partnews.brownbag.me/wp-content/uploads/2012/05/weibo5-1024x479.jpg 1024w, http://partnews.brownbag.me/wp-content/uploads/2012/05/weibo5-500x234.jpg 500w" sizes="(max-width: 1364px) 100vw, 1364px" /></a></p>
+      <ol>
+      <ol>4) Insert link http://research.jmsc.hku.hk/social/sinaweibo/lastpermissiondenied.all.json</ol>
+      <ol>5) Click “Next”</ol>
+      </ol>
+      <p><a href="http://partnews.brownbag.me/2012/05/23/mas-s61-final-project/weibo6/" rel="attachment wp-att-1028"><img class="alignnone size-full wp-image-1028" src="http://partnews.brownbag.me/wp-content/uploads/2012/05/weibo6.jpg" alt="" alt="" width="100%" height="auto" srcset="http://partnews.brownbag.me/wp-content/uploads/2012/05/weibo6.jpg 1350w, http://partnews.brownbag.me/wp-content/uploads/2012/05/weibo6-300x142.jpg 300w, http://partnews.brownbag.me/wp-content/uploads/2012/05/weibo6-1024x486.jpg 1024w, http://partnews.brownbag.me/wp-content/uploads/2012/05/weibo6-500x237.jpg 500w" sizes="(max-width: 1350px) 100vw, 1350px" /></a></p>
+      <ol>
+      <ol>6) Highlight the fields you’re interested in and left click the mouse.</ol>
+      </ol>
+      <p><a href="http://partnews.brownbag.me/2012/05/23/mas-s61-final-project/weibo7/" rel="attachment wp-att-1041"><img class="alignnone size-full wp-image-1041" src="http://partnews.brownbag.me/wp-content/uploads/2012/05/weibo7.jpg" alt="" width="100%" height="auto" srcset="http://partnews.brownbag.me/wp-content/uploads/2012/05/weibo7.jpg 1350w, http://partnews.brownbag.me/wp-content/uploads/2012/05/weibo7-300x141.jpg 300w, http://partnews.brownbag.me/wp-content/uploads/2012/05/weibo7-1024x482.jpg 1024w, http://partnews.brownbag.me/wp-content/uploads/2012/05/weibo7-500x235.jpg 500w" sizes="(max-width: 1350px) 100vw, 1350px" /></a></p>
+      <ol>Google refine should automatically put all the fields into columns:</ol>
+      <p><a href="http://partnews.brownbag.me/2012/05/23/mas-s61-final-project/weibo8-2/" rel="attachment wp-att-1043"><img class="alignnone size-full wp-image-1043" src="http://partnews.brownbag.me/wp-content/uploads/2012/05/weibo81.jpg" alt="" width="100%" height="auto" srcset="http://partnews.brownbag.me/wp-content/uploads/2012/05/weibo81.jpg 1350w, http://partnews.brownbag.me/wp-content/uploads/2012/05/weibo81-300x142.jpg 300w, http://partnews.brownbag.me/wp-content/uploads/2012/05/weibo81-1024x486.jpg 1024w, http://partnews.brownbag.me/wp-content/uploads/2012/05/weibo81-500x237.jpg 500w" sizes="(max-width: 1350px) 100vw, 1350px" /></a></p>
+      <ol>
+      <ol>7) Click “Create Project”</ol>
+      <ol>8) Click “Export”</ol>
+      <ol>9) Click “Excel”</ol>
+      </ol>
+      <p><a href="http://partnews.brownbag.me/2012/05/23/mas-s61-final-project/weibo10/" rel="attachment wp-att-1044"><img class="alignnone size-full wp-image-1044" src="http://partnews.brownbag.me/wp-content/uploads/2012/05/weibo10.jpg" alt="" width="100%" height="auto" srcset="http://partnews.brownbag.me/wp-content/uploads/2012/05/weibo10.jpg 1348w, http://partnews.brownbag.me/wp-content/uploads/2012/05/weibo10-300x142.jpg 300w, http://partnews.brownbag.me/wp-content/uploads/2012/05/weibo10-1024x486.jpg 1024w, http://partnews.brownbag.me/wp-content/uploads/2012/05/weibo10-500x237.jpg 500w" sizes="(max-width: 1348px) 100vw, 1348px" /></a></p>
+      <p>Now that we have the data formatted, we want to make sense of it.</p>
+      <p>The first project I did was to graph the deleted weibos on a timeline. My classmate <a href="http://www.mit.edu/~eugenewu/">Eugene Wu </a> suggested that the best software to visualize the data is <a href="http://www.tableausoftware.com/">Tableau</a>.</p>
+      <ol>
+      <ol>1) Download + install Tableau</ol>
+      <ol>2) Click on “Open Data”</ol>
+      <ol>3) Under “Connect to Data: In a file”, click on “Microsoft Excel”</ol>
+      <ol>4) When the “Excel Workbook Connection” window pops up, click “Ok”</ol>
+      </ol>
+      <p><a href="http://partnews.brownbag.me/2012/05/23/mas-s61-final-project/weibo11/" rel="attachment wp-att-1051"><img class="alignnone size-full wp-image-1051" src="http://partnews.brownbag.me/wp-content/uploads/2012/05/weibo11.jpg" alt="" width="100%" height="auto" srcset="http://partnews.brownbag.me/wp-content/uploads/2012/05/weibo11.jpg 1364w, http://partnews.brownbag.me/wp-content/uploads/2012/05/weibo11-300x160.jpg 300w, http://partnews.brownbag.me/wp-content/uploads/2012/05/weibo11-1024x546.jpg 1024w, http://partnews.brownbag.me/wp-content/uploads/2012/05/weibo11-500x266.jpg 500w" sizes="(max-width: 1364px) 100vw, 1364px" /></a></p>
+      <ol>
+      <ol>5) Change the format for the “created at” and “deleted” columns from “text” to “Date &amp; time” by right clicking the mouse, selecting “Change Data Type” then “Date &amp; time.”</ol>
+      </ol>
+      <p><a href="http://partnews.brownbag.me/2012/05/23/mas-s61-final-project/weibo12/" rel="attachment wp-att-1052"><img class="alignnone size-full wp-image-1052" src="http://partnews.brownbag.me/wp-content/uploads/2012/05/weibo12.jpg" alt="" width="100%" height="auto" srcset="http://partnews.brownbag.me/wp-content/uploads/2012/05/weibo12.jpg 1366w, http://partnews.brownbag.me/wp-content/uploads/2012/05/weibo12-300x159.jpg 300w, http://partnews.brownbag.me/wp-content/uploads/2012/05/weibo12-1024x545.jpg 1024w, http://partnews.brownbag.me/wp-content/uploads/2012/05/weibo12-500x266.jpg 500w" sizes="(max-width: 1366px) 100vw, 1366px" /></a></p>
+      <ol>
+      <ol>
+      <ol>6) Go to the Dimensions box and drag the “deleted” data set to “Columns”</ol>
+      <ol>7) Go to the Measures box and drag the “Number of Records” data set to “Rows”</ol>
+      <ol>8) In the “Show Me” box, select the type of graph you want. Voila!</ol>
+      </ol>
+      </ol>
+      <div><a href="http://partnews.brownbag.me/2012/05/23/mas-s61-final-project/censored_weibo_timeline/" rel="attachment wp-att-1098"><img class="alignnone  wp-image-1098" style="border-color: #bbbbbb;background-color: #eeeeee" src="http://partnews.brownbag.me/wp-content/uploads/2012/05/censored_weibo_timeline-1024x233.png" alt="" width="100%" height="auto" srcset="http://partnews.brownbag.me/wp-content/uploads/2012/05/censored_weibo_timeline-1024x233.png 1024w, http://partnews.brownbag.me/wp-content/uploads/2012/05/censored_weibo_timeline-300x68.png 300w, http://partnews.brownbag.me/wp-content/uploads/2012/05/censored_weibo_timeline-500x113.png 500w" sizes="(max-width: 1024px) 100vw, 1024px" /></a></div>
+      <div style="text-align: right"><a href="http://public.tableausoftware.com/views/MASS61finalproject/censoredweibotimeline"><span style="font-size: x-small">Powered by Tableau</span></a></div>
+      </div>
+              </div><!-- .entry-content -->
+
+              <h4>Media Coverage</h4>
+              <div class="row">
+              <div class="col-md-12 col-sm-12" id="projecttitle"><a href="http://www.niemanlab.org/2012/05/reverse-engineering-chinese-censorship-when-and-why-are-controversial-tweets-deleted/">Reverse engineering Chinese censorship: When and why are controversial tweets deleted?</a></div>
+              <div class="col-md-9 col-sm-6" id="projectmedia">Nieman Lab</div>
+              <div class="col-md-3 col-sm-6" id="projectdate">5/30/2012</div>
+
+              <div class="col-md-12 col-sm-12" id="projecttitle"><a href="http://chinadigitaltimes.net/2012/05/reverse-engineering-weibo-censorship/">Reverse Engineering Weibo's Censorship</a></div>
+              <div class="col-md-9 col-sm-6" id="projectmedia">China Digital Times</div>
+              <div class="col-md-3 col-sm-6" id="projectdate">5/30/2012</div>
+
+              <div class="col-md-12 col-sm-12" id="projecttitle"><a href="https://www.techinasia.com/cool-data-visualizations-shed-light-chinese-microblog-censorship">Cool Data Visualizations Shed Light on Chinese Microblog Censorship</a></div>
+              <div class="col-md-9 col-sm-6" id="projectmedia">Tech in Asia</div>
+              <div class="col-md-3 col-sm-3" id="projectdate">5/30/2012</div>
+
+              <div class="col-md-12 col-sm-12" id="projecttitle"><a href="http://thelede.blogs.nytimes.com/2012/06/01/skepticism-greets-googles-attempt-to-deal-with-censored-terms-in-china/?src=tp&_r=0">Skepticism Greets Google's Attempt to Deal with Censored Terms in China</a></div>
+              <div class="col-md-9 col-sm-6" id="projectmedia">New York Times</div>
+              <div class="col-md-3 col-sm-6" id="projectdate">6/1/2012</div>
+
+              <div class="col-md-12 col-sm-12" id="projecttitle"><a href="http://blogs.wsj.com/chinarealtime/2012/06/01/charting-chinas-social-media-censorship/">Charting China's Social Media Censorship</a></div>
+              <div class="col-md-9 col-sm-6" id="projectmedia">Wall Street Journal</div>
+              <div class="col-md-3 col-sm-6" id="projectdate">6/1/2012</div>
+
+              <div class="col-md-12 col-sm-12" id="projecttitle"><a href="http://stream.aljazeera.com/story/201206020238-0022225?qt-more_from_the_stream=1">What's in a Weibo?</a></div>
+              <div class="col-md-9 col-sm-6" id="projectmedia">Al-Jazeera</div>
+              <div class="col-md-3 col-sm-6" id="projectdate">6/1/2012</div>
+
+              <div class="col-md-12 col-sm-12" id="projecttitle"><a href="http://motherboard.vice.com/blog/weibo-s-censorship-explosion-an-interview-with-journalist-chi-chu-tschang">Stalking China's Weibo Censors</a></div>
+              <div class="col-md-9 col-sm-6" id="projectmedia">Vice</div>
+              <div class="col-md-3 col-sm-6" id="projectdate">6/5/2012</div>
+
+              <div class="col-md-12 col-sm-12" id="projecttitle"><a href="https://cpj.org/blog/2012/06/what-chinas-weibo-censorship-does-and-does-not-rev.php">What China's Weibo does, and does not, reveal</a></div>
+              <div class="col-md-9 col-sm-6" id="projectmedia">Committee to Protect Journalists</div>
+              <div class="col-md-3 col-sm-6" id="projectdate">6/28/2012</div>
+            </div>
+
+      </content>
+    </div>
+  </body>
+<footer><% include partials/footer %></footer>
+  <script>
+    (function(i, s, o, g, r, a, m) {
+        i['GoogleAnalyticsObject'] = r;
+        i[r] = i[r] || function() {
+            (i[r].q = i[r].q || []).push(arguments)
+        }, i[r].l = 1 * new Date();
+        a = s.createElement(o),
+        m = s.getElementsByTagName(o)[0];
+        a.async = 1;
+        a.src = g;
+        m.parentNode.insertBefore(a, m)
+    })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+
+    ga('create', 'UA-28397530-1', 'auto');
+    ga('send', 'pageview');
+  </script>
+</html>
