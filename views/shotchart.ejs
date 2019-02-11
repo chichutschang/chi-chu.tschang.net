@@ -996,19 +996,19 @@
               <p>Greg Reda posted this <u><a href="http://www.gregreda.com/2015/02/15/web-scraping-finding-the-api/">tutorial</a></u> on how to pull John Wall's shot logs from the <u><a href="http://www.nba.com">NBA.com</a></u> website. Unfortunately, the NBA changed the layout of NBA.com site since he published his tutorial in 2015. The data is still on the NBA.com website. We just needed to find it. There's a couple more steps to find the shot chart data:</p>
               <ol>
                 <li>Go to the <u><a href="http://www.nba.com">NBA.com</a></u> website and click the <u><a href="http://stats.nba.com/">"Stats"</a></u> link</li>
-                <p><img src="shotchartstep1.png" width="87%"></img></p>
+                <p><img src="/images/shotchartstep1.png" width="87%"></img></p>
                 <li>Select the <u><a href="http://stats.nba.com/players/traditional/#!?DateFrom=05/20/2017&DateTo=05/20/2017&PerMode=Totals&sort=PTS&dir=-1">"See all Players Stats"</a></u> link</li>
-                <p><img src="shotchartstep2.png" width="87%"></img></p>
+                <p><img src="/images/shotchartstep2.png" width="87%"></img></p>
                 <li>Select the <u><a href="http://stats.nba.com/events/#!/?flag=3&CFID=&CFPARAMS=&PlayerID=2544&TeamID=1610612739&GameID=&ContextMeasure=FGA&Season=2016-17&SeasonType=Regular Season&LeagueID=00&PerMode=PerGame&GameSegment=&Period=0&PlayerPosition=&StarterBench=&PlayerExperience=&OpponentTeamID=0&VsConference=&VsDivision=&Outcome=&Location=&SeasonSegment=&Month=0&LastNGames=0&PlusMinus=N&PaceAdjust=N&Rank=N&GameScope=&DateFrom=&DateTo=&ShotClockRange=&Conference=&Division=&PORound=0&DraftYear=&DraftPick=&College=&Country=&Height=&Weight=&MeasureType=Base&section=players">"FGA"</a></u> link for the player</li>
-                <p><img src="shotchartstep3.png" width="87%"></img></p>
+                <p><img src="/images/shotchartstep3.png" width="87%"></img></p>
                 <li>Right click the mouse and select "Inspect"</li>
-                <p><img src="shotchartstep4.png" width="87%"></img></p>
+                <p><img src="/images/shotchartstep4.png" width="87%"></img></p>
                 <li>Select "Network"</li>
-                <p><img src="shotchartstep5.png" width="87%"></img></p>
+                <p><img src="/images/shotchartstep5.png" width="87%"></img></p>
                 <li>Select the link that starts with "shotchartdetail?"</li>
-                <p><img src="shotchartstep6.png" width="87%"></img></p>
+                <p><img src="/images/shotchartstep6.png" width="87%"></img></p>
                 <li>In the "Header" tab, copy and paste the "Request URL"</li>
-                <p><img src="shotchartstep8.png" width="87%"></img></p>
+                <p><img src="/images/shotchartstep8.png" width="87%"></img></p>
               </ol>
 
               <p>Savvas Tjortjoglou has published a <u><a href="http://savvastjortjoglou.com/nba-shot-sharts.html">tutorial</a></u> on how to create a shot chart using Python. I made a couple of minor changes to his code:
