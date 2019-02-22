@@ -25,9 +25,9 @@ var pages = 200;
 
 $(document).ready(function() {
 var apikey = 'm9aCHYOPGgBepD8nkp7Q'
-for (var i=1; i < 4; i++){
+ //for (var i=1; i < 4; i++){
 
-  var urls ='https://www.goodreads.com/review/list/1589736.xml'+'?key='+apikey+'&v=2'+'&shelf=read'+'&per_page='+pages+'&page='+[i];
+  var urls ='https://www.goodreads.com/review/list/1589736.xml'+'?key='+apikey+'&v=2'+'&shelf=read'+'&per_page='+pages+'&page='+[1];
   //console.log(urls);
 
 //  var url1 ='https://www.goodreads.com/review/list/1589736.xml'+'?key='+apikey+'&v=2'+'&shelf=read'+'&per_page=200'+'&page=1';
@@ -102,7 +102,7 @@ for (var j = start - 1; j < end; j++){
     $('#table').append(templateString);
         }
       });
-    };
+    //};
   }
 );
 
@@ -123,7 +123,8 @@ for (var j = start - 1; j < end; j++){
             <font color="#999">date read</font>&nbsp;&nbsp;<b>title</b>/author
               </tr>
             </thead>
-          <tbody></tbody>
+          <tbody><div class="loader"></div>
+          </tbody>
         </table>
       </div>
     </div>
