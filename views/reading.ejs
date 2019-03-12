@@ -106,6 +106,21 @@ for (var j = start - 1; j < end; j++){
   }
 );
 
+//progress bar
+function move(){
+  var elem = document.getElementById("bar");
+  var width = 1;
+  var id = setInterval(frame, 40);
+  function frame() {
+    if (width >= 100){
+      clearInterval(id);
+    } else {
+      width++;
+      elem.style.width = width + '%';
+      elem.innerHTML = width + '%';
+    }
+  }
+}
 </script>
 <html>
   <head>
@@ -123,7 +138,6 @@ for (var j = start - 1; j < end; j++){
             <font color="#999">date read</font>&nbsp;&nbsp;<b>title</b>/author
               </tr>
             </thead>
-          <tbody><div class="loader"></div>
           </tbody>
         </table>
       </div>

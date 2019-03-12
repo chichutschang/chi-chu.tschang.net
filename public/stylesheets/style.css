@@ -194,3 +194,14 @@ a:active {text-decoration: none;}
   #learningprojects {
     font-size: 9px;
   }
+
+  #progress {
+    width: 100%;
+    background-color: #999;
+  }
+
+  #bar {
+    width: 1%;
+    height: 10px;
+    background-color: #B90000;
+  }
