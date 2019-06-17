@@ -18,6 +18,7 @@
     "moment": "^2.23.0",
     "mongodb": "^3.1.13",
     "morgan": "~1.9.0",
+    "clean-css":">=4.1.11",
     "constantinople":">=3.1.1"
   },
   "description": "This is the personal website of Chi-Chu Tschang",
