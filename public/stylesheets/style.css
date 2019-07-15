@@ -196,12 +196,6 @@ a:active {text-decoration: none;}
   }
 
   #progress {
-    width: 100%;
-    background-color: #999;
-  }
-
-  #bar {
-    width: 1%;
-    height: 10px;
-    background-color: #B90000;
+    height: 1px;
+    background-color: black;
   }

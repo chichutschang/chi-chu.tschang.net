@@ -1,6 +1,22 @@
 <!doctype html>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-<script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<!-- <script src="https://code.jquery.com/jquery-1.11.2.min.js"></script> -->
+<script type="text/javascript">
+
+//progess bar
+$(function update(){
+  var element = document.getElementById("progress");
+  var width = 1;
+  var identity = setInterval(scene, 70);
+  function scene(){
+    if (width >= 100){
+      clearInterval(identity);
+    } else {
+      width++;
+      element.style.width = width +'%';
+    }
+  }
+});
 
 var titles = [];
 var authors = [];
@@ -106,21 +122,6 @@ for (var j = start - 1; j < end; j++){
   }
 );
 
-//progress bar
-function move(){
-  var elem = document.getElementById("bar");
-  var width = 1;
-  var id = setInterval(frame, 40);
-  function frame() {
-    if (width >= 100){
-      clearInterval(id);
-    } else {
-      width++;
-      elem.style.width = width + '%';
-      elem.innerHTML = width + '%';
-    }
-  }
-}
 </script>
 <html>
   <head>
@@ -132,11 +133,13 @@ function move(){
       <% include partials/header %>
     </nav>
     <div id="content">
+
       <table id="table">
         <thead>
           <tr>
             <font color="#999">date read</font>&nbsp;&nbsp;<b>title</b>/author
               </tr>
+                <div id="progress"></div>
             </thead>
           </tbody>
         </table>

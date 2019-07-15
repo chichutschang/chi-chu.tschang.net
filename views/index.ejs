@@ -8,6 +8,21 @@
 
 $(document).ready(function() {
 
+// $.ajax({
+//   type: 'GET',
+//   url: 'https://www.goodreads.com/user/show/1589736.xml?key=m9aCHYOPGgBepD8nkp7Q',
+//   contentType: 'text/plain',
+//   xhrFields: {
+//     withCredentials: false
+//   },
+//   // headers: {'Access-Control-Allow-Origin' : 'http://localhost:3000'},
+//   success: function(response){
+//     console.log(response);
+//   },
+//   error: function(error){
+//     console.log("Error:", error);
+//   },
+// })
   $.ajaxPrefilter(function(options) {
   if (options.crossDomain && jQuery.support.cors) {
     var http = window.location.protocol === "http:" ? "http:" : "https:";
