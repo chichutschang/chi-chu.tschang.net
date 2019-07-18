@@ -12,7 +12,6 @@ var usersRouter = require('./routes/users');
 //   optionsSuccessStatus: 200
 // }
 var app = express();
-var fs = require('fs');
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
