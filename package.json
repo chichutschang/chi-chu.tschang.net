@@ -6,13 +6,14 @@
     "start": "node ./bin/www"
   },
   "dependencies": {
-    "clean-css": ">=4.1.11",
-    "constantinople": ">=3.1.1",
+    "aws-sdk": "^2.496.0",
+    "clean-css": "^4.2.1",
+    "constantinople": "^3.1.2",
     "cookie-parser": "~1.4.3",
     "cors": "^2.8.5",
     "debug": "~2.6.9",
     "ejs": "^2.6.1",
-    "express": "^4.16.4",
+    "express": "^4.17.1",
     "express-ejs-layouts": "^2.5.0",
     "http-errors": "~1.6.2",
     "jade": "~1.11.0",
@@ -22,7 +23,8 @@
     "morgan": "~1.9.0",
     "nprogress": "^0.2.0",
     "progress": "^2.0.3",
-    "progressbar.js": "^1.0.1"
+    "progressbar.js": "^1.0.1",
+    "uglify-js": "^3.6.0"
   },
   "description": "This is the personal website of Chi-Chu Tschang",
   "main": "app.js",
