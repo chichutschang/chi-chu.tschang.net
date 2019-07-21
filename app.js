@@ -45,16 +45,16 @@ app.use(function(err, req, res, next) {
 
 
 //enable all cors requests
-app.use(cors({
-  origin: 'http://127.0.0.1:3000'
-}));
+// app.use(cors({
+//   origin: 'http://127.0.0.1:3000'
+// }));
 
 // app.get('/products/:id', cors(corsOptions), function(req, res, next){
 //     res.json({msg: 'This is a CORS-enabled for all origins!'})
 // })
 
-app.listen(80, function(){
-  console.log('CORS-enabled web server listening on port 80')
-})
+// app.listen(80, function(){
+//   console.log('CORS-enabled web server listening on port 80')
+// })
 
 module.exports = app;
