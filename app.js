@@ -7,6 +7,7 @@ var logger = require('morgan');
 var ejsLayouts = require('express-ejs-layouts')
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
+var aws = require('aws-sdk');
 var app = express();
 
 // view engine setup
