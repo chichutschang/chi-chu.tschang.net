@@ -10,8 +10,6 @@ var usersRouter = require('./routes/users');
 var aws = require('aws-sdk');
 var app = express();
 
-app.set('port', 8081)
-
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
