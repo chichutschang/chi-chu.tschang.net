@@ -24,7 +24,10 @@
   },
   "description": "This is the personal website of Chi-Chu Tschang",
   "main": "app.js",
-  "devDependencies": {},
+  "devDependencies": {
+    "webpack": "^4.37.0",
+    "webpack-dev-server": "^3.7.2"
+  },
   "keywords": [
     "Chi-Chu",
     "Tschang"
