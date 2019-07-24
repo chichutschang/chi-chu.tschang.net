@@ -4,7 +4,7 @@
  * Module dependencies.
  */
 
-var app = require('../main');
+var app = require('../app');
 var debug = require('debug')('chi-chu.tschang.net-v5:server');
 var http = require('http');
 var https = require('https');
