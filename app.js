@@ -9,11 +9,6 @@ var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var aws = require('aws-sdk');
 var app = express();
-var forceHttps = require('@crystallize/elasticloadbalancer-express-force-https');
-var server = express();
-
-//forceHttps
-server.use(forceHttps());
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
