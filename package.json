@@ -13,7 +13,6 @@
     "ejs": "^2.6.1",
     "express": "^4.17.1",
     "express-ejs-layouts": "^2.5.0",
-    "express-http-to-https": "^1.1.4",
     "http-errors": "~1.6.2",
     "jquery": "^3.4.1",
     "moment": "^2.23.0",
