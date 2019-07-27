@@ -54,12 +54,12 @@ app.get('/insecure', function (req, res) {
   res.send('Dangerous!');
 });
 
-app.listen(3000, function () {
-  console.log('Example app listening on port 3000!');
-});
-
-app.listen(8080, function () {
-  console.log('Example app listening on port 8080 insecurely!');
-});
+// app.listen(3000, function () {
+//   console.log('Example app listening on port 3000!');
+// });
+//
+// app.listen(8080, function () {
+//   console.log('Example app listening on port 8080 insecurely!');
+// });
 
 module.exports = app;
