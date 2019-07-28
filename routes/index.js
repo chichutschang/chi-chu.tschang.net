@@ -48,4 +48,10 @@ router.get('/connect', function(req, res, next) {
   res.render('connect', { title: 'connect' });
 });
 
+/* GET test page. */
+router.get('/connect', function(req, res, next) {
+  res.render('test', { title: 'test' });
+});
+
+
 module.exports = router;
