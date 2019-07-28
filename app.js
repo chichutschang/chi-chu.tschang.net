@@ -9,7 +9,7 @@ var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var aws = require('aws-sdk');
 var app = express();
-var goodreads = require('goodread-api-node');
+const goodreads = require('goodread-api-node');
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
