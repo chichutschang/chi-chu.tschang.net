@@ -49,7 +49,7 @@ router.get('/connect', function(req, res, next) {
 });
 
 /* GET test page. */
-router.get('/connect', function(req, res, next) {
+router.get('/test', function(req, res, next) {
   res.render('test', { title: 'test' });
 });
 
