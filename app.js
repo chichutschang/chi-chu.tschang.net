@@ -9,6 +9,7 @@ var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var aws = require('aws-sdk');
 var app = express();
+var browserify = require('browserify');
 const goodreads = require('goodreads-api-node');
 
 // view engine setup
@@ -20,10 +21,10 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname + '/public')));
+app.use(express.static(__dirname +'/static', {dotfiles: 'allow'}));
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/jquery', express.static(__dirname + '/node_modules/jquery/dist/'));
-app.use(express.static(__dirname +'/static', {dotfiles: 'allow'}));
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -41,5 +42,7 @@ app.use(function(err, req, res, next) {
   res.render('error');
 });
 
+//render test page
+app.use('/test', )
 
 module.exports = app;
