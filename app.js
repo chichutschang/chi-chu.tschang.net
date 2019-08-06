@@ -7,10 +7,10 @@ var logger = require('morgan');
 var ejsLayouts = require('express-ejs-layouts')
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
-var aws = require('aws-sdk');
 var app = express();
-var browserify = require('browserify');
 const goodreads = require('goodreads-api-node');
+const request = require('request');
+const parseXML = require('xml2js');
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -42,7 +42,37 @@ app.use(function(err, req, res, next) {
   res.render('error');
 });
 
-//render test page
-app.use('/test', )
+//pull books from Goodreads
+  let apikey = 'm9aCHYOPGgBepD8nkp7Q'
+  let url = 'https://www.goodreads.com/review/list/1589736.xml'+'?key='+apikey
+  var extractedData = '';
+  var parser = new parseXML.Parser();
+
+  request(url, function(err, response, body){
+    if (err){
+      console.log('error:', error);
+          } else {
+      parser.parseString(body, function(err, result){
+        extractedData = result;
+        var title = extractedData.GoodreadsResponse.books[0].book[0].title;
+        var author = extractedData.GoodreadsResponse.books[0].book[0].authors[0].author[0].name;
+        console.log(title);
+        console.log(author);
+
+        // res.json({
+        //   book: extractedData.GoodreadsResponse.books[0].book.title.map(
+        //     work => ({
+        //       title: work.book[0].title,
+        //     })
+        //   )
+        // })
+
+
+      // console.log('body:', body);
+    })
+  }
+});
+
+
 
 module.exports = app;
