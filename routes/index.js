@@ -50,7 +50,7 @@ router.get('/connect', function(req, res, next) {
 
 /* GET test page. */
 router.get('/test', function(req, res, next) {
-  res.render('test', { title: 'test' });
+  res.json({ title : 'Of Mice and Men' , author: 'John Steinbeck'});
 });
 
 

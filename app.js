@@ -2,7 +2,6 @@ var createError = require('http-errors');
 var express = require('express');
 var cors = require('cors');
 var path = require('path');
-var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var ejsLayouts = require('express-ejs-layouts')
 var indexRouter = require('./routes/index');
@@ -19,7 +18,6 @@ app.set('view engine', 'ejs');
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-app.use(cookieParser());
 app.use(express.static(path.join(__dirname + '/public')));
 app.use(express.static(__dirname +'/static', {dotfiles: 'allow'}));
 app.use('/', indexRouter);
@@ -42,22 +40,41 @@ app.use(function(err, req, res, next) {
   res.render('error');
 });
 
-//pull books from Goodreads
-  let apikey = 'm9aCHYOPGgBepD8nkp7Q'
-  let url = 'https://www.goodreads.com/review/list/1589736.xml'+'?key='+apikey
-  var extractedData = '';
-  var parser = new parseXML.Parser();
+//pull books from Goodreads with goodreads url
+let apikey = 'm9aCHYOPGgBepD8nkp7Q'
+let url = 'https://www.goodreads.com/review/list/1589736.xml'+'?key='+apikey
+var parser = new parseXML.Parser();
 
-  request(url, function(err, response, body){
-    if (err){
-      console.log('error:', error);
-          } else {
-      parser.parseString(body, function(err, result){
-        extractedData = result;
-        var title = extractedData.GoodreadsResponse.books[0].book[0].title;
-        var author = extractedData.GoodreadsResponse.books[0].book[0].authors[0].author[0].name;
-        console.log(title);
-        console.log(author);
+request(url, function(err, response, body){
+  if (err){
+    console.log('error:', error);
+        } else {
+    parser.parseString(body, function(err, result){
+      var title = result.GoodreadsResponse.books[0].book[0].title;
+      var author = result.GoodreadsResponse.books[0].book[0].authors[0].author[0].name;
+      console.log(title);
+      console.log(author);
+    })
+  }
+});
+
+//pull books from Goodreads with goodreads-api-node
+
+  var userID = '1589736';
+  let goodreadCredentials = {
+    key: 'm9aCHYOPGgBepD8nkp7Q',
+    secret: 'Fz2Xvo5VyeUELXtWGNRZxQwziH52lIKhOGX61vld4'
+  }
+
+  const gr = goodreads(goodreadCredentials);
+
+  //gr.getUserInfo(userID).then(console.log);
+  //gr.getReview(userID).then(console.log);
+
+  gr.getUsersShelves(userID).then(console.log);
+
+
+//goodreadsClient.getBooksByAuthor('175417').then(console.log);
 
         // res.json({
         //   book: extractedData.GoodreadsResponse.books[0].book.title.map(
@@ -69,9 +86,7 @@ app.use(function(err, req, res, next) {
 
 
       // console.log('body:', body);
-    })
-  }
-});
+
 
 
 
