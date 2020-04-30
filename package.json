@@ -15,7 +15,7 @@
     "express-ejs-layouts": "^2.5.0",
     "goodreads-api-node": "0.0.10",
     "http-errors": "~1.6.2",
-    "jquery": "^3.4.1",
+    "jquery": "^3.5.0",
     "moment": "^2.23.0",
     "mongodb": "^3.2.7",
     "morgan": "~1.9.0",
