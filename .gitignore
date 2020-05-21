@@ -1,5 +1,9 @@
+#ignore the following files:
 
 # Elastic Beanstalk Files
 .elasticbeanstalk/*
 !.elasticbeanstalk/*.cfg.yml
 !.elasticbeanstalk/*.global.yml
+
+#.env
+node_modules
