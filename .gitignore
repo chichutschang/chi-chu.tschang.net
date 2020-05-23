@@ -6,4 +6,6 @@
 !.elasticbeanstalk/*.global.yml
 
 #.env
+test.ejs
+investing.ejs
 node_modules
