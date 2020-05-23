@@ -2,50 +2,6 @@
   <% include partials/header %>
 </nav>
 
-<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script> -->
-
-<script>
-
-$(document).ready(function() {
-
-// $.ajax({
-//   type: 'GET',
-//   url: 'https://www.goodreads.com/user/show/1589736.xml?key=m9aCHYOPGgBepD8nkp7Q',
-//   contentType: 'text/plain',
-//   xhrFields: {
-//     withCredentials: false
-//   },
-//   // headers: {'Access-Control-Allow-Origin' : 'http://localhost:3000'},
-//   success: function(response){
-//     console.log(response);
-//   },
-//   error: function(error){
-//     console.log("Error:", error);
-//   },
-// })
-  $.ajaxPrefilter(function(options) {
-  if (options.crossDomain && jQuery.support.cors) {
-    var http = window.location.protocol === "http:" ? "http:" : "https:";
-    options.url = http + "//cors-anywhere.herokuapp.com/" + options.url;
-    }
-  });
-
-  $.get(
-  "https://www.goodreads.com/user/show/1589736.xml?key=m9aCHYOPGgBepD8nkp7Q",
-  function(data) {
-    var title = data.getElementsByTagName("title")[0].textContent;
-    console.log(title);
-    var author = data.getElementsByTagName("name")[5].textContent;
-
-    var reviewId = data.getElementsByTagName("review_id")[0].textContent;
-    $("#title").text(title);
-    $("#author").text(author);
-    $("#reviewId").text("<a href=https://www.goodreads.com/review/show/"+reviewId+"></a>");
-    }
-  );
-});
-</script>
-
 <!doctype html>
 <html>
   <div class="container-fluid">
@@ -59,24 +15,21 @@ $(document).ready(function() {
       <table>
           <tbody>
           <tr>
-            <td class="border"><b>learning: </b></td><td class="border"><a href="http://fresnostate.edu/kremen/">Kremen School of Education and Human Development, Fresno State</a></td>
+            <td class="border"><b>learning: </b></td><td class="border"><a href="https://fresnostate.edu/kremen/">Kremen School of Education and Human Development, Fresno State</a></td>
           </tr>
           <tr>
             <td class="border"><b>teaching: </b></td><td class="border"><a href="https://ahs.ausdk12.org/">Albany High School</a></td>
           </tr>
           <tr>
-            <td class="border align-text-top"><b>reading :</b></td><td class="border">
-              <div style='display: inline-block' id='title'></div> by <div style='display: inline-block' id='author'></div>
-
-            </td>
+            <td class="border align-text-top"><b>reading :</b></td><td class="border"><div style='display: inline-block' id='title'><a href="<%= link %>"><%= title %></a></div> by <div style='display: inline-block' id='author'><%= author %></div></td>
           </tr>
           <tr>
-            <td class="border align-text-top"><b>writing :</b></td><td><a href="http://www.businessweek.com/stories/2008-02-11/a-french-water-companys-cautionary-tale-in-chinabusinessweek-business-news-stock-market-and-financial-advice">A French Water Company's Cautionary Tale in China</a>
+            <td class="border align-text-top"><b>writing :</b></td><td><a href="https://www.businessweek.com/stories/2008-02-11/a-french-water-companys-cautionary-tale-in-chinabusinessweek-business-news-stock-market-and-financial-advice">A French Water Company's Cautionary Tale in China</a>
               <ul class="list-unstyled">
-              <li><a href="http://www.businessweek.com/stories/2008-04-09/the-new-e-spionage-threat">The New E-spionage Threat</a></li>
-              <li><a href="http://www.businessweek.com/stories/2008-10-01/dangerous-fakes">Dangerous Fakes</a></li>
-              <li><a href="http://www.businessweek.com/stories/2008-12-30/the-squeeze-at-chinas-baidu">The Squeeze at China's Baidu</a></li>
-              <li><a href="http://www.businessweek.com/stories/2008-08-15/empty-seats-at-chinas-sellout-olympicsbusinessweek-business-news-stock-market-and-financial-advice">Empty Seats at China's Sellout Olympics</a></li>
+              <li><a href="https://www.businessweek.com/stories/2008-04-09/the-new-e-spionage-threat">The New E-spionage Threat</a></li>
+              <li><a href="https://www.businessweek.com/stories/2008-10-01/dangerous-fakes">Dangerous Fakes</a></li>
+              <li><a href="https://www.businessweek.com/stories/2008-12-30/the-squeeze-at-chinas-baidu">The Squeeze at China's Baidu</a></li>
+              <li><a href="https://www.businessweek.com/stories/2008-08-15/empty-seats-at-chinas-sellout-olympicsbusinessweek-business-news-stock-market-and-financial-advice">Empty Seats at China's Sellout Olympics</a></li>
               </ul>
             </td>
           </tr>
