@@ -17,7 +17,7 @@ const credentials = {
   secret: process.env.GOODREADS_SECRET
 };
 const gr = goodreads(credentials)
-const callbackURL = 'http://127.0.0.1:8081/reading/goodreads'
+const callbackURL = 'https://chi-chu.tschang.net/reading/goodreads'
 const userID='1589736';
 //const url ='mongodb://localhost:27017'
 const database = process.env.DATABASE_URL || 8080;
