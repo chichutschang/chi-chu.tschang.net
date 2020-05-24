@@ -7,6 +7,7 @@ var logger = require('morgan');
 var ejsLayouts = require('express-ejs-layouts')
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
+var readingRouter = require('./routes/reading');
 var app = express();
 const goodreads = require('goodreads-api-node');
 const request = require('request');
