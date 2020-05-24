@@ -1,15 +1,18 @@
+//require dependencies
 require('dotenv').config()
 const mongoose = require('mongoose');
 const express = require('express');
-//const passport = require('passport')
 const app = express();
-//const cors = require('cors');
+var router = express.Router();
 const path = require('path');
 const goodreads = require('goodreads-api-node');
 const async = require('async');
 const request = require('request');
 const parseXML = require('xml2js');
 //const MongoClient = require('mongodb').MongoClient;
+//const passport = require('passport')
+//const cors = require('cors');
+
 
 //key and secret to access Goodreads API
 const credentials = {
@@ -104,4 +107,7 @@ app.get('/reading/goodreads', async (req, res, next) => {
     .catch((err) => console.log('/auth/goodreads catch err', err))
 });
 
-app.listen(8081)
+//app.listen(8081)
+
+//send router to app.js
+module.exports = router;
