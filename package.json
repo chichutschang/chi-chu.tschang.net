@@ -34,7 +34,6 @@
   "description": "This is the personal website of Chi-Chu Tschang",
   "main": "app.js",
   "devDependencies": {
-    "dotenv": "^8.2.0",
     "nodemon": "^2.0.3",
     "webpack": "^4.37.0",
     "webpack-dev-server": "^3.11.0"
@@ -45,5 +44,13 @@
     "Chi-Chu Tschang"
   ],
   "author": "Chi-Chu Tschang",
-  "license": "MIT"
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chichutschang/chi-chu.tschang.net.git"
+  },
+  "bugs": {
+    "url": "https://github.com/chichutschang/chi-chu.tschang.net/issues"
+  },
+  "homepage": "https://github.com/chichutschang/chi-chu.tschang.net#readme"
 }
