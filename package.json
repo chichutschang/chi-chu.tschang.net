@@ -24,7 +24,6 @@
     "nprogress": "^0.2.0",
     "passport": "^0.4.1",
     "passport-goodreads": "^1.0.0",
-    "passport-oauth": "^1.0.0",
     "progress": "^2.0.3",
     "progressbar.js": "^1.0.1",
     "request": "^2.88.0",
