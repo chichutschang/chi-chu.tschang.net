@@ -10,9 +10,6 @@ const async = require('async');
 const request = require('request');
 const parseXML = require('xml2js');
 //const MongoClient = require('mongodb').MongoClient;
-//const passport = require('passport')
-//const cors = require('cors');
-
 
 //key and secret to access Goodreads API
 const credentials = {
@@ -20,7 +17,7 @@ const credentials = {
   secret: process.env.GOODREADS_SECRET
 };
 const gr = goodreads(credentials)
-const callbackURL = 'https://chi-chu.tschang.net/reading/goodreads'
+const callbackURL = 'https:chi-chu.tschang.net/reading/goodreads'
 const userID='1589736';
 //const url ='mongodb://localhost:27017'
 const database = process.env.DATABASE_URL || 8080;
@@ -32,12 +29,6 @@ const db = mongoose.connect(database, {
   useUnifiedTopology: true,
   });
 
-//const db = mongoose.connect(database, (err, client) => {
-  //if (err) console.log('Error in Mongoose Connect...', err)
-  //else if (client) console.log('Connected to Mongo Database...')
-  //useNewUrlParser: true,
-  //useUnifiedTopology: true,
-  //});
 
 //define schema
 const Schema = mongoose.Schema;
@@ -81,18 +72,22 @@ app.get('/reading/goodreads', async (req, res, next) => {
                console.log(result.books.book)
                //display MongoDB database information
                console.log(mongoose.connection.db.collection('books'))
-               //4. delete existing books from MongoDB collection
-               mongoose.connection.db.dropCollection('currently-readings', (err, result) => {
-                  console.log('Deleting existing books from MongoDB collection...')
-                  if (err) console.log('Drop collection error', err)
+               //4. if currently reading is null, do not delete existing book from MongoDB collection
+               if(result.books.book == null){
+                console.log('Currently looking for new book recommendations')  
+               } else {
+                //5. delete existing book from MongoDB collection
+                mongoose.connection.db.dropCollection('currently-readings', (err, result) => {
+                console.log('Deleting existing books from MongoDB collection...')
+                if (err) console.log('Drop collection error', err)
                 })
 
-                //save data to MongoDB database
+                //6. save books into MongoDB database as JSON objects
                 const shelf = new bookshelf({bookArray: result.books.book})
-                //insert books JSON object into MongoDB database
                 shelf.save(function (err){
-                    if (err) res.send('Error saving books from Goodreads...', err, i);
-               })
+                  if (err) res.send('Error saving books from Goodreads...', err, i);
+                  })
+               }
                console.log('Saved currently reading book into MongoDB collection...')
                mongoose.connection.on('connected', function(){
                  setTimeout(function(){ done()}, 3000);
