@@ -1,6 +1,5 @@
 //require dependencies
 require('dotenv').config()
-const mongoose = require('mongoose');
 const express = require('express');
 const app = express();
 var router = express.Router();
@@ -9,7 +8,8 @@ const goodreads = require('goodreads-api-node');
 const async = require('async');
 const request = require('request');
 const parseXML = require('xml2js');
-//const MongoClient = require('mongodb').MongoClient;
+const MongoClient = require('mongodb').MongoClient;
+const mongoose = require('mongoose');
 
 //key and secret to access Goodreads API
 const credentials = {
