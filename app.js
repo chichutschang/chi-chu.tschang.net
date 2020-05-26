@@ -33,6 +33,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname + '/public')));
 app.use(express.static(__dirname +'/static', {dotfiles: 'allow'}));
 app.use('/', indexRouter);
+app.use('/', readingRouter);
 app.use('/users', usersRouter);
 app.use('/jquery', express.static(__dirname + '/node_modules/jquery/dist/'));
 // catch 404 and forward to error handler
