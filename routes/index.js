@@ -2,6 +2,7 @@
 require('dotenv').config()
 var express = require('express');
 var router = express.Router();
+var readingRouter = require('./reading');
 var async = require('async');
 const MongoClient = require('mongodb').MongoClient;
 const mongoose = require('mongoose');
