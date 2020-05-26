@@ -101,10 +101,9 @@ app.get('/reading/goodreads', async (req, res, next) => {
     })
     .catch((err) => console.log('/auth/goodreads catch err', err))
 });
-//for localhost, use Port 8081
+
 //app.listen(8081)
-//for AWS, use Port 443 for https
-app.listen(443)
+app.listen(3000)
 
 //send router to app.js
 module.exports = router;
