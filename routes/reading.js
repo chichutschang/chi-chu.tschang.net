@@ -17,7 +17,7 @@ const credentials = {
   secret: process.env.GOODREADS_SECRET
 };
 const gr = goodreads(credentials)
-const callbackURL = 'https:chi-chu.tschang.net/reading/goodreads'
+const callbackURL = 'https://chi-chu.tschang.net/reading/goodreads'
 const userID='1589736';
 //const url ='mongodb://localhost:27017'
 const database = process.env.DATABASE_URL || 8080;
@@ -102,7 +102,7 @@ app.get('/reading/goodreads', async (req, res, next) => {
     .catch((err) => console.log('/auth/goodreads catch err', err))
 });
 
-//app.listen(8081)
+app.listen(8081)
 
 //send router to app.js
 module.exports = router;
