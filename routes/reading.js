@@ -7,7 +7,7 @@ const path = require('path');
 const goodreads = require('goodreads-api-node');
 const async = require('async');
 const request = require('request');
-const parseXML = require('xml2js');
+//const parser = require('xml2json');
 const MongoClient = require('mongodb').MongoClient;
 const mongoose = require('mongoose');
 
@@ -102,8 +102,20 @@ app.get('/reading/goodreads', async (req, res, next) => {
     .catch((err) => console.log('/auth/goodreads catch err', err))
 });
 
+//code to send 'read' shelf from Goodreads to reading.ejs
+
+// request('https://www.goodreads.com/review/list/${userID}.xml?key=${key}&v=2&shelf=read&per_page=200', (error, req, result) =>{
+//   //console.log(result);
+//   const json = parser.toJson(result);
+//   console.log(json);
+//   })
+  
+
+//https://www.goodreads.com/review/list/1589736.xml?key=m9aCHYOPGgBepD8nkp7Q&v=2&shelf=read&per_page=200
+
+
 //app.listen(8081)
-app.listen(3000)
+//app.listen(3000)
 
 //send router to app.js
-module.exports = router;
+module.exports = app;
