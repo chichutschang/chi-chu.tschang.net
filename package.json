@@ -22,6 +22,7 @@
     "mongodb": "^3.5.7",
     "mongoose": "^5.9.13",
     "morgan": "~1.9.0",
+    "node-gyp": "^5.1.1",
     "nodemon": "^2.0.4",
     "nprogress": "^0.2.0",
     "passport": "^0.4.1",
@@ -30,7 +31,7 @@
     "progressbar.js": "^1.0.1",
     "request": "^2.88.0",
     "simple-oauth2": "^3.4.0",
-    "xml2js": "^0.4.19"
+    "xml2js": "^0.4.23"
   },
   "description": "This is the personal website of Chi-Chu Tschang",
   "main": "app.js",
