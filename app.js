@@ -11,7 +11,7 @@ var readingRouter = require('./routes/reading');
 var app = express();
 const goodreads = require('goodreads-api-node');
 const request = require('request');
-const parseXML = require('xml2js');
+//const parser = require('xml2json');
 const MongoClient = require('mongodb').MongoClient;
 const assert = require('assert');
 const passport = require('passport')
@@ -34,6 +34,7 @@ app.use(express.static(path.join(__dirname + '/public')));
 app.use(express.static(__dirname +'/static', {dotfiles: 'allow'}));
 app.use('/', indexRouter);
 app.use('/', readingRouter);
+console.dir(readingRouter)
 app.use('/users', usersRouter);
 app.use('/jquery', express.static(__dirname + '/node_modules/jquery/dist/'));
 // catch 404 and forward to error handler
