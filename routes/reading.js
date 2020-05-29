@@ -7,7 +7,7 @@ const path = require('path');
 const goodreads = require('goodreads-api-node');
 const async = require('async');
 const request = require('request');
-//const parser = require('xml2json');
+const xml2js = require('xml2js');
 const MongoClient = require('mongodb').MongoClient;
 const mongoose = require('mongoose');
 
@@ -37,7 +37,9 @@ const books = new Schema({
 });
 
 //define models
-const bookshelf = mongoose.model('currently-reading', books)
+const currentlyreadingbookshelf = mongoose.model('currently-reading', books)
+const readbookshelf = mongoose.model('read', books)
+
 
 //URL to redirect after OAuth
 gr.initOAuth(callbackURL)
@@ -83,7 +85,7 @@ app.get('/reading/goodreads', async (req, res, next) => {
                 })
 
                 //6. save books into MongoDB database as JSON objects
-                const shelf = new bookshelf({bookArray: result.books.book})
+                const shelf = new currentlyreadingbookshelf({bookArray: result.books.book})
                 shelf.save(function (err){
                   if (err) res.send('Error saving books from Goodreads...', err, i);
                   })
@@ -102,20 +104,10 @@ app.get('/reading/goodreads', async (req, res, next) => {
     .catch((err) => console.log('/auth/goodreads catch err', err))
 });
 
-//code to send 'read' shelf from Goodreads to reading.ejs
-
-// request('https://www.goodreads.com/review/list/${userID}.xml?key=${key}&v=2&shelf=read&per_page=200', (error, req, result) =>{
-//   //console.log(result);
-//   const json = parser.toJson(result);
-//   console.log(json);
-//   })
-  
-
-//https://www.goodreads.com/review/list/1589736.xml?key=m9aCHYOPGgBepD8nkp7Q&v=2&shelf=read&per_page=200
 
 
 //app.listen(8081)
 //app.listen(3000)
 
 //send router to app.js
-module.exports = app;
+module.exports = app
