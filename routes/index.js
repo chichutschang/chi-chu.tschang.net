@@ -4,43 +4,23 @@ var express = require('express');
 var router = express.Router();
 var readingRouter = require('./reading');
 var async = require('async');
+var moment = require('moment');
+var client = require('../db');
+let currentlyreading = require('../models/currentlyreading');
+let reading = require('../models/reading');
 const MongoClient = require('mongodb').MongoClient;
-const mongoose = require('mongoose');
-
-//const uri = "mongodb+srv://<username>:<password>@<your-cluster-url>/test?retryWrites=true&w=majority";
-const database = process.env.DATABASE_URL || 8080;
-const client = new MongoClient(database, { useNewUrlParser: true, useUnifiedTopology: true });
 
 /* GET home page. */
-// router.get('/', function(req, res, next) {
-//   res.render('index', { title: 'home', page: 'home', menuID: 'home' });
-// });
-
-router.get('/', function(req, res, next) {
-  //connect to MongoDB database
-  client.connect(err => {
-    const db = mongoose.connect(database, {
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
-      socketTimeoutMS: 0,
-      keepAlive: true,
-    }).catch(err => console.log(err.reason));
-    const bookshelf = client.db("books").collection("currently-readings");
-      //res.json(result)
-      console.log('MongoDB collection opened...')
-    //pull data from MongoDB database
-    return bookshelf.find().toArray()
-        .then(result => {
-        //console.log(result[0].bookArray[0].link)
-        //render data in index.ejs
-        res.render('index', {
-          title : result[0].bookArray[0].title,
-          link: result[0].bookArray[0].link,
-          author : result[0].bookArray[0].authors.author.name,
-          page: 'home', menuID: 'home'
-        });
-      })
-    .catch(error => console.error(error))
+router.get('/', (req, res) => {
+  res.setHeader('Content-Type', 'text/html');
+  currentlyreading.book((err, result) =>{
+    //console.dir(result);
+    res.render('index', {
+      title : result[0].review[0].book[0].title[0],
+      author:  result[0].review[0].book[0].authors[0].author[0].name[0],
+      link: result[0].review[0].book[0].link[0],  
+      page: 'home', menuID: 'home'
+    });
   })
 });
 
@@ -60,16 +40,40 @@ router.get('/learning', function(req, res, next) {
 });
 
 /* GET reading page. */
-router.get('/reading', function(req, res, next) {
-  res.render('reading', { title: 'reading' });
+router.get('/reading', (req, res) => {
+  res.setHeader('Content-Type', 'text/html');
+  reading.books((err, result) => {
+  //console.dir(result);
+  const books = []
+  for(var i =0; i < result.length; i++) {
+      //console.log(result[i])
+      for(var j=0; j < result[i].review.length; j++){
+        //console.log(moment(result[i].review[j].read_at[0]).format('MM/DD/YYYY'));
+        var dateread = moment(result[i].review[j].read_at[0]).format('MM/DD/YYYY')
+        //console.log(result[i].review[j].book[0].link[0]);
+        var link = result[i].review[j].book[0].link[0];
+        //console.log(result[i].review[j].book[0].title[0]);          
+        var title = result[i].review[j].book[0].title[0];
+        //console.log(result[i].review[j].book[0].authors[0].author[0].name[0]);          
+        var author = result[i].review[j].book[0].authors[0].author[0].name[0];
+        //Push book title, author, link, dateread into array
+        books.push({'dateread': dateread , 'link' : link , 'title' : title , 'author' : author} )
+        //console.dir(books)
+      }
+    }
+    //Render data in reading.ejs
+    //res.status(200).json(result);
+    res.render('reading', {
+      books : books,
+      title: 'reading'
+    });
+  })
 });
-
 
 /* GET reading page. */
 router.get('/reading/goodreads', function(req, res, next) {
   res.render('goodreads', { title: 'reading/goodreads' });
 });
-
 
 /* GET investing page. */
 router.get('/investing', function(req, res, next) {
@@ -97,31 +101,37 @@ router.get('/connect', function(req, res, next) {
 });
 
 /* GET test page. */
-router.get('/test', function(req, res, next) {
-  client.connect(err => {
-    const db = mongoose.connect(database, {
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
-      socketTimeoutMS: 0,
-      keepAlive: true,
-    }).catch(err => console.log(err.reason));
-    const bookshelf = client.db("test").collection("books");
-      // perform actions on the collection object
-      //res.json(result)
-      console.log('MongoDB collection opened...')
-    return bookshelf.find().toArray()
-        .then(result => {
-            //console.log(result[0].bookArray[0].link)
-        res.render('test', {
-          title : result[0].bookArray[0].title,
-          link: result[0].bookArray[0].link,
-          author : result[0].bookArray[0].authors.author.name,
-          test: 'test'
-        });
-      })
-    .catch(error => console.error(error))
-  })
-});
+//router.get('/test', function(req, res, next) {
+  //res.setHeader('Content-Type', 'text/html');
+  // const client = MongoClient('mongodb+srv://tschang:shakespeare@books-txxaw.mongodb.net/books?retryWrites=true&w=majority',{
+  //   useNewUrlParser: true,
+  //   useUnifiedTopology: true
+  //  });
+    //var collection = db.get().collection('currently-reading')
+    //collection.find().toArray()
+    //  .then(result => {
+    //    console.dir(result);
+
+    //  });
+  // client.connect(err => {
+  //   const collection = client.db('books').collection('currently-reading');
+  //   console.log('Connected to MongoDB...');
+  //     return collection.find().sort({read_at : 1}).toArray()
+  //       .then(result => {
+
+  //       //render data in reading.ejs
+  //       //res.status(200).json(result);
+  //       res.render('test', {
+  //         title : result[0].review[0].book[0].title[0],
+  //         author:  result[0].review[0].book[0].authors[0].author[0].name[0],
+  //         link: result[0].review[0].book[0].link[0],
+  //         page: 'test', menuID: 'test'
+  //       });
+  //     })
+  // })
+  // client.close();
+  
+//});
 
 //send router to app.js
 module.exports = router;
