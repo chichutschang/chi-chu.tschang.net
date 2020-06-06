@@ -1,166 +1,51 @@
 <!doctype html>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-<!-- <script src="https://code.jquery.com/jquery-1.11.2.min.js"></script> -->
-<script type="text/javascript">
-
-//progess bar
-$(function update(){
-  var element = document.getElementById("progress");
-  var width = 1;
-  var identity = setInterval(scene, 90);
-  function scene(){
-    if (width >= 100){
-      clearInterval(identity);
-    } else {
-      width++;
-      element.style.width = width +'%';
-    }
-  }
-});
-
-var titles = [];
-var authors = [];
-var links = [];
-var date_updated = [];
-new Date()
-var months = {
-  'Jan' : '01',
-  'Feb' : '02',
-  'Mar' : '03',
-  'Apr' : '04',
-  'May' : '05',
-  'Jun' : '06',
-  'Jul' : '07',
-  'Aug' : '08',
-  'Sep' : '09',
-  'Oct' : '10',
-  'Nov' : '11',
-  'Dec' : '12'
-}
-var pages = 200;
-
-$(document).ready(function() {
-var apikey = 'm9aCHYOPGgBepD8nkp7Q'
- //for (var i=1; i < 4; i++){
-
-  var urls ='https://www.goodreads.com/review/list/1589736.xml'+'?key='+apikey+'&v=2'+'&shelf=read'+'&per_page='+pages+'&page='+[1];
-  //console.log(urls);
-
-//  var url1 ='https://www.goodreads.com/review/list/1589736.xml'+'?key='+apikey+'&v=2'+'&shelf=read'+'&per_page=200'+'&page=1';
-//  var url2 ='https://www.goodreads.com/review/list/1589736.xml'+'?key='+apikey+'&v=2'+'&shelf=read'+'&per_page=200'+'&page=2';
-//  var url3 ='https://www.goodreads.com/review/list/1589736.xml'+'?key='+apikey+'&v=2'+'&shelf=read'+'&per_page=200'+'&page=3';
-// console.log(url1);
-// console.log(url2);
-// console.log(url3);
-
-  $.ajaxPrefilter(function(options) {
-    if (options.crossDomain && jQuery.support.cors) {
-      var http = window.location.protocol === "http:" ? "http:" : "https:";
-      options.url = http + "//cors-anywhere.herokuapp.com/" + options.url;
-      //options.url = "http://cors.corsproxy.io/url=" + options.url;
-    }
-  });
-
-$.get(urls, function(data) {
-  console.log(urls);
-  var reviews = data.getElementsByTagName("reviews")[0];
-  var start = reviews.getAttribute('start');
-  //console.log('start: '+start);
-  var end = reviews.getAttribute('end');
-  //console.log('end: '+end);
-  var total = reviews.getAttribute('total');
-  //console.log('total: '+total);
-
-  if (end % pages == 0){
-    end = pages;
-    //console.log('end: '+end);
-  } else {
-
-    end = total - (pages * (i - 2)) ;
-    //console.log('i: '+ i);
-    //console.log('end: '+end);
-  }
-
-for (var j = start - 1; j < end; j++){
-    console.log(j);
-    title = data.getElementsByTagName("title")[j].innerHTML;
-    //console.log(title);
-    author = data.getElementsByTagName("name")[j].innerHTML;
-    //console.log(author);
-    read_at = data.getElementsByTagName("read_at")[j].innerHTML;
-    //console.log(read_at)
-    var date = read_at.split(" ");
-    var month = date[1];
-    var day = date[2];
-    var year = date[5];
-    var date_read = months[month]+"/"+day+"/"+year;
-    var url = data.getElementsByTagName("url")[0].innerHTML;
-    //console.log(url);
-    url = url.replace("![CDATA[","").replace("]]","").replace("<","").replace(">","");
-    //console.log(url);
-
-    // $("#title").text(title)[j];
-    // $("#author").text(author)[j];
-    // $("#url").text(url)[j];
-
-    titles.push(title);
-    //console.log(title);
-    authors.push(author);
-    //console.log(authors);
-    links.push(url);
-    //console.log(links);
-    date_updated.push(date_read);
-    //console.log(date_read);
-
-    //only able to pull 200 books from each XML page
-    var templateString = "<table><tr><td><font color='#999'>"+date_updated[j]+"</font> <b><a href="+links[j]+" target='_blank'>"+titles[j]+'</a></b>'+' by '+authors[j]+'</td></tr></table>'
-    //console.log(date_updated[j]);
-    $('#table').append(templateString);
-        }
-      });
-    //};
-  }
-);
-
-</script>
 <html>
+  <div class="container-fluid">
   <head>
-    <% include partials/head %>
-  </head>
-
-  <body>
     <nav>
       <% include partials/header %>
     </nav>
-    <div id="content">
-
+  </head>
+  <body>
+  <div id="content">
+    <content>
       <table id="table">
         <thead>
           <tr>
             <font color="#999">date read</font>&nbsp;&nbsp;<b>title</b>/author
+          </tr>
+        </thead>
+        <tbody>
+          <table>
+            <% for (var book in books) { %>
+              <tr>
+                <td>
+                  <font color='#999'><%- JSON.stringify(books[book].dateread).replace(/["]+/g,'') %></font>&nbsp;<b><a href='<%- JSON.stringify(books[book].link)%>'><%- JSON.stringify(books[book].title).replace(/["]+/g,'') %></a></b> by <%- JSON.stringify(books[book].author).replace(/["]+/g,'') %> 
+                </td>
               </tr>
-                <div id="progress"></div>
-            </thead>
-          </tbody>
-        </table>
-      </div>
-    </div>
+            <% } %>
+          </table>
+        </tbody>
+      </table>
+    </content>
+  </div>
   </body>
-<footer><% include partials/footer %></footer>
-  <script>
-    (function(i, s, o, g, r, a, m) {
-        i['GoogleAnalyticsObject'] = r;
-        i[r] = i[r] || function() {
-            (i[r].q = i[r].q || []).push(arguments)
-        }, i[r].l = 1 * new Date();
-        a = s.createElement(o),
-        m = s.getElementsByTagName(o)[0];
-        a.async = 1;
-        a.src = g;
-        m.parentNode.insertBefore(a, m)
-    })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+  <footer><% include partials/footer %></footer>
+    <script>
+      (function(i, s, o, g, r, a, m) {
+          i['GoogleAnalyticsObject'] = r;
+          i[r] = i[r] || function() {
+              (i[r].q = i[r].q || []).push(arguments)
+          }, i[r].l = 1 * new Date();
+          a = s.createElement(o),
+          m = s.getElementsByTagName(o)[0];
+          a.async = 1;
+          a.src = g;
+          m.parentNode.insertBefore(a, m)
+      })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
 
-    ga('create', 'UA-28397530-1', 'auto');
-    ga('send', 'pageview');
-  </script>
+      ga('create', 'UA-28397530-1', 'auto');
+      ga('send', 'pageview');
+    </script>
+  </div>
 </html>
