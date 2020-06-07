@@ -1,20 +1,17 @@
 require('dotenv').config()
 var createError = require('http-errors');
 var express = require('express');
-var cors = require('cors');
+//var cors = require('cors');
 var path = require('path');
 var logger = require('morgan');
 var ejsLayouts = require('express-ejs-layouts')
+var app = express();
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
-var readingRouter = require('./routes/reading');
-var app = express();
-const goodreads = require('goodreads-api-node');
+//var readingRouter = require('./routes/test');
+var client = require('./db');
+const database = process.env.DATABASE_URL
 const request = require('request');
-//const parser = require('xml2json');
-const MongoClient = require('mongodb').MongoClient;
-const assert = require('assert');
-const passport = require('passport')
 
 // set up view engine for views folder
 app.set('views', path.join(__dirname, 'views'));
@@ -32,14 +29,27 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname + '/public')));
 app.use(express.static(__dirname +'/static', {dotfiles: 'allow'}));
+//app.use('/', readingRouter);
+//console.dir(readingRouter);
 app.use('/', indexRouter);
-app.use('/', readingRouter);
-console.dir(readingRouter)
+console.dir(indexRouter);
 app.use('/users', usersRouter);
 app.use('/jquery', express.static(__dirname + '/node_modules/jquery/dist/'));
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   next(createError(404));
+});
+
+//set up MongoDB
+client.connect(database, (err) => {
+  if (err) {
+    console.log('Unable to connect to MongoDB...')
+    process.exit(1);
+  } else {
+    app.listen(3000, () => {
+      console.log('Listening on Port 3000 from app.js...');
+    });
+  }
 });
 
 // error handler
