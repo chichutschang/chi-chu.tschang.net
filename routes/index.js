@@ -101,37 +101,18 @@ router.get('/connect', function(req, res, next) {
 });
 
 /* GET test page. */
-//router.get('/test', function(req, res, next) {
-  //res.setHeader('Content-Type', 'text/html');
-  // const client = MongoClient('mongodb+srv://tschang:shakespeare@books-txxaw.mongodb.net/books?retryWrites=true&w=majority',{
-  //   useNewUrlParser: true,
-  //   useUnifiedTopology: true
-  //  });
-    //var collection = db.get().collection('currently-reading')
-    //collection.find().toArray()
-    //  .then(result => {
-    //    console.dir(result);
-
-    //  });
-  // client.connect(err => {
-  //   const collection = client.db('books').collection('currently-reading');
-  //   console.log('Connected to MongoDB...');
-  //     return collection.find().sort({read_at : 1}).toArray()
-  //       .then(result => {
-
-  //       //render data in reading.ejs
-  //       //res.status(200).json(result);
-  //       res.render('test', {
-  //         title : result[0].review[0].book[0].title[0],
-  //         author:  result[0].review[0].book[0].authors[0].author[0].name[0],
-  //         link: result[0].review[0].book[0].link[0],
-  //         page: 'test', menuID: 'test'
-  //       });
-  //     })
-  // })
-  // client.close();
-  
-//});
+router.get('/test', function(req, res, next) {
+  res.setHeader('Content-Type', 'text/html');
+  currentlyreading.book((err, result) =>{
+    //console.dir(result);
+    res.render('index', {
+      title : result[0].review[0].book[0].title[0],
+      author:  result[0].review[0].book[0].authors[0].author[0].name[0],
+      link: result[0].review[0].book[0].link[0],  
+      page: 'home', menuID: 'home'
+    });
+  })
+});
 
 //send router to app.js
 module.exports = router;
