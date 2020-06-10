@@ -3,7 +3,7 @@ require('dotenv').config()
 var express = require('express');
 var router = express.Router();
 var readingRouter = require('./reading');
-var async = require('async');
+//var async = require('async');
 var moment = require('moment');
 var client = require('../db');
 let currentlyreading = require('../models/currentlyreading');

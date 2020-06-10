@@ -8,7 +8,7 @@ var ejsLayouts = require('express-ejs-layouts')
 var app = express();
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
-//var readingRouter = require('./routes/test');
+var readingRouter = require('./routes/reading');
 var client = require('./db');
 const database = process.env.DATABASE_URL
 const request = require('request');
@@ -23,23 +23,6 @@ app.listen((app.get('port'), function (){
 }))
 //app.listen(process.env.PORT || 3000)
 
-//set up folders to use
-app.use(logger('dev'));
-app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
-app.use(express.static(path.join(__dirname + '/public')));
-app.use(express.static(__dirname +'/static', {dotfiles: 'allow'}));
-//app.use('/', readingRouter);
-//console.dir(readingRouter);
-app.use('/', indexRouter);
-console.dir(indexRouter);
-app.use('/users', usersRouter);
-app.use('/jquery', express.static(__dirname + '/node_modules/jquery/dist/'));
-// catch 404 and forward to error handler
-app.use(function(req, res, next) {
-  next(createError(404));
-});
-
 //set up MongoDB
 client.connect(database, (err) => {
   if (err) {
@@ -51,6 +34,28 @@ client.connect(database, (err) => {
     });
   }
 });
+//set up folders to use
+app.use(logger('dev'));
+app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
+app.use(express.static(path.join(__dirname + '/public')));
+app.use(express.static(__dirname +'/static', {dotfiles: 'allow'}));
+//console.dir(readingRouter);
+app.use((readingRouter, res, next) => {
+  console.log(readingRouter);
+  next();
+});
+app.use('/', indexRouter);
+console.dir(indexRouter);
+
+  app.use('/users', usersRouter);
+//app.use('/jquery', express.static(__dirname + '/node_modules/jquery/dist/'));
+// catch 404 and forward to error handler
+app.use(function(req, res, next) {
+  next(createError(404));
+});
+
+
 
 // error handler
 app.use(function(err, req, res, next) {
