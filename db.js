@@ -6,7 +6,7 @@ const database = process.env.DATABASE_URL || 8080;
 function connect(url, callback){
     if (client == null){
         //Create a MongoDB client
-        client = new MongoClient(url, {useUnifiedTopology: true});
+        client = new MongoClient(url, {useUnifiedTopology: true, poolSize: 100});
         //Establish a connection
         client.connect((err) => {
             if (err) {
@@ -31,11 +31,11 @@ function db(dbName){
     return client.db(dbName);
 }
 
- function close(){
-     if(client){
+function close(){
+    if(client){
         client.close();
         client = null;
-     }
+    }
 }
 
 module.exports = {
