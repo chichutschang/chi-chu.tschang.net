@@ -41,8 +41,6 @@ function readbooks() {
                     ))
 }
 
-
-
 //Retrieve currently reading book from Goodreads and insert into MongoDB database
 function currentlyreadingbook() {
     //1. connect to MongoDB database 'currently-reading' collection
