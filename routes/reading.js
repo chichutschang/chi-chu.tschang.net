@@ -21,7 +21,6 @@ var urls = [readURL1, readURL2]
 
 //Retrieve read books from Goodreads and insert into MongoDB database
 function readbooks() {
-    try{
         //1. connect to MongoDB database 'reads' collection
         let readcollection = client.db('books').collection('reads');
             //2. delete existing collection in MongoDB
@@ -40,16 +39,12 @@ function readbooks() {
                             });
                         })
                     ))
-    }   catch(err) {
-        console.error(err);
-    }   finally {
-        
-    }
 }
+
+
 
 //Retrieve currently reading book from Goodreads and insert into MongoDB database
 function currentlyreadingbook() {
-    try{
     //1. connect to MongoDB database 'currently-reading' collection
         let currentlyreadingcollection = client.db('books').collection('currently-reading');
             //2. request read books from Goodreads XML
@@ -72,11 +67,6 @@ function currentlyreadingbook() {
                     }
                 })  
             })
-    }   catch(err) {
-        console.error(err);
-    }   finally {
-       
-    }
 }
 
 module.exports = async (req, res) => {
