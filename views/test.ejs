@@ -1,62 +1,59 @@
-
 <nav>
   <% include partials/header %>
 </nav>
 
 <!doctype html>
 <html>
-<div class="container-fluid">
+  <div class="container-fluid">
+  <head>
+    <% include partials/head %>
+  </head>
+  <body>
 
-<body>
   <div id="content">
     <content>
       <table>
-        <tbody>
+          <tbody>
           <tr>
-            <td class="border"><b>learning: </b></td><td class="border"><a href="http://fresnostate.edu/kremen/">Kremen School of Education and Human Development, Fresno State</a></td>
+            <td class="border"><b>learning: </b></td><td class="border"><a href="https://fresnostate.edu/kremen/">Kremen School of Education and Human Development, Fresno State</a></td>
           </tr>
           <tr>
             <td class="border"><b>teaching: </b></td><td class="border"><a href="https://ahs.ausdk12.org/">Albany High School</a></td>
           </tr>
           <tr>
-            <td class="border align-text-top"><b>reading :</b></td><td class="border"><div style='display: inline-block' id='title'><a href="<%= link %>"><%= title %></a></div> by <div style='display: inline-block' id='author'><%= author %></div></td>
+            <td class="border align-text-top"><b>reading :</b></td><td class="border"><div style='display: inline-block' id='title'><a href='<%= link %>'><%= title %></a></div> by <div style='display: inline-block' id='author'><%= author %></div></td>
           </tr>
           <tr>
-            <td class="border align-text-top"><b>writing :</b></td><td><a href="http://www.businessweek.com/stories/2008-02-11/a-french-water-companys-cautionary-tale-in-chinabusinessweek-business-news-stock-market-and-financial-advice">A French Water Company's Cautionary Tale in China</a>
+            <td class="border align-text-top"><b>writing :</b></td><td><a href="https://www.businessweek.com/stories/2008-02-11/a-french-water-companys-cautionary-tale-in-chinabusinessweek-business-news-stock-market-and-financial-advice">A French Water Company's Cautionary Tale in China</a>
               <ul class="list-unstyled">
-                <li><a href="http://www.businessweek.com/stories/2008-04-09/the-new-e-spionage-threat">The New E-spionage Threat</a></li>
-                <li><a href="http://www.businessweek.com/stories/2008-10-01/dangerous-fakes">Dangerous Fakes</a></li>
-                <li><a href="http://www.businessweek.com/stories/2008-12-30/the-squeeze-at-chinas-baidu">The Squeeze at China's Baidu</a></li>
-                <li><a href="http://www.businessweek.com/stories/2008-08-15/empty-seats-at-chinas-sellout-olympicsbusinessweek-business-news-stock-market-and-financial-advice">Empty Seats at China's Sellout Olympics</a></li>
-                </ul>
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </content>
-    </div>
-  </body>
+              <li><a href="https://www.businessweek.com/stories/2008-04-09/the-new-e-spionage-threat">The New E-spionage Threat</a></li>
+              <li><a href="https://www.businessweek.com/stories/2008-10-01/dangerous-fakes">Dangerous Fakes</a></li>
+              <li><a href="https://www.businessweek.com/stories/2008-12-30/the-squeeze-at-chinas-baidu">The Squeeze at China's Baidu</a></li>
+              <li><a href="https://www.businessweek.com/stories/2008-08-15/empty-seats-at-chinas-sellout-olympicsbusinessweek-business-news-stock-market-and-financial-advice">Empty Seats at China's Sellout Olympics</a></li>
+              </ul>
+            </td>
+          </tr>
+            </tbody>
+          </table>
+        </content>
+      </div>
+    </body>
   <footer><% include partials/footer %></footer>
     <script>
       (function(i, s, o, g, r, a, m) {
           i['GoogleAnalyticsObject'] = r;
           i[r] = i[r] || function() {
-                (i[r].q = i[r].q || []).push(arguments)
+              (i[r].q = i[r].q || []).push(arguments)
           }, i[r].l = 1 * new Date();
           a = s.createElement(o),
           m = s.getElementsByTagName(o)[0];
           a.async = 1;
           a.src = g;
           m.parentNode.insertBefore(a, m)
-          })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+      })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
 
-            ga('create', 'UA-28397530-1', 'auto');
-            ga('send', 'pageview');
-          </script>
-        </div>
-      </html>
-
-</content>
-</div>
-</body>
+      ga('create', 'UA-28397530-1', 'auto');
+      ga('send', 'pageview');
+    </script>
+  </div>
 </html>

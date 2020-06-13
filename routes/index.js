@@ -7,7 +7,7 @@ var readingRouter = require('./reading');
 var moment = require('moment');
 var client = require('../db');
 let currentlyreading = require('../models/currentlyreading');
-let reading = require('../models/reading');
+let reading = require('../models/read');
 
 /* GET home page. */
 router.get('/', (req, res) => {
