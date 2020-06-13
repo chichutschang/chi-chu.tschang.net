@@ -20,13 +20,13 @@ const readURL3 = 'https://www.goodreads.com/review/list/'+userID+'.xml?key='+key
 var urls = [readURL1, readURL2]
 
 //Retrieve read books from Goodreads and insert into MongoDB database
-function readbooks() {
+async function readbooks() {
         //1. connect to MongoDB database 'reads' collection
         let readcollection = client.db('books').collection('reads');
             //2. delete existing collection in MongoDB
-            readcollection.drop()              
+            await readcollection.drop()              
                 //3. request read books from Goodreads XML
-                Promise.all(urls.map(url =>
+                await Promise.all(urls.map(url =>
                     fetch(url)
                         .then(res => res.text())
                         .then(books => {
@@ -42,28 +42,29 @@ function readbooks() {
 }
 
 //Retrieve currently reading book from Goodreads and insert into MongoDB database
-function currentlyreadingbook() {
+async function currentlyreadingbook() {
     //1. connect to MongoDB database 'currently-reading' collection
         let currentlyreadingcollection = client.db('books').collection('currently-reading');
             //2. request read books from Goodreads XML
             //console.log(currentlyreadURL)
             request(currentlyreadURL, (error, req, book) => {
-                parseString(book, function(err, read){
+                parseString(book, function (err, read) {
                     //3. check if there is book on currently reading shelf on Goodreads                   
-                    if(read.GoodreadsResponse.reviews[0]['$'].start == 0) {
-                        console.log('Need new book recommendations')
-                    } else {
-                        //3. delete existing collection in MongoDB
-                        currentlyreadingcollection.drop()    
-                            //4. parse XML to JSON; change attrkey from '$' to something else so MongoDB accepts data
-                            parseString(book, {attrkey:'@'}, function (err, read) {
-                                //console.dir(read.GoodreadsResponse.reviews)
-                                //5. insert read books into MongoDB database
-                                currentlyreadingcollection.insertMany(read.GoodreadsResponse.reviews);
-                                console.log('Inserted currently reading book into MongoDB...')
-                            })
+                    if (read.GoodreadsResponse.reviews[0]['$'].start == 0) {
+                    console.log('Need new book recommendations');
                     }
-                })  
+                    else {
+                        //4. delete existing collection in MongoDB
+                        currentlyreadingcollection.drop();
+                            //5. parse XML to JSON; change attrkey from '$' to something else so MongoDB accepts data
+                            parseString(book, { attrkey: '@' }, function (err, read) {
+                                //console.dir(read.GoodreadsResponse.reviews)
+                                //6. insert read books into MongoDB database
+                                currentlyreadingcollection.insertMany(read.GoodreadsResponse.reviews);
+                                console.log('Inserted currently reading book into MongoDB...');
+                            });
+                    }
+                });
             })
 }
 
