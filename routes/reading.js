@@ -21,10 +21,11 @@ var urls = [readURL1, readURL2]
 
 //Retrieve read books from Goodreads and insert into MongoDB database
 async function readbooks() {
+    try {
         //1. connect to MongoDB database 'reads' collection
         let readcollection = client.db('books').collection('reads');
             //2. delete existing collection in MongoDB
-            await readcollection.drop()              
+            readcollection.drop()              
                 //3. request read books from Goodreads XML
                 await Promise.all(urls.map(url =>
                     fetch(url)
@@ -39,11 +40,15 @@ async function readbooks() {
                             });
                         })
                     ))
+    } catch (err) {
+        alert(err);
+    }                
 }
 
 //Retrieve currently reading book from Goodreads and insert into MongoDB database
 async function currentlyreadingbook() {
-    //1. connect to MongoDB database 'currently-reading' collection
+    try {
+        //1. connect to MongoDB database 'currently-reading' collection
         let currentlyreadingcollection = client.db('books').collection('currently-reading');
             //2. request read books from Goodreads XML
             //console.log(currentlyreadURL)
@@ -66,6 +71,9 @@ async function currentlyreadingbook() {
                     }
                 });
             })
+    } catch (err) {
+        alert (err);
+    }
 }
 
 module.exports = async (req, res) => {
