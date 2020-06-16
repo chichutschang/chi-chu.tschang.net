@@ -31,25 +31,28 @@ client.connect(database, (err) => {
   } else {
     app.listen(3000, () => {
       console.log('Listening on Port 3000 from app.js...');
-    });
+    })
   }
 });
+
 //set up folders to use
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname + '/public')));
 app.use(express.static(__dirname +'/static', {dotfiles: 'allow'}));
-//console.dir(readingRouter);
-app.use((readingRouter, res, next) => {
-  console.log(readingRouter);
+//set up routes/reading.js to check Goodreads for currently reading and read books
+app.use((req, res, next) => {
+  req.fresh = readingRouter
+  //req.once = readingRouter
+  console.dir(readingRouter);
   next();
 });
+//set up routes/index.js for all pages
 app.use('/', indexRouter);
-console.dir(indexRouter);
-
-  app.use('/users', usersRouter);
-//app.use('/jquery', express.static(__dirname + '/node_modules/jquery/dist/'));
+//console.dir(indexRouter);
+app.use('/users', usersRouter);
+app.use('/jquery', express.static(__dirname + '/node_modules/jquery/dist/'));
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   next(createError(404));
@@ -69,3 +72,7 @@ app.use(function(err, req, res, next) {
 });
 
 module.exports = app;
+function newFunction(next) {
+  return next(readingRouter);
+}
+
