@@ -6,13 +6,14 @@ const database = process.env.DATABASE_URL || 8080;
 function connect(url, callback){
     if (client == null){
         //Create a MongoDB client
-        client = new MongoClient(url, {useUnifiedTopology: true, poolSize: 100});
+        client = new MongoClient(url, {useUnifiedTopology: true, poolSize: 10000});
         //Establish a connection
         client.connect((err) => {
             if (err) {
                 //Error occurred during connection
                 client = null;
                 callback(err);
+                process.exit(1);
             } else {
                 //Connected to MongoDB
                 callback();
