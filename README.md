@@ -1,7 +1,5 @@
 # <a href="https://chi-chu.tschang.net">chi-chu.tschang.net</a>
-This is the personal website of Chi-Chu Tschang.
-
-Coded with:
+This is the personal website of Chi-Chu Tschang. Coded with:
 <ul>
 	<li><a href="https://expressjs.com/">node express</a></li>
 	<li><a href="https://www.mongodb.com/">MongoDB</a></li>
