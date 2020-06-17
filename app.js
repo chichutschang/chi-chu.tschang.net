@@ -1,7 +1,6 @@
 require('dotenv').config()
 var createError = require('http-errors');
 var express = require('express');
-//var cors = require('cors');
 var path = require('path');
 var logger = require('morgan');
 var ejsLayouts = require('express-ejs-layouts')
@@ -43,9 +42,7 @@ app.use(express.static(path.join(__dirname + '/public')));
 app.use(express.static(__dirname +'/static', {dotfiles: 'allow'}));
 //set up routes/reading.js to check Goodreads for currently reading and read books
 app.use((req, res, next) => {
-  req.fresh = readingRouter
-  //req.once = readingRouter
-  console.dir(readingRouter);
+  req.on = readingRouter
   next();
 });
 //set up routes/index.js for all pages
@@ -72,7 +69,4 @@ app.use(function(err, req, res, next) {
 });
 
 module.exports = app;
-function newFunction(next) {
-  return next(readingRouter);
-}
 
