@@ -5,11 +5,11 @@
 !.elasticbeanstalk/*.cfg.yml
 !.elasticbeanstalk/*.global.yml
 
-.env
+#.env
+#routes/reading.js
 test.ejs
 investing.ejs
 node_modules
 views/test.ejs
 public/.well-known
 routes/test.js
-routes/reading.js
