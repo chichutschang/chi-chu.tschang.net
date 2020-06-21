@@ -1,12 +1,12 @@
 require('dotenv').config()
 const MongoClient = require('mongodb').MongoClient;
 let client = null;
-const database = process.env.DATABASE_URL || 8080;
+const database = process.env.DATABASE_URL;
 
-function connect(url, callback){
+function connect(database, callback){
     if (client == null){
         //Create a MongoDB client
-        client = new MongoClient(url, {useUnifiedTopology: true, poolSize: 10000});
+        client = new MongoClient(database, {useUnifiedTopology: true});
         //Establish a connection
         client.connect((err) => {
             if (err) {
@@ -24,6 +24,10 @@ function connect(url, callback){
         //Connection was established earlier. Just call callback()
         callback();
         console.log('Connected to MongoDB from db.js...');
+    }
+
+    function newFunction(err) {
+        console.log(err);
     }
 }
 
