@@ -7,7 +7,7 @@ var readingRouter = require('./reading');
 var moment = require('moment');
 var client = require('../db');
 let currentlyreading = require('../models/currentlyreading');
-let reading = require('../models/read');
+let read = require('../models/read');
 
 
 /* GET home page. */
@@ -42,7 +42,7 @@ router.get('/learning', function(req, res, next) {
 /* GET reading page. */
 router.get('/reading', (req, res) => {
   res.setHeader('Content-Type', 'text/html');
-  reading.books((err, result) => {
+  read.books((err, result) => {
   //console.dir(result);
   const books = []
   for(var i =0; i < result.length; i++) {
