@@ -43,12 +43,6 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname + '/public')));
 app.use(express.static(__dirname +'/static', {dotfiles: 'allow'}));
-//set up routes/reading.js to check Goodreads for currently reading and read books
-app.use((req, res, next) => {
-  req.on = readingRouter
-  console.dir(readingRouter);
-  next();
-});
 //set up routes/index.js for all pages
 app.use('/', indexRouter);
 //console.dir(indexRouter);
