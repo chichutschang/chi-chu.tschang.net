@@ -9,10 +9,13 @@ var client = require('../db');
 let currentlyreading = require('../models/currentlyreading');
 let read = require('../models/read');
 
-
 /* GET home page. */
 router.get('/', (req, res) => {
+  //use routes/reading.js to check Goodreads for currently reading and read books
+  req.on = readingRouter
+  console.dir(readingRouter);
   res.setHeader('Content-Type', 'text/html');
+  //retrieve currently reading book from db.js and render on index.ejs
   currentlyreading.book((err, result) =>{
     //console.dir(result);
     res.render('index', {
