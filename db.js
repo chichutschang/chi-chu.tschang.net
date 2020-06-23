@@ -24,11 +24,7 @@ function connect(database, callback){
         //Connection was established earlier. Just call callback()
         callback();
         console.log('Connected to MongoDB from db.js...');
-    }
-
-    function newFunction(err) {
-        console.log(err);
-    }
+    } 
 }
 
 //Get MongoDB using pre-established connection
