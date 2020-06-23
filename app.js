@@ -30,12 +30,14 @@ client.connect(database, (err) => {
     console.err(err);
     process.exit(1);
   } else {
-    app.listen(process.env.PORT || 3000, () => {
-      console.log(`Listening on Port ${process.env.PORT} from app.js...`);
+      console.log('Connected to MongoDB from app.js...')
+      //app.listen(process.env.PORT || 3000, () => {
+      //console.log(`Listening on Port ${process.env.PORT} from app.js...`);
       //console.log('Listening on Port 3000 from app.js...');
-    })
+    //})
   }
 });
+
 
 //set up folders to use
 app.use(logger('dev'));
@@ -52,7 +54,6 @@ app.use('/jquery', express.static(__dirname + '/node_modules/jquery/dist/'));
 app.use(function(req, res, next) {
   next(createError(404));
 });
-
 
 
 // error handler
