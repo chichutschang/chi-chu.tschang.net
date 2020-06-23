@@ -6,10 +6,10 @@
 !.elasticbeanstalk/*.global.yml
 
 #.env
-#routes/reading.js
 test.ejs
 investing.ejs
 node_modules
 views/test.ejs
 public/.well-known
 routes/test.js
+routes/growing.js
