@@ -7,7 +7,6 @@ var ejsLayouts = require('express-ejs-layouts')
 var app = express();
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
-var readingRouter = require('./routes/currentlyreading');
 var client = require('./db');
 const database = process.env.DATABASE_URL;
 const request = require('request');
@@ -23,7 +22,7 @@ client.connect(database, (err) => {
     console.err(err);
     process.exit(1);
   } else {
-      console.log('Connected to MongoDB from app.js...')
+    console.log('Connected to MongoDB from app.js...')
   }
 });
 
@@ -42,7 +41,6 @@ app.use('/jquery', express.static(__dirname + '/node_modules/jquery/dist/'));
 app.use(function(req, res, next) {
   next(createError(404));
 });
-
 
 // error handler
 app.use(function(err, req, res, next) {
