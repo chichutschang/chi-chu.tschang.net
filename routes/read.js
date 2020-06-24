@@ -24,11 +24,11 @@ async function readbooks() {
         //1. connect to MongoDB database 'reads' collection
         let readcollection = client.db('books').collection('reads');
             //2. delete existing collection in MongoDB
-            await readcollection.drop()    
+            readcollection.drop()    
             console.log('Deleted read books collection in MongoDB...')
                 //3. request read books from Goodreads XML
-                await Promise.each(urls.map(url =>
-                    fetch(url)
+                for (let i = 0; i < urls.length; i++){
+                    await fetch(urls[i])
                         .then(res => res.text())
                         .then(books => {
                             //4. parse XML to JSON; change attrkey from '$' to something else so MongoDB accepts data     
@@ -39,17 +39,19 @@ async function readbooks() {
                             console.log('Inserted read books into MongoDB...')
                             });
                         })
-                    ))
-            await readcollection.createIndex({read_at: 1}, {background: true})
+                    //))
+                    console.log(urls[i])
+                }            
+            readcollection.createIndex({read_at: 1})
             console.log('Created index in MongoDB...')        
     } catch (err) {
-        alert(err);
+        //alert(err);
     }                
 }
 
 module.exports = async (req, res) => {
     const read = readbooks()
     return {
-        read,
+        read
     }
 };
