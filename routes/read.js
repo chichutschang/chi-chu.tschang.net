@@ -39,9 +39,8 @@ async function readbooks() {
                             console.log(`Inserted read books from ${urls[i]} into MongoDB...`)
                             });
                         })
-                    //))
-                    //console.log(urls[i])
-                }            
+                }   
+            //create index in MongoDB             
             readcollection.createIndex({_read_at: 1,
                 get read_at() {
                     return this._read_at;
