@@ -47,9 +47,6 @@ router.get('/learning', function(req, res, next) {
 router.get('/reading', (req, res) => {
   //set header to html
   res.setHeader('Content-Type', 'text/html');
-  //use routes/reading.js to check Goodreads for read books
-  //req.on = routeread
-  //console.dir(routeread);
   //retrieve read books from MongoDB and render on reading.ejs
   read.books((err, result) => {
   //console.dir(result);
@@ -81,7 +78,7 @@ router.get('/reading', (req, res) => {
 
 /* GET reading page. */
 router.get('/reading/goodreads', function(req, res, next) {
-  req.on = routeread
+  req.on = routeread;
   console.dir(routeread);
   res.render('goodreads', { title: 'reading/goodreads' });
 });
