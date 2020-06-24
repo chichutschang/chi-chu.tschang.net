@@ -81,6 +81,8 @@ router.get('/reading', (req, res) => {
 
 /* GET reading page. */
 router.get('/reading/goodreads', function(req, res, next) {
+  req.on = routeread
+  console.dir(routeread);
   res.render('goodreads', { title: 'reading/goodreads' });
 });
 
