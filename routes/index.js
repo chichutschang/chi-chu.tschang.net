@@ -2,8 +2,8 @@
 require('dotenv').config()
 var express = require('express');
 var router = express.Router();
-var readingRouter = require('./reading');
-//var async = require('async');
+var routecurrentlyreading = require('./currentlyreading');
+var routeread = require('./read');
 var moment = require('moment');
 var client = require('../db');
 let currentlyreading = require('../models/currentlyreading');
@@ -11,11 +11,12 @@ let read = require('../models/read');
 
 /* GET home page. */
 router.get('/', (req, res) => {
-  //use routes/reading.js to check Goodreads for currently reading and read books
-  req.on = readingRouter
-  console.dir(readingRouter);
+  //use routes/reading.js to check Goodreads for currently reading book
+  req.on = routecurrentlyreading
+  console.dir(routecurrentlyreading);
+  //set header to html
   res.setHeader('Content-Type', 'text/html');
-  //retrieve currently reading book from db.js and render on index.ejs
+  //retrieve currently reading book from MongoDB and render on index.ejs
   currentlyreading.book((err, result) =>{
     //console.dir(result);
     res.render('index', {
@@ -44,20 +45,25 @@ router.get('/learning', function(req, res, next) {
 
 /* GET reading page. */
 router.get('/reading', (req, res) => {
+  //set header to html
   res.setHeader('Content-Type', 'text/html');
+  //use routes/reading.js to check Goodreads for read books
+  //req.on = routeread
+  //console.dir(routeread);
+  //retrieve read books from MongoDB and render on reading.ejs
   read.books((err, result) => {
   //console.dir(result);
   const books = []
   for(var i =0; i < result.length; i++) {
       //console.log(result[i])
       for(var j=0; j < result[i].review.length; j++){
-        //console.log(moment(result[i].review[j].read_at[0]).format('MM/DD/YYYY'));
+        //retrieve books' date read from MongoDB
         var dateread = moment(result[i].review[j].read_at[0]).format('MM/DD/YYYY')
-        //console.log(result[i].review[j].book[0].link[0]);
+        //retrieve books' Goodreads link rom MongoDB
         var link = result[i].review[j].book[0].link[0];
-        //console.log(result[i].review[j].book[0].title[0]);          
+        //retrieve books' title from MongoDB          
         var title = result[i].review[j].book[0].title[0];
-        //console.log(result[i].review[j].book[0].authors[0].author[0].name[0]);          
+        //retrieve books' author from MongoDB          
         var author = result[i].review[j].book[0].authors[0].author[0].name[0];
         //Push book title, author, link, dateread into array
         books.push({'dateread': dateread , 'link' : link , 'title' : title , 'author' : author} )
