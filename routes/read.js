@@ -19,8 +19,7 @@ const readURL3 = 'https://www.goodreads.com/review/list/'+userID+'.xml?key='+key
 var urls = [readURL3, readURL1, readURL2]
 
 //Retrieve read books from Goodreads and insert into MongoDB database
-async function readbooks() {
-    try {
+function readbooks() {
         //1. connect to MongoDB database 'reads' collection
         let readcollection = client.db('books').collection('reads');
             //2. delete existing collection in MongoDB
@@ -36,7 +35,7 @@ async function readbooks() {
                             //console.dir(read.GoodreadsResponse.reviews)
                             //5. insert read books into MongoDB database
                             readcollection.insertMany(read.GoodreadsResponse.reviews);
-                            console.log('Inserted read books from '+urls[i]+' into MongoDB...')
+                            console.log(`Inserted read books from ${urls[i]} into MongoDB...`)
                             });
                         })
                     //))
@@ -44,9 +43,6 @@ async function readbooks() {
                 }            
             readcollection.createIndex({read_at: 1})
             console.log('Created index in MongoDB...')        
-    } catch (err) {
-        alert(err);
-    }                
 }
 
 module.exports = async (req, res) => {
