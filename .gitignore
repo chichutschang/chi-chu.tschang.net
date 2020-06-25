@@ -10,6 +10,6 @@ test.ejs
 investing.ejs
 node_modules
 views/test.ejs
-public/.well-known
+#public/.well-known
 routes/test.js
-routes/growing.js
+#routes/growing.js
