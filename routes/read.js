@@ -16,7 +16,7 @@ const readURL1 = 'https://www.goodreads.com/review/list/'+userID+'.xml?key='+key
 const readURL2 = 'https://www.goodreads.com/review/list/'+userID+'.xml?key='+key+'&v=2&shelf=read&per_page=200&page=2'
 const readURL3 = 'https://www.goodreads.com/review/list/'+userID+'.xml?key='+key+'&v=2&shelf=read&per_page=200&page=3'
 
-var urls = [readURL1, readURL2, readURL3]
+var urls = [readURL3, readURL2, readURL1]
 
 //Retrieve read books from Goodreads and insert into MongoDB database
 async function readbooks() {
@@ -24,7 +24,7 @@ async function readbooks() {
         //1. connect to MongoDB database 'reads' collection
         let readcollection = client.db('books').collection('reads');
             //2. delete existing collection in MongoDB
-            readcollection.drop()    
+            await readcollection.drop()    
             console.log('Deleted read books collection in MongoDB...')
                 //3. request read books from Goodreads XML
                 for (let i = 0; i < urls.length; i++){
@@ -41,19 +41,14 @@ async function readbooks() {
                         })
                 }   
             //create index in MongoDB             
-            readcollection.createIndex({_read_at: 1,
-                get read_at() {
-                    return this._read_at;
-                },
-                set read_at(value) {
-                    this._read_at = value;
-                },
-            })
-            console.log('Created index in MongoDB...')        
+            await readcollection.createIndex({read_at: 1}, function(err, result){
+                console.log(`Created index ${result} in MongoDB...`);      
+            })        
     } catch (err) {
         console.error(err)
     } finally {
         client.close
+        console.log('Closed connection to MongoDB...')
     }
 }
 
