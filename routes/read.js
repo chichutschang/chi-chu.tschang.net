@@ -16,7 +16,7 @@ const readURL1 = 'https://www.goodreads.com/review/list/'+userID+'.xml?key='+key
 const readURL2 = 'https://www.goodreads.com/review/list/'+userID+'.xml?key='+key+'&v=2&shelf=read&per_page=200&page=2'
 const readURL3 = 'https://www.goodreads.com/review/list/'+userID+'.xml?key='+key+'&v=2&shelf=read&per_page=200&page=3'
 
-var urls = [readURL3, readURL2, readURL1]
+var urls = [readURL1, readURL2, readURL3]
 
 //Retrieve read books from Goodreads and insert into MongoDB database
 async function readbooks() {
