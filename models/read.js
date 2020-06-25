@@ -7,7 +7,7 @@ const async = require('async');
 async function books(callback){
     try {
         let collection = client.db('books').collection('reads');
-        await collection.find().sort({read_at : 1}).toArray((err, results) => {
+        await collection.find().sort({read_at_1 : 1}).toArray((err, results) => {
             callback(err, results)
         });
     } catch(err) {
