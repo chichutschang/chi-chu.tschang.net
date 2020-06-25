@@ -4,6 +4,7 @@ var express = require('express');
 var router = express.Router();
 var routecurrentlyreading = require('./currentlyreading');
 var routeread = require('./read');
+var routegrow = require('./growing');
 var moment = require('moment');
 var client = require('../db');
 let currentlyreading = require('../models/currentlyreading');
@@ -76,11 +77,11 @@ router.get('/reading', (req, res) => {
   })
 });
 
-/* GET reading page. */
-router.get('/reading/goodreads', function(req, res, next) {
+/* GET reading/update page. */
+router.get('/reading/update', function(req, res, next) {
   req.on = routeread;
   console.dir(routeread);
-  res.render('goodreads', { title: 'reading/goodreads' });
+  res.render('update', { title: 'reading/update' });
 });
 
 /* GET investing page. */
@@ -110,16 +111,10 @@ router.get('/connect', function(req, res, next) {
 
 /* GET test page. */
 router.get('/test', function(req, res, next) {
-  res.setHeader('Content-Type', 'text/html');
-  currentlyreading.book((err, result) =>{
-    //console.dir(result);
-    res.render('index', {
-      title : result[0].review[0].book[0].title[0],
-      author:  result[0].review[0].book[0].authors[0].author[0].name[0],
-      link: result[0].review[0].book[0].link[0],  
-      page: 'home', menuID: 'home'
-    });
-  })
+  //res.setHeader('Content-Type', 'text/html');
+  req.get() = routegrow();
+  //res.json()
+  res.send("hello, world!")
 });
 
 //send router to app.js
