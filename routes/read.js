@@ -22,7 +22,7 @@ var urls = [readURL1, readURL2, readURL3]
 async function readbooks() {
     try {
         //1. connect to MongoDB database 'reads' collection
-        let readcollection = client.db('books').collection('reads');
+        let readcollection = client.db('test').collection('reads');
             //2. delete existing collection in MongoDB
             await readcollection.drop()    
             console.log('Deleted read books collection in MongoDB...')
