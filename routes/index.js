@@ -2,8 +2,8 @@
 require('dotenv').config()
 var express = require('express');
 var router = express.Router();
-var routecurrentlyreading = require('./currentlyreading');
-var routeread = require('./read');
+var insertcurrentlyreading = require('./currentlyreading');
+var insertread = require('./read');
 var routegrow = require('./growing');
 var moment = require('moment');
 var client = require('../db');
@@ -13,8 +13,8 @@ let read = require('../models/read');
 /* GET home page. */
 router.get('/', (req, res) => {
   //use routes/reading.js to check Goodreads for currently reading book
-  req.on = routecurrentlyreading
-  console.dir(routecurrentlyreading);
+  req.on = insertcurrentlyreading
+  console.dir(insertcurrentlyreading);
   //set header to html
   res.setHeader('Content-Type', 'text/html');
   //retrieve currently reading book from MongoDB and render on index.ejs
@@ -79,8 +79,8 @@ router.get('/reading', (req, res) => {
 
 /* GET reading/update page. */
 router.get('/reading/update', function(req, res, next) {
-  req.on = routeread;
-  console.dir(routeread);
+  req.on = insertread;
+  console.dir(insertread);
   res.render('update', { title: 'reading/update' });
 });
 
