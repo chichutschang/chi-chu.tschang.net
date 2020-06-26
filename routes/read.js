@@ -45,7 +45,7 @@ async function readbooks() {
                 console.log(`Created index ${result} in MongoDB...`);      
             })        
     } catch (err) {
-        console.error(err)
+        newFunction(err);
     } finally {
         client.close
         console.log('Closed connection to MongoDB...')
@@ -58,3 +58,7 @@ module.exports = async (req, res) => {
         read
     }
 };
+
+function newFunction(err) {
+    console.error(err);
+}
