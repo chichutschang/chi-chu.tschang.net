@@ -42,7 +42,10 @@ async function currentlyreadingbook() {
                 });
             })
     } catch (err) {
-        alert (err);
+        console.error(err)
+    } finally {
+        client.close
+        console.log('Closed connection to MongoDB...')
     }
 }
 
