@@ -6,7 +6,7 @@ const async = require('async');
 //Retrieve read books from MongoDB database and send to index.js
 async function books(callback){
     try {
-        let collection = client.db('books').collection('reads');
+        let collection = client.db('test').collection('reads');
         await collection.find().sort({read_at : 1}).toArray((err, results) => {
             callback(err, results)
         });
