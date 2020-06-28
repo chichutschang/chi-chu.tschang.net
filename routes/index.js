@@ -4,11 +4,12 @@ var express = require('express');
 var router = express.Router();
 var insertcurrentlyreading = require('./currentlyreading');
 var insertread = require('./read');
-var routegrow = require('./growing');
+var insertgrow = require('./growing');
 var moment = require('moment');
 var client = require('../db');
 let currentlyreading = require('../models/currentlyreading');
 let read = require('../models/read');
+let grow = require('../models/grow');
 
 /* GET home page. */
 router.get('/', (req, res) => {
@@ -104,17 +105,29 @@ router.get('/projects/censor-weibo', function(req, res, next){
   res.render('censor-weibo', {title: 'censor weibo'});
 })
 
+/* GET projects/plants. */
+router.get('/projects/plants', function(req, res, next){
+  res.render('plants', {title: 'plants'});
+})
+
+/* GET projects/plants/moisture. */
+router.get('/projects/plants/moisture', function(req, res){
+  grow.plants((err, result) => {
+    res.status(200).json(result);
+    //res.render('moisture', {title: 'moisture'})
+  })
+})
+
 /* GET connect page. */
 router.get('/connect', function(req, res, next) {
   res.render('connect', { title: 'connect' });
 });
 
 /* GET test page. */
-router.get('/test', function(req, res, next) {
+router.get('/test', function(req, res) {
   //res.setHeader('Content-Type', 'text/html');
-  req.get() = routegrow();
-  //res.json()
-  res.send("hello, world!")
+  res.json(insertgrow)
+  //console.log(insertgrow)
 });
 
 //send router to app.js
