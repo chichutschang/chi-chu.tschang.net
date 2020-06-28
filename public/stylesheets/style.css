@@ -4,10 +4,12 @@
 }
 
 @import url(styles.css) all and (max-width: 1024px) {
-      section, aside;
-      {float:none;
-      width: auto;}
-      }
+    section, aside
+    { 
+      float:none;
+      width: auto;
+    }
+}
 
 a:link {text-decoration: none; color: black;}
 a:visited {text-decoration: none; color: black;}
@@ -22,8 +24,8 @@ a:active {text-decoration: none;}
           margin:0px;
         }
         body {
-          background-color: white
-          padding-left:0px;
+          background-color: white;
+          padding-left: 0px;
           padding-right: 0px;
           margin-left: auto;
           margin-right: auto;
@@ -73,10 +75,10 @@ a:active {text-decoration: none;}
 
   #header {
     /* border: solid 1px black; */
-    margin: 0px
+    margin: 0px;
     padding: 0px;
     width: 100%;
-    }
+  }
 
   #header_left {
     margin-left: 10px;
@@ -103,9 +105,9 @@ a:active {text-decoration: none;}
   	padding: 10px 0px 0px 10px;
     font-size: 12px;
     font-family: monospace;
-    font-weight: normal;
+    /* font-weight: normal; */
     align-content: center;
-    /* border: solid 1px black; */
+    /* border: solid 1px black;  */
   }
 
   #resume {
