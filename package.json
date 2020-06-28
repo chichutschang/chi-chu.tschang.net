@@ -26,6 +26,7 @@
     "nprogress": "^0.2.0",
     "progress": "^2.0.3",
     "request": "^2.88.0",
+    "serve-favicon": "^2.5.0",
     "websocket-extensions": "^0.1.4",
     "xml2js": "^0.4.23"
   },
