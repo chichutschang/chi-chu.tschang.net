@@ -10,7 +10,7 @@ var moment = require('moment');
 var client = require('../db');
 let currentlyreading = require('../models/currentlyreading');
 let read = require('../models/read');
-let grow = require('../models/grow');
+let plants = require('../models/plants');
 
 /* GET home page. */
 router.get('/', (req, res) => {
@@ -113,7 +113,7 @@ router.get('/projects/plants', function(req, res, next){
 
 /* GET projects/plants/moisture. */
 router.get('/projects/plants/moisture', function(req, res){
-  grow.plants((err, result) => {
+  plants.moisture((err, result) => {
     res.json(result);
     //res.status(200).json(result);
     //res.render('moisture', {title: 'moisture'})
