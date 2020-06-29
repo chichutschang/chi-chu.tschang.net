@@ -4,7 +4,7 @@ const url = "mongodb+srv://tschang:82H!ghland@plants-l7uuf.mongodb.net/plants?re
 const client = new MongoClient(url, { useNewUrlParser: true, useUnifiedTopology: true });
 
 //Retrieve read books from MongoDB database and send to index.js
-function plants(callback){
+function moisture(callback){
     try {
         client.connect(err => {
             let collection = client.db('tomato').collection('february2019');
@@ -20,5 +20,5 @@ function plants(callback){
 }  
 
 module.exports = {
-    plants
+    moisture
 };

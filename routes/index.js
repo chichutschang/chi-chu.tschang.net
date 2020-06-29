@@ -114,9 +114,10 @@ router.get('/projects/plants', function(req, res, next){
 /* GET projects/plants/moisture. */
 router.get('/projects/plants/moisture', function(req, res){
   plants.moisture((err, result) => {
-    res.json(result);
-    //res.status(200).json(result);
+    
+    res.status(200).json(result);
     //res.render('moisture', {title: 'moisture'})
+    //res.json(result, {title: 'moisture'});
   })
 })
 
