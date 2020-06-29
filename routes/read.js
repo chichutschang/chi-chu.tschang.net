@@ -2,9 +2,8 @@
 require('dotenv').config()
 const express = require('express');
 const fetch = require('node-fetch');
-const request = require('request');
 const app = express();
-var router = express.Router();
+const async = require('async');
 const parseString = require('xml2js').parseString;
 var client = require('../db');
 //key, URL and UserID to access Goodreads API
@@ -52,13 +51,7 @@ async function readbooks() {
     }
 }
 
-module.exports = async (req, res) => {
-    const read = readbooks()
-    return {
-        read
-    }
+module.exports = {
+    readbooks
 };
 
-function newFunction(err) {
-    console.error(err);
-}

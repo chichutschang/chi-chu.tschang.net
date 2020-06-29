@@ -33,7 +33,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname + '/public')));
 app.use(express.static(__dirname +'/static', {dotfiles: 'allow'}));
-app.use(favicon(path.join(__dirname, 'public/images/tschang.ico')))
+app.use(favicon(path.join(__dirname, 'public/images/favicon.ico')))
 //set up routes/index.js for all pages
 app.use('/', indexRouter);
 //console.dir(indexRouter);

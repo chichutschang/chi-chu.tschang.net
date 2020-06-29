@@ -2,6 +2,7 @@
 require('dotenv').config()
 var express = require('express');
 var router = express.Router();
+var request = require('request');
 var insertcurrentlyreading = require('./currentlyreading');
 var insertread = require('./read');
 var insertgrow = require('./growing');
@@ -13,11 +14,11 @@ let grow = require('../models/grow');
 
 /* GET home page. */
 router.get('/', (req, res) => {
-  //use routes/reading.js to check Goodreads for currently reading book
-  req.on = insertcurrentlyreading
-  console.dir(insertcurrentlyreading);
   //set header to html
   res.setHeader('Content-Type', 'text/html');
+  //use routes/reading.js to check Goodreads for currently reading book
+  req.once = insertcurrentlyreading
+  console.dir(insertcurrentlyreading);
   //retrieve currently reading book from MongoDB and render on index.ejs
   currentlyreading.book((err, result) =>{
     //console.dir(result);
@@ -113,7 +114,8 @@ router.get('/projects/plants', function(req, res, next){
 /* GET projects/plants/moisture. */
 router.get('/projects/plants/moisture', function(req, res){
   grow.plants((err, result) => {
-    res.status(200).json(result);
+    res.json(result);
+    //res.status(200).json(result);
     //res.render('moisture', {title: 'moisture'})
   })
 })

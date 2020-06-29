@@ -14,7 +14,9 @@ function plants(callback){
         })
     } catch(err) {
         console.error(err);
-    } 
+    } finally {
+        client.close();
+    }
 }  
 
 module.exports = {
