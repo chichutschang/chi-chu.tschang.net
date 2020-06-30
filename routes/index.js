@@ -113,7 +113,7 @@ router.get('/projects/plants', function(req, res, next){
 
 /* GET projects/plants/moisture. */
 router.get('/projects/plants/moisture', function(req, res){
-  res.setHeader('Content-Type', 'application/json');
+  res.set('Content-Type', 'application/json');
   res.set("Content-Security-Policy","img-src 'unsafe-inline' 'self'");
   plants.moisture((err, result) => {
     //console.log(result)
