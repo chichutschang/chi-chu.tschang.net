@@ -8,6 +8,7 @@ function moisture(callback){
     try {
         client.connect(err => {
             let collection = client.db('tomato').collection('february2019');
+            console.log('Opened connection to MongoDB from plants.js...');
             collection.find({ topic: 'sensor/moisture' }).toArray((err, results) => {
                 callback(err, results);
             });
@@ -16,6 +17,7 @@ function moisture(callback){
         console.error(err);
     } finally {
         client.close();
+        console.log('Closed connection to MongoDB from plants.js...')
     }
 }  
 
