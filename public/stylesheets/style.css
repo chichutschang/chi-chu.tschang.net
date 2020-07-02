@@ -3,18 +3,15 @@
   src: url('/stylesheets/Gotham-Book.otf')
 }
 
-@import url(styles.css) all and (max-width: 1024px) {
+a:link, a:visited {text-decoration: none; color: black;}
+a:link:hover, a:visited:hover {text-decoration: none; color: #B90000;}
+
+@import url(styles.css) all and (max-width: 1024px); 
     section, aside
     { 
       float:none;
       width: auto;
     }
-}
-
-a:link {text-decoration: none; color: black;}
-a:visited {text-decoration: none; color: black;}
-a:hover {text-decoration: none; color: #B90000;}
-a:active {text-decoration: none;}
 
 /*responsive design*/
 @media (min-width: 360px) {
