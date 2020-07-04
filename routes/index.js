@@ -81,7 +81,7 @@ router.get('/reading', (req, res) => {
 
 /* GET reading/update page. */
 router.get('/reading/update', function(req, res, next) {
-  req.on = insertread;
+  req.once = insertread;
   console.dir(insertread);
   res.render('update', { title: 'reading/update' });
 });
@@ -118,6 +118,7 @@ router.get('/projects/plants/moisture', function(req, res){
   plants.moisture((err, result) => {
     //console.log(result)
     res.status(200).json(result);
+    //res.send(result);
     //res.render('moisture', {title: 'moisture'})
     //res.json(result, {title: 'moisture'});
   })
