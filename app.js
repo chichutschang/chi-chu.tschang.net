@@ -11,6 +11,7 @@ var usersRouter = require('./routes/users');
 var client = require('./db');
 const database = process.env.DATABASE_URL;
 const request = require('request');
+var d3 = require('d3');
 
 // set up view engine for views folder
 app.set('views', path.join(__dirname, 'views'));
