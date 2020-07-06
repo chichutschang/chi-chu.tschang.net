@@ -6,6 +6,7 @@ var request = require('request');
 var insertcurrentlyreading = require('./currentlyreading');
 var insertread = require('./read');
 var insertgrow = require('./growing');
+var d3jsmoisture = require('./d3js-moisture');
 var moment = require('moment');
 var client = require('../db');
 let currentlyreading = require('../models/currentlyreading');
@@ -115,12 +116,33 @@ router.get('/projects/plants', function(req, res, next){
 router.get('/projects/plants/moisture', function(req, res){
   res.set('Content-Type', 'application/json');
   res.set("Content-Security-Policy","img-src 'unsafe-inline' 'self'");
+  // req.once = d3jsmoisture
   plants.moisture((err, result) => {
     //console.log(result)
     res.status(200).json(result);
-    //res.send(result);
     //res.render('moisture', {title: 'moisture'})
-    //res.json(result, {title: 'moisture'});
+  })
+})
+
+/* GET projects/plants/temperature. */
+router.get('/projects/plants/temperature', function(req, res){
+  res.set('Content-Type', 'application/json');
+  res.set("Content-Security-Policy","img-src 'unsafe-inline' 'self'");
+  plants.temperature((err, result) => {
+    //console.log(result)
+    res.status(200).json(result);
+    //res.render('humidity', {title: 'temperature'})
+  })
+})
+
+/* GET projects/plants/humidity. */
+router.get('/projects/plants/humidity', function(req, res){
+  res.set('Content-Type', 'application/json');
+  res.set("Content-Security-Policy","img-src 'unsafe-inline' 'self'");
+  plants.humidity((err, result) => {
+    //console.log(result)
+    res.status(200).json(result);
+    //res.render('humidity', {title: 'humidity'})
   })
 })
 

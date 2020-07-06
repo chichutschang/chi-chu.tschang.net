@@ -3,6 +3,7 @@
   src: url('/stylesheets/Gotham-Book.otf')
 }
 
+/* link style sheet */
 a:link, a:visited {text-decoration: none; color: black;}
 a:link:hover, a:visited:hover {text-decoration: none; color: #B90000;}
 
@@ -63,6 +64,7 @@ a:link:hover, a:visited:hover {text-decoration: none; color: #B90000;}
         }
       }
 
+  /* header and nav bar style sheet */
   .nav {
     /* border: solid 1px black; */
     padding: 0px;
@@ -79,7 +81,8 @@ a:link:hover, a:visited:hover {text-decoration: none; color: #B90000;}
 
   #header_left {
     margin-left: 10px;
-    /* border: solid 1px black; */
+    padding-left: 4px;
+    /* border: solid 1px black;  */
     position:absolute;
     }
 
@@ -99,7 +102,7 @@ a:link:hover, a:visited:hover {text-decoration: none; color: #B90000;}
 
   #content {
     margin: 50px 0px 0px 0px;
-  	padding: 10px 0px 0px 10px;
+  	padding: 10px 0px 0px 12px;
     font-size: 12px;
     font-family: monospace;
     /* font-weight: normal; */
@@ -107,6 +110,7 @@ a:link:hover, a:visited:hover {text-decoration: none; color: #B90000;}
     /* border: solid 1px black;  */
   }
 
+  /* resume style sheet */
   #resume {
     margin: 0px 0px 0px 0px;
   	padding: 0px 0px 0px 0px;
@@ -146,7 +150,6 @@ a:link:hover, a:visited:hover {text-decoration: none; color: #B90000;}
     /* border: solid 1px black; */
     }
 
-
   #resumecenterbottom {
     margin: 0px 0px 0px 0px;
     padding: 0px 0px 10px 0px;
@@ -169,10 +172,11 @@ a:link:hover, a:visited:hover {text-decoration: none; color: #B90000;}
     margin: 0px 0px 0px 0px;
     padding: 10px 0px 10px 0px;
     font-family: Gotham-Book, Arial, monospace;
-    font-size: 6px;
+    font-size: 8px;
     color: #999;
   }
 
+  /* reading style sheet */
   #dateread {
     color: #999;
     border: solid 1px black;
@@ -190,11 +194,39 @@ a:link:hover, a:visited:hover {text-decoration: none; color: #B90000;}
     /* border: solid 1px black; */
   }
 
+  /* learning style sheet */
   #learningprojects {
     font-size: 9px;
   }
 
-  #progress {
+  /* #progress {
     height: 1px;
     background-color: black;
+  } */
+
+  /* d3js chart style sheet */
+  .moistureline {
+    fill: none;
+    stroke: dodgerblue;
+    stroke-width: 1px;
+  }
+  .temperatureline {
+    fill: none;
+    stroke: red;
+    stroke-width: 1px;
+  }
+  .humidityline {
+    fill: none;
+    stroke: green;
+    stroke-width: 1px;
+  }
+  .x-axis {
+    font-family: 'monospace';
+    font-size: 8;
+    color: #999
+  }
+  .y-axis {
+    font-family: 'monospace';
+    font-size: 8;
+    color: #999
   }
