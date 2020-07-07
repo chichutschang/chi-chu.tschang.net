@@ -25,12 +25,12 @@ async function readbooks() {
                 });
         }
         //create index in MongoDB             
-        await readcollection.createIndex({ read_at: 1 }, function (err, result) {
+        await readcollection.createIndex({read_at: 1 }, function (err, result) {
             console.log(`Created index ${result} in MongoDB...`);
         });
     }
     catch (err) {
-        newFunction(err);
+        console.error(err);
     }
     finally {
         client.close;

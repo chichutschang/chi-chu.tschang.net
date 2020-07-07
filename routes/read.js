@@ -44,7 +44,7 @@ async function readbooks() {
                 console.log(`Created index ${result} in MongoDB...`);      
             })        
     } catch (err) {
-        newFunction(err);
+        console.error(err);
     } finally {
         client.close
         console.log('Closed connection to MongoDB...')
