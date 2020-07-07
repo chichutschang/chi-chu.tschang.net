@@ -32,17 +32,17 @@ router.get('/', (req, res) => {
 });
 
 /* GET about page. */
-router.get('/', function(req, res, next) {
+router.get('/', function(req, res) {
   res.redirect('index', { title: 'home' });
 });
 
 /* GET resume page. */
-router.get('/resume', function(req, res, next) {
+router.get('/resume', function(req, res) {
   res.render('resume', { title: 'resume' });
 });
 
 /* GET learning page. */
-router.get('/learning', function(req, res, next) {
+router.get('/learning', function(req, res) {
   res.render('learning', { title: 'learning' });
 });
 
@@ -80,34 +80,34 @@ router.get('/reading', (req, res) => {
 });
 
 /* GET reading/update page. */
-router.get('/reading/update', function(req, res, next) {
+router.get('/reading/update', function(req, res) {
   req.once = insertread;
   console.dir(insertread);
   res.render('update', { title: 'reading/update' });
 });
 
 /* GET investing page. */
-router.get('/investing', function(req, res, next) {
+router.get('/investing', function(req, res) {
   res.render('investing', { title: 'investing' });
 });
 
 /* GET projects page. */
-router.get('/projects', function(req, res, next) {
+router.get('/projects', function(req, res) {
   res.render('projects', { title: 'projects' });
 });
 
 /* GET projects/shotchart page. */
-router.get('/projects/shotchart', function(req, res, next){
+router.get('/projects/shotchart', function(req, res){
   res.render('shotchart', {title: 'shot chart'});
 })
 
 /* GET projects/censor-weibo page. */
-router.get('/projects/censor-weibo', function(req, res, next){
+router.get('/projects/censor-weibo', function(req, res){
   res.render('censor-weibo', {title: 'censor weibo'});
 })
 
 /* GET projects/plants. */
-router.get('/projects/plants', function(req, res, next){
+router.get('/projects/plants', function(req, res){
   res.render('plants', {title: 'plants'});
 })
 
@@ -146,7 +146,7 @@ router.get('/projects/plants/humidity', function(req, res){
 })
 
 /* GET connect page. */
-router.get('/connect', function(req, res, next) {
+router.get('/connect', function(req, res) {
   res.render('connect', { title: 'connect' });
 });
 
