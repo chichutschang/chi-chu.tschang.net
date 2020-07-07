@@ -6,7 +6,7 @@ const { urls, parseString } = require("./read");
 async function readbooks() {
     try {
         //1. connect to MongoDB database 'reads' collection
-        let readcollection = client.db('books').collection('read');
+        let readcollection = client.db('books').collection('read', {strict:true});
         //2. delete existing collection in MongoDB
         await readcollection.drop();
         console.log('Deleted read books collection in MongoDB...');
