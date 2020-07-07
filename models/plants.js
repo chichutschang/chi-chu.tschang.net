@@ -9,9 +9,9 @@ async function moisture(callback){
     try {
         client.connect(err => {
             let collection = client.db('tomato').collection('february2019');
-            console.log('Opened connection to MongoDB from plants.js...');
-            collection.find({ topic: 'sensor/moisture' }).sort({time: 1}).toArray((err, results) => {
+            collection.find({ topic: 'sensor/moisture' }).sort({ time: 1 }).toArray((err, results) => {
                 callback(err, results);
+                console.log('Retrieved moisture data from MongoDB with plants.js...');
             });
         })
     } catch (err) {
@@ -28,9 +28,9 @@ async function temperature(callback){
     try {
         client.connect(err => {
             let collection = client.db('tomato').collection('february2019');
-            console.log('Opened connection to MongoDB from plants.js...');
-            collection.find({ topic: 'sensor/temperature' }).sort({time: 1}).toArray((err, results) => {
+            collection.find({ topic: 'sensor/temperature' }).sort({ time: 1 }).toArray((err, results) => {
                 callback(err, results);
+                console.log('Retrieved temperature data from MongoDB with plants.js...');
             });
         })
     } catch (err) {
@@ -47,14 +47,14 @@ async function humidity(callback){
     try {
         client.connect(err => {
             let collection = client.db('tomato').collection('february2019');
-            console.log('Opened connection to MongoDB from plants.js...');
-            collection.find({ topic: 'sensor/humidity' }).sort({time: 1}).toArray((err, results) => {
+            collection.find({ topic: 'sensor/humidity' }).sort({ time: 1 }).toArray((err, results) => {
                 callback(err, results);
+                console.log('Retrieved humidity data from MongoDB with plants.js...');
             });
         })
     } catch (err) {
         console.error(err);
-     } 
+    } 
     finally {
         client.close();
         console.log('Closed connection to MongoDB from plants.js...')
