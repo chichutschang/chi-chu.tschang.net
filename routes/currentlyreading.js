@@ -9,7 +9,7 @@ const parseString = require('xml2js').parseString;
 var client = require('../db');
 //key, URL and UserID to access Goodreads API
 const key = process.env.GOODREADS_KEY;
-const database = process.env.DATABASE_URL;
+const database = process.env.BOOKS_DATABASE_URL;
 const userID=process.env.userID;
 //Goodreads XML URL
 const currentlyreadURL = 'https://www.goodreads.com/review/list/'+userID+'.xml?key='+key+'&v=2&shelf=currently-reading'
