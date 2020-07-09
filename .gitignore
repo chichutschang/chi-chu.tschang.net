@@ -5,11 +5,10 @@
 !.elasticbeanstalk/*.cfg.yml
 !.elasticbeanstalk/*.global.yml
 
-#.env
+.env
 test.ejs
 investing.ejs
 node_modules
 views/test.ejs
-#public/.well-known
 routes/test.js
-accessKeys.csv
+tschang_accessKeys.csv
