@@ -81,7 +81,7 @@ router.get('/reading', (req, res) => {
 
 /* GET reading/update page. */
 router.get('/reading/update', function(req, res) {
-  req.on = insertread;
+  req.once = insertread;
   console.dir(insertread);
   res.render('update', { title: 'reading/update' });
 });
