@@ -23,7 +23,7 @@ async function readbooks() {
         //1. connect to MongoDB database 'reads' collection
         let readcollection = client.db('books').collection('read', {strict:true});
             //2. delete existing collection in MongoDB
-            await readcollection.drop()    
+            //await readcollection.drop()    
             console.log('Deleted read books collection in MongoDB...')
                 //3. request read books from Goodreads XML
                 for (let i = 0; i < urls.length; i++){
@@ -34,7 +34,7 @@ async function readbooks() {
                             parseString(books, {attrkey:'@'}, function (err, read) {
                             //console.dir(read.GoodreadsResponse.reviews)
                             //5. insert read books into MongoDB database
-                            readcollection.insertMany(read.GoodreadsResponse.reviews);
+                            readcollection.updateMany(read.GoodreadsResponse.reviews);
                             console.log(`Inserted read books from ${urls[i]} into MongoDB...`)
                             });
                         })
