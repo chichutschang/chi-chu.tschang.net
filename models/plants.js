@@ -10,7 +10,7 @@ async function moisture(callback){
     try {
         client.connect(err => {
             console.log('Opened connection to MongoDB from plants.js...');
-            let collection = client.db('tomato').collection('february2019');
+            let collection = client.db('basil').collection('july2020');
             collection.find({ topic: 'sensor/moisture' }).sort({ time: 1 }).toArray((err, results) => {
                 callback(err, results);
                 console.log('Retrieved moisture data from MongoDB with plants.js...');
@@ -26,7 +26,7 @@ async function temperature(callback){
     try { 
         client.connect(err => {
         console.log('Opened connection to MongoDB from plants.js...');
-        let collection = client.db('tomato').collection('february2019');
+        let collection = client.db('basil').collection('july2020');
         collection.find({ topic: 'sensor/temperature' }).sort({ time: 1 }).toArray((err, results) => {
             callback(err, results);
             console.log('Retrieved temperature data from MongoDB with plants.js...');
@@ -42,7 +42,7 @@ async function humidity(callback){
     try {
         client.connect(err => {
             console.log('Opened connection to MongoDB from plants.js...');
-            let collection = client.db('tomato').collection('february2019');
+            let collection = client.db('basil').collection('july2020');
             collection.find({ topic: 'sensor/humidity' }).sort({ time: 1 }).toArray((err, results) => {
                 callback(err, results);
                 console.log('Retrieved humidity data from MongoDB with plants.js...');
