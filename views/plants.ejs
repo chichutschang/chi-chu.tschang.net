@@ -11,11 +11,11 @@
     <div id="content">
       <content>
         <h4>Internet of Things Plant Monitor</h4>
-              <p><h5>Moisture</h5><div id="moisture" class="svg-container"></div></p>
-              <p><h5>Temperature</h5><div id="temperature" class="svg-container"></div></p>
-              <p><h5>Humidity</h5><div id="humidity" class="svg-container"></div></p>
+              <p><h6>Moisture</h6><div id="moisture" class="svg-container"></div></p>
+              <p><h6>Temperature</h6><div id="temperature" class="svg-container"></div></p>
+              <p><h6>Humidity</h6><div id="humidity" class="svg-container"></div></p>
 
-      <h4>Code</h4>
+      <h6>Code</h6>
       <div><i class="fab fa-github"></i><font="Gotham-Book"><a href=""> </a></font></div>
       
       </content>
@@ -77,7 +77,13 @@ d3.json(moistureurl).then(function(data){
     svg1.append("g")
       .attr("class", "y-axis")
       .call(d3.axisLeft(y));
-
+    
+    svg1.append("text")
+      .attr("x", -22)
+      .attr("y", margin.top - 10)
+      .attr("dy", 0)
+      .attr("class", "y-axis")
+      .text("%");
 });
 
 //draw temperature chart
@@ -126,7 +132,7 @@ d3.json(temperatureurl).then(function(data){
         
     svg2.append("text")
       .attr("x", -22)
-      .attr("y", margin.top - 5)
+      .attr("y", margin.top - 10)
       .attr("dy", 0)
       .attr("class", "y-axis")
       .text("ºF");
