@@ -108,7 +108,15 @@ router.get('/projects/censor-weibo', function(req, res){
 
 /* GET projects/plants. */
 router.get('/projects/plants', function(req, res){
-  res.render('plants', {title: 'plants'});
+  plants.moisture((err, result) =>{
+    var recent = result.length - 1
+    //console.log(result[recent].value)
+
+    res.render('plants', {
+      moisture: result[recent].value,
+      title: 'plants'
+    });
+  })
 })
 
 /* GET projects/plants/moisture. */
