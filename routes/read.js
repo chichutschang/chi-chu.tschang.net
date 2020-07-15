@@ -8,7 +8,7 @@ const parseString = require('xml2js').parseString;
 var client = require('../db');
 //key, URL and UserID to access Goodreads API
 const key = process.env.GOODREADS_KEY;
-const database = process.env.DATABASE_URL;
+const database = process.env.BOOKS_DATABASE_URL;
 const userID=process.env.userID;
 //Goodreads XML URL
 const readURL1 = 'https://www.goodreads.com/review/list/'+userID+'.xml?key='+key+'&v=2&shelf=read&per_page=200&page=1'
@@ -21,9 +21,9 @@ var urls = [readURL1, readURL2, readURL3]
 async function readbooks() {
     try {
         //1. connect to MongoDB database 'reads' collection
-        let readcollection = client.db('books').collection('read');
+        let readcollection = client.db('books').collection('read', {strict:true});
             //2. delete existing collection in MongoDB
-            await readcollection.drop()    
+            //await readcollection.drop()    
             console.log('Deleted read books collection in MongoDB...')
                 //3. request read books from Goodreads XML
                 for (let i = 0; i < urls.length; i++){
@@ -34,7 +34,7 @@ async function readbooks() {
                             parseString(books, {attrkey:'@'}, function (err, read) {
                             //console.dir(read.GoodreadsResponse.reviews)
                             //5. insert read books into MongoDB database
-                            readcollection.insertMany(read.GoodreadsResponse.reviews);
+                            readcollection.updateMany(read.GoodreadsResponse.reviews);
                             console.log(`Inserted read books from ${urls[i]} into MongoDB...`)
                             });
                         })

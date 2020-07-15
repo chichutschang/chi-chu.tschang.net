@@ -1,7 +1,7 @@
 require('dotenv').config()
 const MongoClient = require('mongodb').MongoClient;
 let client = null;
-const database = process.env.DATABASE_URL;
+const database = process.env.BOOKS_DATABASE_URL;
 
 function connect(database, callback){
     if (client == null){

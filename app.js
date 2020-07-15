@@ -9,7 +9,7 @@ var app = express();
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var client = require('./db');
-const database = process.env.DATABASE_URL;
+const database = process.env.BOOKS_DATABASE_URL;
 const request = require('request');
 var d3 = require('d3');
 
