@@ -18,13 +18,13 @@ a:link:hover, a:visited:hover {text-decoration: none; color: #B90000;}
 @media (min-width: 360px) {
         .container-fluid .row {
           /* border: solid 1px black; */
-          padding:5px;
+          padding:0px;
           margin:0px;
         }
         body {
           background-color: white;
-          padding-left: 0px;
-          padding-right: 0px;
+          padding-left: 10px;
+          padding-right: 10px;
           margin-left: auto;
           margin-right: auto;
         }
