@@ -18,7 +18,7 @@ a:link:hover, a:visited:hover {text-decoration: none; color: #B90000;}
 @media (min-width: 360px) {
         .container-fluid .row {
           /* border: solid 1px black; */
-          padding:0px;
+          padding:5px;
           margin:0px;
         }
         body {
@@ -240,4 +240,13 @@ a:link:hover, a:visited:hover {text-decoration: none; color: #B90000;}
     font-family: 'monospace';
     font-size: 8;
     color: #999
+  }
+
+  #sensor {
+    padding-left: 10;
+    border: 1 px solid #000;
+  } */
+
+  td, th {
+    border: 1 px solid #000;
   }
