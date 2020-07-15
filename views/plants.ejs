@@ -11,8 +11,8 @@
     <div id="content" class="container">
       <content>
         <h4>Internet of Things Plant Monitor</h4>
-        <p>One of the problems that gardeners face is that we're sometimes unsure whether we are watering our plants not enough or too much. As a side project, I installed Internet of Things sensors to track the soil moisture, temperature and humidity of my basil plants.</p>
-        <p><h6>Moisture: <%= moisture %>%</h6><div id="moisture" class="svg-container"></div></p>
+        <p>One of the problems that amateur gardeners face is that we're sometimes unsure whether we are watering our plants not enough or too much. As a side project, I installed Internet of Things sensors to track the soil moisture, temperature and humidity of my basil plants.</p>
+        <p><h6>Moisture</h6><div id="moisture" class="svg-container"></div></p>
         <p><h6>Temperature</h6><div id="temperature" class="svg-container"></div></p>
         <p><h6>Humidity</h6><div id="humidity" class="svg-container"></div></p>
         <p><h6>Equipment</h6></p>
@@ -20,24 +20,24 @@
         <table class="table table-borderless"> 
         <tr>
           <td> 
-            <ul>
-              <li>2 Node MCU Amica (ESP 8266 Wi-Fi Module)</li>
-              <li>1 VMA 311 Temperature sensor</li>
-              <li>1 YL-69 Moisture sensor</li>
-              <li>1 Raspberry Pi</li>
-              <li>1 LCD panel</li>
-              <li>1 LED light</li>
+            <ul style="list-style-type: none;">
+              <li>&#9633; 2 Node MCU Amica (ESP 8266 Wi-Fi Module)</li>
+              <li>&#9633; 1 VMA 311 Temperature sensor</li>
+              <li>&#9633; 1 YL-69 Moisture sensor</li>
+              <li>&#9633; 1 Raspberry Pi</li>
+              <li>&#9633; 1 LCD panel</li>
+              <li>&#9633; 1 LED light</li>
             </ul>
           </td>
           <td>  
-          <img src="/images/plants1.png" height="300"></img>
-         </td>
+            <img src="/images/plants1.png" width="75%"></img>
+          </td>
         </tr>
         </table>
         </div>
         <p><h6>Architecture</h6></p>
         <p>The architecture for this Internet of Things side project is fairly straightforward. The sensors collect data from the soil and air. The data is sent via Wi-Fi to an Internet gateway, which in this case is the MQTT program running on a Raspberry Pi. The MQTT program sends the data to a MongoDB database in the cloud. This website pulls the data from the cloud and renders the data in the form of graphs.</p>
-        <p><img src="/images/plants2.png" height="300"></img></p>
+        <p><img src="/images/plants2.png" width="100%"></img></p>
         <p><h6>Temperature</h6></p>
         <p>For the temperature and humidity sensor, I connected a VMA 311 sensor and RGB backlight LCD panel to a <u><a href="https://www.nodemcu.com/index_en.html">Node MCU Amica</a></u> development board with Wi-Fi. This <u><a href="https://create.arduino.cc/projecthub/ThothLoki/portable-arduino-temp-humidity-sensor-with-lcd-a750f4">Portable Arduino Temp/Humidity Sensor with LCD</a></u> tutorial explains how to set up the VMA 311 sensor and LCD panel to the <u><a href="https://www.nodemcu.com/index_en.html">Node MCU Amica</a></u>. I connected the VMA 311 and LCD panel to the <u><a href="https://www.nodemcu.com/index_en.html">Node MCU Amica</a></u> as follows:</p>
         <div class="table-responsive">
@@ -79,7 +79,7 @@
           </tr>
          </table>
         </div>
-        <p></p>
+        <p>For the software, the first step was to determine the I2C address of the LCD panel. Fortunately, this <u><a href="https://roboindia.com/tutorials/i2c-address-scanner-nodemcu/"></a>NodeMCU i2c Scanner on Arduino IDE</a></u> tutorial provided the code to test the I2C address for the LCD code. The first step was to write the Arduino code to collect the temperature and humidity data using the VMA 311. I could have requested the VMA 311 sensor to collect the temperature and humidity every minute or hour, which would have collected a large amount of data. Instead, I request the VMA 311 sensor to log the data when the temperature changed 1 degree warmer or cooler. Next, I added code to render the temperature and humidity data on the LCD panel. Once the sensor data was working, the next step was to find a way to transfer the data to a database. The lightweight MQTT message broker routes the data collected from the sensors to a database. This <u><a href="https://techtutorialsx.com/2017/04/09/esp8266-connecting-to-mqtt-broker/"></a>ESP8266: Connecting to MQTT broker</a></u> tutorial explains how to set up the Arduino code to send the data to a MQTT broker, which will be hosted on a Raspberry Pi. Finally, I wrote code to connect the ESP8266 to my Wi-Fi network and connect to the MQTT broker, which is being hosted on a Raspberry Pi. Here is the code:</p>
         </p>
         <p>
           <pre>
@@ -440,7 +440,8 @@
             
             </pre>
         <p><h6>MongoDB</h6></p>
-        <p>In the original version, I sent the data collected from sensors to AWS DynamoDB. I decided to switch to a MongoDB database partially to lower my monthly expenditures to Amazon and partially to learn how to use a MongoDB database. In MongoDB, I created a new cluster called "plants" and a database for each plant I am trying to grow. For the purpose of this project, my database name is "basil" because I am growing basil and the collection name is "july2020" because I started growing the basil in July 2020. Once the VMA 311 and YL-69 sensors and MQTT client are plugged in and running, we can check whether the data is being sent to the MongoDB database.</p>
+        <p>In the original version, I sent the data collected from sensors to AWS DynamoDB. I decided to switch to a MongoDB database partially to lower my monthly expenditures to Amazon and partially to learn how to use a MongoDB database. In MongoDB, I created a new cluster called "plants" and a database for each plant I am trying to grow. For the purpose of this project, my database name is "basil" because I am growing basil and the collection name is "july2020" because I started growing the basil in July 2020. Once the VMA 311 and YL-69 sensors and MQTT client are plugged in and running, we can check whether the data is being sent to the MongoDB by connecting to the database via MongoDB Compass or logging into the MongoDB website.</p>
+        <img src="/images/plants3.png" width="95%"></img>
         <p><h6>D3.js</h6></p>
         <p>Now that the data is stored in the MongoDB database, I want to graph the data on this website. First, I posted the moisture, temperature and humidity data in json format on this website's <u><a href="./moisture">/projects/plants/moisture</a></u>, <u><a href="./temperature">projects/plants/temperature</a></u> and <u><a href="./humidity">projects/plants/humidity</a></u> pages, respectively. Then, I used <u><a href="https://d3js.org/">d3.js</a></u> to pull the data from the webpages and draw the line graphs for each of the data by plotting the time on the x-axis and the values on the y-axis. These <u><a href="https://bl.ocks.org/gordlea/27370d1eea8464b04538e6d8ced39e89">D3 v5 Line Chart</a></u> and <u><a href="https://datawanderings.com/2019/10/28/tutorial-making-a-line-chart-in-d3-js-v-5/">Making a Line Chart in D3.js v.5</a></u> tutorials were very helpful in terms of explaining how to draw a line chart in version 5 of D3.js compared with the earlier versions. Here is the code:</p> 
         <pre>
@@ -516,7 +517,7 @@
 //set margins and size of graph
 var margin = {top: 10, right: 20, bottom: 20, left: 30},
   height = 200 - margin.top - margin.bottom,
-  width = 800 - margin.left - margin.right
+  width = 1150 - margin.left - margin.right
 
 //set x-axis range
 var x = d3.scaleTime().range([0, width - margin.right])
@@ -526,13 +527,12 @@ var y = d3.scaleLinear().range([height, 0]);
 
 //draw moisture chart
 var svg1 = d3.select("div#moisture").append("svg")
-    .attr("width", width + margin.left + margin.right)
-    .attr("height", height + margin.top + margin.bottom)
+    .attr("viewBox", `0 0 1150 200`)
   .append("g")
     .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
 //retrieve moisture data in json format from ./projects/plants/moisture
-var moistureurl="./moisture"
+var moistureurl="./plants/moisture"
 
 d3.json(moistureurl).then(function(data){
   
@@ -572,13 +572,12 @@ d3.json(moistureurl).then(function(data){
 
 //draw temperature chart
 var svg2 = d3.select("div#temperature").append("svg")
-    .attr("width", width + margin.left + margin.right)
-    .attr("height", height + margin.top + margin.bottom)
+    .attr("viewBox", `0 0 1150 200`)  
   .append("g")
     .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
 //retrieve temperature data in json format from ./projects/plants/temperature
-var temperatureurl="./temperature"
+var temperatureurl="./plants/temperature"
 
 d3.json(temperatureurl).then(function(data){
   
@@ -625,13 +624,12 @@ d3.json(temperatureurl).then(function(data){
 
 //draw humidity chart
 var svg3 = d3.select("div#humidity").append("svg")
-    .attr("width", width + margin.left + margin.right)
-    .attr("height", height + margin.top + margin.bottom)
+    .attr("viewBox", `0 0 1150 200`)
   .append("g")
     .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
 //retrieve temperature data in json format from ./projects/plants/temperature
-var humidityurl="./humidity"
+var humidityurl="./plants/humidity"
 
 d3.json(humidityurl).then(function(data){
   
