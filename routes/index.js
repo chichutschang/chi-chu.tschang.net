@@ -132,7 +132,6 @@ router.get('/projects/plants', function(req, res, next){
     var humidity = result[result.length-1].value
     data.push({'humidity' : humidity})
     //console.log(data)
-
   })
 })
 
