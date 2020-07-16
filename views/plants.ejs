@@ -12,9 +12,9 @@
       <content>
         <h4>Internet of Things Plant Monitor</h4>
         <p>One of the problems that amateur gardeners face is that we're sometimes unsure whether we are watering our plants not enough or too much. As a side project, I installed Internet of Things sensors to track the soil moisture, temperature and humidity of my basil plants.</p>
-        <p><h6>Moisture</h6><div id="moisture" class="svg-container"></div></p>
-        <p><h6>Temperature</h6><div id="temperature" class="svg-container"></div></p>
-        <p><h6>Humidity</h6><div id="humidity" class="svg-container"></div></p>
+        <p><h6>Moisture: <%- data[0].moisture %>%</h6><div id="moisture" class="svg-container"></div></p>
+        <p><h6>Temperature: <%- data[2].temperature %>ºF</h6><div id="temperature" class="svg-container"></div></p>
+        <p><h6>Humidity: <%- data[1].humidity %>%</h6><div id="humidity" class="svg-container"></div></p>
         <p><h6>Equipment</h6></p>
         <div class="table-responsive">
         <table class="table table-borderless"> 
@@ -612,15 +612,7 @@ d3.json(temperatureurl).then(function(data){
     svg2.append("g")
       .attr("class", "y-axis")
       .call(d3.axisLeft(y))
-        
-    svg2.append("text")
-      .attr("x", -22)
-      .attr("y", margin.top - 10)
-      .attr("dy", 0)
-      .attr("class", "y-axis")
-      .text("ºF");
 });
-
 
 //draw humidity chart
 var svg3 = d3.select("div#humidity").append("svg")

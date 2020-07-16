@@ -11,6 +11,8 @@ var client = require('../db');
 let currentlyreading = require('../models/currentlyreading');
 let read = require('../models/read');
 let plants = require('../models/plants');
+const { moisture } = require('./growing');
+const { temperature } = require('../models/plants');
 
 /* GET home page. */
 router.get('/', (req, res) => {
@@ -107,9 +109,32 @@ router.get('/projects/censor-weibo', function(req, res){
 })
 
 /* GET projects/plants. */
-router.get('/projects/plants', function(req, res){
-    res.render('plants', {title: 'plants'});
+router.get('/projects/plants', function(req, res, next){  
+  const data = []
+  plants.moisture((err, result) => {
+    //console.log(result[result.length -1])
+    var moisture = result[result.length-1].value
+    data.push({'moisture' : moisture})
+    //console.log(data)
   })
+  plants.temperature((err, result) => {
+    //console.log(result[result.length -1])
+    var temperature = result[result.length-1].value
+    data.push({'temperature' : temperature})
+    //console.log(data)
+    res.render('plants', {      
+      data : data,
+      title: 'plants'
+    })
+  })
+  plants.humidity((err, result) => {
+    //console.log(result[result.length -1])
+    var humidity = result[result.length-1].value
+    data.push({'humidity' : humidity})
+    //console.log(data)
+
+  })
+})
 
 /* GET projects/plants/moisture. */
 router.get('/projects/plants/moisture', function(req, res){
