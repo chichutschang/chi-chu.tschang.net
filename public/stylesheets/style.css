@@ -250,3 +250,19 @@ a:link:hover, a:visited:hover {text-decoration: none; color: #B90000;}
   td, th {
     border: 1 px solid #000;
   }
+
+/* .hiddenRow {
+    padding: 0 !important;
+} */
+ul {
+  list-style-type: none;
+}
+
+.outside {
+  list-style-position: outside;
+  padding-left: 0;
+}
+
+.english1 {
+  background-color: whitesmoke;
+}

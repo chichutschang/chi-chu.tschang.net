@@ -6,9 +6,7 @@
 !.elasticbeanstalk/*.global.yml
 
 .env
-test.ejs
+#views/test.ejs
 investing.ejs
 node_modules
-views/test.ejs
-routes/test.js
 tschang_accessKeys.csv

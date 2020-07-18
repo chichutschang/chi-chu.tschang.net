@@ -11,8 +11,6 @@ var client = require('../db');
 let currentlyreading = require('../models/currentlyreading');
 let read = require('../models/read');
 let plants = require('../models/plants');
-const { moisture } = require('./growing');
-const { temperature } = require('../models/plants');
 
 /* GET home page. */
 router.get('/', (req, res) => {
@@ -89,9 +87,9 @@ router.get('/reading/update', function(req, res) {
 });
 
 /* GET investing page. */
-router.get('/investing', function(req, res) {
-  res.render('investing', { title: 'investing' });
-});
+// router.get('/investing', function(req, res) {
+//   res.render('investing', { title: 'investing' });
+// });
 
 /* GET projects page. */
 router.get('/projects', function(req, res) {
@@ -169,16 +167,10 @@ router.get('/projects/plants/humidity', function(req, res){
   })
 })
 
-/* GET connect page. */
-router.get('/connect', function(req, res) {
-  res.render('connect', { title: 'connect' });
-});
-
 /* GET test page. */
 router.get('/test', function(req, res) {
   //res.setHeader('Content-Type', 'text/html');
-  res.json(insertgrow)
-  //console.log(insertgrow)
+  res.render('test', {title: 'test'});
 });
 
 //send router to app.js
