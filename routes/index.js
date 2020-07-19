@@ -5,7 +5,6 @@ var router = express.Router();
 var request = require('request');
 var insertcurrentlyreading = require('./currentlyreading');
 var insertread = require('./read');
-//var insertgrow = require('./growing');
 var moment = require('moment');
 var client = require('../db');
 let currentlyreading = require('../models/currentlyreading');
