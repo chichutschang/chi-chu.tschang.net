@@ -3,7 +3,11 @@ require('dotenv').config()
 const async = require('async');
 const MongoClient = require('mongodb').MongoClient;
 const database = process.env.PLANTS_DATABASE_URL;
-const client = new MongoClient(database, { useNewUrlParser: true, useUnifiedTopology: true });
+const settings = {
+    reconnectTries : Number.MAX_VALUE,
+    autoReconnect : true
+  };
+const client = new MongoClient(database, settings, { useNewUrlParser: true, useUnifiedTopology: true });
 
 //Retrieve humidity data from MongoDB database and send to index.js
 async function moisture(callback){
