@@ -5,7 +5,7 @@ var router = express.Router();
 var request = require('request');
 var insertcurrentlyreading = require('./currentlyreading');
 var insertread = require('./read');
-var insertgrow = require('./growing');
+//var insertgrow = require('./growing');
 var moment = require('moment');
 var client = require('../db');
 let currentlyreading = require('../models/currentlyreading');
@@ -39,6 +39,11 @@ router.get('/', function(req, res) {
 /* GET resume page. */
 router.get('/resume', function(req, res) {
   res.render('resume', { title: 'resume' });
+});
+
+/* GET teaching page. */
+router.get('/teaching/english1', function(req, res) {
+  res.render('english1', { title: 'English 1' });
 });
 
 /* GET learning page. */
@@ -107,29 +112,29 @@ router.get('/projects/censor-weibo', function(req, res){
 })
 
 /* GET projects/plants. */
-router.get('/projects/plants', function(req, res, next){  
+router.get('/projects/plants', async function(req, res){  
   const data = []
-  plants.moisture((err, result) => {
+  await plants.moisture((err, result) => {
     //console.log(result[result.length -1])
     var moisture = result[result.length-1].value
     data.push({'moisture' : moisture})
     //console.log(data)
   })
-  plants.temperature((err, result) => {
-    //console.log(result[result.length -1])
-    var temperature = result[result.length-1].value
-    data.push({'temperature' : temperature})
-    //console.log(data)
-    res.render('plants', {      
-      data : data,
-      title: 'plants'
-    })
-  })
-  plants.humidity((err, result) => {
+  await plants.humidity((err, result) => {
     //console.log(result[result.length -1])
     var humidity = result[result.length-1].value
     data.push({'humidity' : humidity})
     //console.log(data)
+  })
+  await plants.temperature((err, result) => {
+    //console.log(result[result.length -1])
+    var temperature = result[result.length-1].value
+    data.push({'temperature' : temperature})
+    console.log(data)
+    res.render('plants', {      
+      data : data,
+      title: 'plants'
+    })
   })
 })
 
