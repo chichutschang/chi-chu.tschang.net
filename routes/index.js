@@ -111,29 +111,29 @@ router.get('/projects/censor-weibo', function(req, res){
 })
 
 /* GET projects/plants. */
-router.get('/projects/plants', async function(req, res){  
+router.get('/projects/plants', function(req, res){  
   const data = []
-  await plants.moisture((err, result) => {
+  plants.moisture((err, result) => {
     //console.log(result[result.length -1])
     var moisture = result[result.length-1].value
     data.push({'moisture' : moisture})
     //console.log(data)
-  })
-  await plants.humidity((err, result) => {
-    //console.log(result[result.length -1])
-    var humidity = result[result.length-1].value
-    data.push({'humidity' : humidity})
-    //console.log(data)
-  })
-  await plants.temperature((err, result) => {
-    //console.log(result[result.length -1])
-    var temperature = result[result.length-1].value
-    data.push({'temperature' : temperature})
-    console.log(data)
-    res.render('plants', {      
-      data : data,
-      title: 'plants'
-    })
+    plants.temperature((err, result) => {
+      //console.log(result[result.length -1])
+      var temperature = result[result.length-1].value
+      data.push({'temperature' : temperature})
+      //console.log(data)
+      plants.humidity((err, result) => {
+        //console.log(result[result.length -1])
+        var humidity = result[result.length-1].value
+        data.push({'humidity' : humidity})
+        console.log(data)
+          res.render('plants', {      
+            data : data,
+            title: 'plants'
+          })    
+      })
+    }) 
   })
 })
 
