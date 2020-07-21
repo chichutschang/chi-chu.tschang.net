@@ -127,7 +127,7 @@ router.get('/projects/plants', function(req, res){
         //console.log(result[result.length -1])
         var humidity = result[result.length-1].value
         data.push({'humidity' : humidity})
-        console.log(data)
+        //console.log(data)
           res.render('plants', {      
             data : data,
             title: 'plants'
