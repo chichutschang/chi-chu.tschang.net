@@ -6,6 +6,7 @@
     "start": "node ./bin/www"
   },
   "dependencies": {
+    "@google-cloud/storage": "^5.1.2",
     "async": "^3.2.0",
     "aws-sdk": "^2.496.0",
     "body-parser": "^1.19.0",
@@ -16,6 +17,8 @@
     "ejs": "^2.6.1",
     "express": "^4.17.1",
     "express-ejs-layouts": "^2.5.0",
+    "google-spreadsheet": "^3.0.11",
+    "googleapis": "^57.0.0",
     "http-errors": "~1.6.2",
     "jquery": "^3.5.1",
     "moment": "^2.23.0",
