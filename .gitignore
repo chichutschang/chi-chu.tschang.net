@@ -6,7 +6,11 @@
 !.elasticbeanstalk/*.global.yml
 
 .env
-#views/test.ejs
+views/test.ejs
 investing.ejs
+#graphs/investing.js
+graphs/aapl.js
+routes/places.js
 node_modules
 tschang_accessKeys.csv
+#prismatic-vial-760-aee27df2b9df.json

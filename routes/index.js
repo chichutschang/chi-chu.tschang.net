@@ -10,6 +10,7 @@ var client = require('../db');
 let currentlyreading = require('../models/currentlyreading');
 let read = require('../models/read');
 let plants = require('../models/plants');
+let graph = require('../graphs/aapl');
 
 /* GET home page. */
 router.get('/', (req, res) => {
@@ -43,6 +44,11 @@ router.get('/resume', function(req, res) {
 /* GET teaching page. */
 router.get('/teaching/english1', function(req, res) {
   res.render('english1', { title: 'English 1' });
+});
+
+/* GET teaching page. */
+router.get('/teaching/english2', function(req, res) {
+  res.render('english2', { title: 'English 2' });
 });
 
 /* GET learning page. */
@@ -169,6 +175,14 @@ router.get('/projects/plants/humidity', function(req, res){
     res.status(200).json(result);
     //res.render('humidity', {title: 'humidity'})
   })
+})
+
+/* GET projects/investing. */
+router.get('/projects/investing', function(req, res){
+  graph.aapl((err, result) => {
+    console.log(result);
+  })
+  res.render('investing', {title: 'investing'});
 })
 
 /* GET test page. */
