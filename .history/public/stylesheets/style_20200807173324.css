@@ -300,3 +300,7 @@ path.line-4 {
   stroke: #9999;
 } 
 
+.axis path,
+.axis line {
+  fill: none;
+}

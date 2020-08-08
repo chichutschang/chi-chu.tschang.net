@@ -270,6 +270,9 @@ ul {
 .english2 {
   background-color: whitesmoke;
 }
+path.line{
+  fill:none;
+}
 
 /* stock price color blue */
 path.line-0 {

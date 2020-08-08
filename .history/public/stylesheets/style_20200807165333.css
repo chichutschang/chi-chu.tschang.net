@@ -271,32 +271,19 @@ ul {
   background-color: whitesmoke;
 }
 
-/* stock price color blue */
 path.line-0 {
   fill: none;
-  stroke: #4285F4;
+  stroke: #ed4700;
 }
 
-/* 10x P/E red */
 path.line-1 {
   fill: none;
-  stroke: #DB4437;
+  stroke: #999;
+  stroke-dasharray: 2;
 }
 
-/* 20x P/E yellow */
 path.line-2 {
   fill: none;
-  stroke: #F4B400;
-} 
-
-/* 30x P/E green */
-path.line-3 {
-  fill: none;
-  stroke: #0F9D58;
-} 
-/* 40x P/E purple */
-path.line-4 {
-  fill: none;
-  stroke: #9999;
-} 
-
+  stroke: #9c9c9c;
+  stroke-dasharray: 6;
+}
