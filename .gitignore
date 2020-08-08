@@ -7,9 +7,9 @@
 
 .env
 views/test.ejs
-investing.ejs
+#investing.ejs
 #graphs/investing.js
-graphs/aapl.js
+#graphs/aapl.js
 routes/places.js
 node_modules
 tschang_accessKeys.csv
