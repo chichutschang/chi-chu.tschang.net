@@ -10,7 +10,7 @@ var client = require('../db');
 let currentlyreading = require('../models/currentlyreading');
 let read = require('../models/read');
 let plants = require('../models/plants');
-let graph = require('../graphs/aapl');
+let graph = require('../models/aapl');
 
 /* GET home page. */
 router.get('/', (req, res) => {
