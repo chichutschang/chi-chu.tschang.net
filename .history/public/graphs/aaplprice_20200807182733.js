@@ -91,7 +91,7 @@ const lines = svg.selectAll("lines")
 
       lines.append("path")
             .attr("class", ids)
-            .attr("fill", "none")
+            .attr("fill","none")
             .attr("d", function(d) {return line(d.values); });
 
 
