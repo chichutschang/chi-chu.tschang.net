@@ -10,7 +10,7 @@ var client = require('../db');
 let currentlyreading = require('../models/currentlyreading');
 let read = require('../models/read');
 let plants = require('../models/plants');
-let graph = require('../models/aapl');
+let aapl = require('../models/aapl');
 
 /* GET home page. */
 router.get('/', (req, res) => {
@@ -177,12 +177,21 @@ router.get('/projects/plants/humidity', function(req, res){
   })
 })
 
-/* GET projects/investing. */
-router.get('/projects/investing', function(req, res){
-  graph.aapl((err, result) => {
-    console.log(result);
+/* GET projects/stocks. */
+router.get('/projects/stocks', function(req, res){
+  const data = []
+  aapl.price((err, result) => {
+    console.log(result)
+    // var last = (result.length-1)
+    // console.log(last)
+    // console.log(result.last.Close);
+    // // var moisture = result[result.length-1].value
+    // data.push({'price' : result.last})
   })
-  res.render('investing', {title: 'investing'});
+  res.render('stocks', 
+  { data: data,
+    title: 'stocks'
+  });
 })
 
 /* GET test page. */
