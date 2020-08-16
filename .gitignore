@@ -10,6 +10,8 @@ views/test.ejs
 #investing.ejs
 #graphs/investing.js
 #graphs/aapl.js
+public/graphs/areachart.js
+public/graphs/AAPLforwardPE.js
 routes/places.js
 node_modules
 tschang_accessKeys.csv

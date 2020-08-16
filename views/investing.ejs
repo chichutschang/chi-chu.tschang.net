@@ -4,7 +4,7 @@
   <div class="container-fluid">
     <head>
         <% include partials/head %>
-        <script src="https://d3js.org/d3.v5.min.js"></script>
+        <script type="text/javascript" src="https://d3js.org/d3.v5.min.js"></script>
     </head>
     <body>
         <nav>
@@ -13,16 +13,18 @@
         <div id="content">
         <content>
             <div id="projects">
-                <p>Apple: AAPL</p>
-                <p>current share price:</p>
+                <h1>Apple Inc.</h1>
+                <h4>current share price:</h4>
                 <svg id="AAPLprice" style="border:1px solid black"></svg>
-                <p>forward P/E:</p>
-                <p>forward P/S:</p>
+                <!-- <h4>forward P/E:</h4>
+                <svg id="AAPLforwardPE" style="border:1px solid black"></svg>
+                <h4>forward P/S:</h4> -->
             </div>
         </content>
         </div>
     </body>
     <script src="../graphs/AAPLprice.js"></script> 
+    <!-- <script src="../graphs/areachart.js"></script>  -->
     <div id="content">
         <footer><% include partials/footer %></footer>
     </div>

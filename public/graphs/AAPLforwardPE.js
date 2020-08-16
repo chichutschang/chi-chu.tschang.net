@@ -1,0 +1,106 @@
+var d3 = d3 || require('d3'); 
+
+var element = typeof module !== 'undefined' && module.exports ? 'body' : '#AAPLforwardPE';
+
+//set margins and size of graph
+var margin = {top: 10, right: 20, bottom: 30, left: 0},
+  height = 200 - margin.top - margin.bottom,
+  width = 1150 - margin.left - margin.right
+
+//draw the chart
+var svg2 = d3.select(element)
+          .attr("viewBox", `0 0 1150 200`)
+            .append('svg')
+            .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+
+//retrieve data from Google Spreadsheets
+//var url = "https://docs.google.com/spreadsheets/d/e/2PACX-1vTKS3FYmpBnEZde6YXzmlrpWr3hZlGqykA7FrZE2Hbdo7wn2uJnW-HRBvE7Kzqrn5cNrVLBdP6i5omY/pub?gid=1256115182&single=true&output=tsv"
+var url ="https://cors-anywhere.herokuapp.com/https://docs.google.com/spreadsheets/d/e/2PACX-1vTKS3FYmpBnEZde6YXzmlrpWr3hZlGqykA7FrZE2Hbdo7wn2uJnW-HRBvE7Kzqrn5cNrVLBdP6i5omY/pub?gid=1256115182&single=true&output=tsv"
+
+//map data into an array
+d3.tsv(url).then(function(data){
+    var multiples = data.columns.slice(1).map(function(id){
+        return {
+            id: id,
+            values: data.map(function(d){
+                return {
+                    time: d3.isoParse(d.Date), 
+                    value: +d[id]
+                };
+            })
+        };            
+    });
+//console.log(multiples)
+//console.log("Column headers", data.columns);
+//console.log("Column headers without date", data.columns.slice(1));
+//console.log("Multiples", multiples);
+//console.log("Price", multiples[0]);
+//console.log("An array", multiples[0].values);
+//console.log("Date element", multiples[0].values[0].time);
+//console.log("Array length", (multiples[0].values).length);
+
+//-------------------------SCALES-------------------------//
+//set x-axis range
+const xScale = d3.scaleTime().range([0, width - margin.right]);
+//set y-axis range
+const yScale = d3.scaleLinear().range([height, 0]);
+
+//set the ranges of the data
+xScale.domain(d3.extent(data, function(d) { 
+  return (d3.isoParse(d["Date"]))
+  //console.log(d3.isoParse(d["Date"]))
+  })
+);
+yScale.domain([(0), d3.max(multiples, function(c){
+  return d3.max(c.values, 
+    function(d) { 
+      return d.value;});   
+  }) 
+]);
+
+//-------------------------AXES-------------------------//
+const xAxis = d3.axisBottom().scale(xScale);
+const yAxis = d3.axisRight().scale(yScale);
+
+//add x-axis
+svg2.append("g")
+   .attr("transform", "translate(0," + height +")")
+   .attr("class","x-axis")
+   .call(xAxis);
+    
+//add y-axis
+svg2.append("g")
+   .attr("transform", "translate( "+ (width - margin.right) +" , 0)")
+   .attr("class","y-axis")
+   .call(yAxis);
+
+//-------------------------LINES-------------------------//
+//define the line
+const line = d3.line()
+  .x(function(d) { return xScale(d.time); })
+  .y(function(d) { return yScale(d.value); });
+  
+//add id to each line class
+let id = 0;
+const ids = function() {
+  return "line-"+id++;
+}
+
+const lines = svg2.selectAll("lines")
+      .data(multiples)
+      .enter()
+      .append("g");
+
+      lines.append("path")
+          .attr("fill","none")
+          .attr("stroke","steelblue")
+          .attr("d", function(d) {return line(d.values); });
+
+
+});
+
+
+if (typeof module !== 'undefined' && module.exports) {
+    module.exports = svg;
+  }

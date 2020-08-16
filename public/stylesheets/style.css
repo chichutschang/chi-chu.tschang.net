@@ -271,7 +271,7 @@ ul {
   background-color: whitesmoke;
 }
 
-.line {
+/* .line {
   fill: none;
   stroke: #4285F4;
   stroke-width: 1px;
@@ -279,35 +279,66 @@ ul {
 
 .area {
   fill: slategrey
+} */
+
+.area {
+  fill: #A3AAAE;
+  clip-path: url(#clip);
 }
-/* stock price color blue */
+
+.line {
+  fill: none;
+  stroke: #A3AAAE;
+  stroke-width: 1px;
+  clip-path: url(#clip);
+}
+
+/* forward P/E color black */
 path.line-0 {
   fill: none;
-  stroke: #4285F4;
+  stroke: #000000;
+  stroke-width: 1px;
+  clip-path: url(#clip);
 }  
 
-/* 10x P/E red */
+/* mean forward P/E red */
 path.line-1 {
   fill: none;
-  stroke: #DB4437;
+  stroke: #0f084b;
+  stroke-width: 1px;
+  clip-path: url(#clip);
 }  
 
-/* 20x P/E yellow */
+/* +2 st dev forward P/E yellow */
 path.line-2 {
   fill: none;
-  stroke: #F4B400;
+  stroke: #A6CFD5;
+  stroke-width: 1px;
+  clip-path: url(#clip);
 }  
 
-/* 30x P/E green */
+/* +1 st dev forward P/E green */
 path.line-3 {
   fill: none;
-  stroke: #0F9D58;
+  stroke: #26408B;
+  stroke-width: 1px;
+  clip-path: url(#clip);
 }  
 
-/* 40x P/E purple */
+/* -1 st dev forward P/E purple */
 path.line-4 {
   fill: none;
-  stroke: #9999;
+  stroke: #26408B;
+  stroke-width: 1px;
+  clip-path: url(#clip);
+}  
+
+/* -2 st dev forward P/E  purple */
+path.line-5 {
+  fill: none;
+  stroke: #A6CFD5;
+  stroke-width: 1px;
+  clip-path: url(#clip);
 }  
 
 .tooltip {
@@ -359,13 +390,8 @@ path.line-4 {
   pointer-events: all;
 } 
 
-.area {
-  fill: #A3AAAE;
-  clip-path: url(#clip);
-}
-
-.line {
-  fill: none;
-  stroke: #A3AAAE;
-  clip-path: url(#clip);
-}
+/* rect.selection {
+	stroke: none;
+  fill: steelblue;
+  fill-opacity: 0.6;
+} */
