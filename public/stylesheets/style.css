@@ -271,32 +271,101 @@ ul {
   background-color: whitesmoke;
 }
 
+.line {
+  fill: none;
+  stroke: #4285F4;
+  stroke-width: 1px;
+}    
+
+.area {
+  fill: slategrey
+}
 /* stock price color blue */
 path.line-0 {
   fill: none;
   stroke: #4285F4;
-}
+}  
 
 /* 10x P/E red */
 path.line-1 {
   fill: none;
   stroke: #DB4437;
-}
+}  
 
 /* 20x P/E yellow */
 path.line-2 {
   fill: none;
   stroke: #F4B400;
-} 
+}  
 
 /* 30x P/E green */
 path.line-3 {
   fill: none;
   stroke: #0F9D58;
-} 
+}  
+
 /* 40x P/E purple */
 path.line-4 {
   fill: none;
   stroke: #9999;
+}  
+
+.tooltip {
+  /* fill: #4285F4; */
+  font-family: monospace;
+  font-size: 100%;
+  position: absolute;
+}
+
+.point {
+  stroke: none;
+  fill: #4285F4;
+}
+
+.track {
+  stroke: #000;
+  stroke-opacity: 0.3;
+  stroke-width: 10px;
+}
+
+.track-inset {
+  stroke: #ddd;
+  stroke-width: 8px;
+}
+
+.track-overlay {
+  pointer-events: stroke;
+  stroke-width: 50px;
+  stroke: transparent;
+  cursor: ew-resize;
+}
+
+.handle {
+  stroke: #ddd;
+  stroke: #000;
+  stroke-opacity: 0.5;
+  stroke-width: 1.25px;
+}
+
+.brush-x-axis {
+  font-family: 'monospace';
+  font-size: 8;
+  color: #000
+}
+
+.zoom {
+  /* cursor: move; */
+  fill: none;
+  pointer-events: all;
 } 
 
+.area {
+  fill: #A3AAAE;
+  clip-path: url(#clip);
+}
+
+.line {
+  fill: none;
+  stroke: #A3AAAE;
+  clip-path: url(#clip);
+}
