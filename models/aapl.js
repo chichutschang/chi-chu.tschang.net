@@ -15,23 +15,23 @@ client.authorize(function(err, tokens){
         return;
     } else {
         console.log('Connected to Google Spreadsheet...');
-        aapl(client);
+        price(client);
     }
 });
 
 //access data in Apple Google Spreadsheets
-async function aapl(){
+async function price(){
     try {
     //set Google Spreadsheets version & auth
     const googlesheetsapi =  google.sheets({version: 'v4', auth: APIkey });
     //set values for Google Spreadsheets' spreadsheetId, tab & range
     const option = {
         spreadsheetId: '1YMncpMnEbMqZd6dp2j4Bcjw2BGqU3vzl90CPKS-QIOA',
-        range: 'P/E + P/B!B10:G10432'
+        range: 'AAPLprice Public!A1:B11000'
     }
     let data = await googlesheetsapi.spreadsheets.values.get(option);
     //console.log(data);
-    //console.log(data.data.values);
+    console.log(data.data.values);
     return data.data.values
     } catch (err) {
         console.error(err);
@@ -41,5 +41,5 @@ async function aapl(){
 
 
 module.exports = {
-    aapl
+    price
 }
