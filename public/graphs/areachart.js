@@ -53,7 +53,13 @@ d3.tsv(url).then(function(data){
             values: data.map(function(d){
                 return {
                     time: d3.isoParse(d.Date), 
-                    value: +d[id]
+                    //value: +d[id],
+                    ForwardPE: +d.ForwardPE,
+                    Mean: +d.Mean,
+                    PlusTwoSTD: +d.PlusTwoSTD,
+                    PlusOneSTD: +d.PlusOneSTD,
+                    MinusOneSTD: +d.MinusOneSTD,
+                    MinusTwoSTD: +d.MinusTwoSTD
                 };
             })
         };            
@@ -61,8 +67,8 @@ d3.tsv(url).then(function(data){
 //console.log(multiples)
 //console.log("Column headers", data.columns);
 //console.log("Column headers without date", data.columns.slice(1));
-console.log("Multiples", multiples);
-//console.log("Price", multiples[0]);
+//console.log("Multiples", multiples);
+//console.log("ForwardPE", multiples[0]);
 //console.log("An array", multiples[0].values);
 //console.log("Date element", multiples[0].values[0].time);
 //console.log("Array length", (multiples[0].values).length);
@@ -93,9 +99,9 @@ const yAxis = d3.axisRight().scale(y);
 
 //-------------------------GRAPH-------------------------//
 //define the line
-const line = d3.line()
-        .x(function(d) { return x(d.time); })
-        .y(function(d) { return y(d.value); });
+// const line = d3.line()
+//         .x(function(d) { return x(d.time); })
+//         .y(function(d) { return y(d.value); });
   
 //add id to each line class
 let id = 0;
@@ -112,13 +118,16 @@ const focus = svg2.selectAll("lines")
       //add line
       focus.append("path")
           .attr("class", "line-0")
-          .attr("d", function(d) {return line(d.values); });
+          .attr("d", d3.line()
+            .x(function(d) {return x(d.time) })
+            .y(function(d) {return y(d.ForwardPE); })
+          );
 
       //append circle to line path
-      focus.selectAll("circle")
-        .attr("class", "circle")
-        .attr("cx", function(d) {return x(d.time); })
-        .attr("cy", function(d) {return y(d.value); });
+      // focus.selectAll("circle")
+      //   .attr("class", "circle")
+      //   .attr("cx", function(d) {return x(d.time); })
+      //   .attr("cy", function(d) {return y(d.value); });
 
       //add x-axis
       focus.append("g")
@@ -195,7 +204,7 @@ function mousemove(multiples){
   //draw slider 
   const brush = d3.brushX()
     .extent([[0,0] , [(width - margin.right) , 20]])
-    .on("brush end", brushed)
+    //.on("brush end", brushed)
 
   //append slider to context
   context.append("g")
@@ -205,21 +214,22 @@ function mousemove(multiples){
     .call(brush.move, [581, x.range()[1]]); //starts the slider bar on August 24, 2011, when Tim Cook became CEO of Apple
   
   //brush function to move slider
-  function brushed() {
-    var s = d3.event.selection || x2.range()
-    x.domain(s.map(x2.invert, x2));
+  // function brushed() {
+  //   var s = d3.event.selection || x2.range()
+  //   x.domain(s.map(x2.invert, x2));
     //focus.select(".area").attr("d", function(d) {return area(d.values); });
-    focus.select(".path-line-0").attr("d", function(d) {return line(d.values); });
-    focus.select(".x-axis").call(xAxis)
-    focus.select(".y-axis").call(yAxis);
-  }
+    //focus.select(".line-0").attr("d", function(d) {return line(d.values); });
+    //focus.select(".line-0").attr("d", d3.line().x(function(d) {return x(d.time)}).y(function(d) {return y(d.ForwardPE); }))
+    //focus.select(".x-axis").call(xAxis)
+    //focus.select(".y-axis").call(yAxis);
+  //}
   //zoom function rescale x-axis
   function zoomed(){
     var t = d3.event.transform;
     x.domain(t.rescaleX(x2).domain());
     // focus.select(".area").attr("d", function(d) {return area(d.values); });
-    focus.select(".line").attr("d", function(d) {return line(d.values); });
-    focus.select(".x-axis").call(xAxis)
+    //focus.select(".line").attr("d", function(d) {return line(d.values); });
+    //focus.select(".x-axis").call(xAxis)
   }
     
 });
