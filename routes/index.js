@@ -178,7 +178,7 @@ router.get('/projects/plants/humidity', function(req, res){
 })
 
 /* GET projects/stocks. */
-// router.get('/projects/stocks', function(req, res){
+router.get('/projects/stocks', function(req, res){
 //   const data = []
 //   aapl.price((err, result) => {
 //     console.log(result)
@@ -187,12 +187,10 @@ router.get('/projects/plants/humidity', function(req, res){
 //     // console.log(result.last.Close);
 //     // // var moisture = result[result.length-1].value
 //     // data.push({'price' : result.last})
-//   })
-//   res.render('stocks', 
-//   { data: data,
-//     title: 'stocks'
-//   });
-// })
+  })
+   res.render('stocks', 
+   { title: 'stocks' });
+})
 
 /* GET test page. */
 router.get('/test', function(req, res) {
