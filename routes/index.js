@@ -187,7 +187,7 @@ router.get('/projects/stocks', function(req, res){
 //     // console.log(result.last.Close);
 //     // // var moisture = result[result.length-1].value
 //     // data.push({'price' : result.last})
-  })
+//  })
    res.render('stocks', 
    { title: 'stocks' });
 })
