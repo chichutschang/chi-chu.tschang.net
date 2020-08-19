@@ -296,7 +296,7 @@ ul {
 /* forward P/E color black */
 path.line-0 {
   fill: none;
-  stroke: #000000;
+  stroke: #A3AAAE;
   stroke-width: 1px;
   clip-path: url(#clip);
 }  
@@ -304,7 +304,7 @@ path.line-0 {
 /* mean forward P/E red */
 path.line-1 {
   fill: none;
-  stroke: #0f084b;
+  stroke: dodgerblue;
   stroke-width: 1px;
   clip-path: url(#clip);
 }  
@@ -312,15 +312,15 @@ path.line-1 {
 /* +2 st dev forward P/E yellow */
 path.line-2 {
   fill: none;
-  stroke: #A6CFD5;
-  stroke-width: 1px;
+  stroke: lightsteelblue;
+  stroke-width: 1px;  
   clip-path: url(#clip);
 }  
 
 /* +1 st dev forward P/E green */
 path.line-3 {
   fill: none;
-  stroke: #26408B;
+  stroke: lightskyblue;
   stroke-width: 1px;
   clip-path: url(#clip);
 }  
@@ -328,7 +328,7 @@ path.line-3 {
 /* -1 st dev forward P/E purple */
 path.line-4 {
   fill: none;
-  stroke: #26408B;
+  stroke: lightskyblue;
   stroke-width: 1px;
   clip-path: url(#clip);
 }  
@@ -336,7 +336,7 @@ path.line-4 {
 /* -2 st dev forward P/E  purple */
 path.line-5 {
   fill: none;
-  stroke: #A6CFD5;
+  stroke: lightsteelblue;
   stroke-width: 1px;
   clip-path: url(#clip);
 }  

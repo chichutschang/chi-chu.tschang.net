@@ -17,7 +17,7 @@ var x = d3.scaleTime().range([0, width - margin.right])
 var x2 = d3.scaleTime().range([0, width - margin.right])
 
 //set y-axis range
-var y = d3.scaleLinear().range([height, 0])
+var y1 = d3.scaleLinear().range([height, 0])
 
 //draw the chart
 var svg1 = d3.select(element)
@@ -75,7 +75,7 @@ x.domain(d3.extent(data, function(d) {
                 })
               );
 x2.domain(x.domain())
-y.domain([d3.min(multiples, function(c){ 
+y1.domain([d3.min(multiples, function(c){ 
                   return d3.min(c.values,
                     function(d){ return d.value;});
                   }), d3.max(multiples, function(c){
@@ -88,7 +88,7 @@ y.domain([d3.min(multiples, function(c){
 //-------------------------AXES-------------------------//
 const xAxis = d3.axisBottom().scale(x);
 const x2Axis = d3.axisBottom().scale(x2);
-const yAxis = d3.axisRight().scale(y);
+const yAxis = d3.axisRight().scale(y1);
 
 //-------------------------GRAPH-------------------------//
 
@@ -96,12 +96,12 @@ const yAxis = d3.axisRight().scale(y);
 const area = d3.area()
         .x(function(d) { return x(d.time); })
         .y0(height)
-        .y1(function(d) { return y(d.value); });
+        .y1(function(d) { return y1(d.value); });
 
 //define the line
 const line = d3.line()
         .x(function(d) { return x(d.time); })
-        .y(function(d) { return y(d.value); });
+        .y(function(d) { return y1(d.value); });
 
 //add id to each line class
 // let id = 0;
@@ -124,7 +124,7 @@ const focus = svg1.selectAll("focus")
       focus.selectAll("circle")
         .attr("class", "circle")
         .attr("cx", function(d) {return x(d.time); })
-        .attr("cy", function(d) {return y(d.value); });
+        .attr("cy", function(d) {return y1(d.value); });
 
       //add area
       focus.append("path")
@@ -190,7 +190,7 @@ function mousemove(multiples){
   const d = x0 - d0.Date > d1.Date - x0 ? d1 : d0;
   //console.log(d)
   
-  tooltip.attr("transform", `translate(${x(d3.isoParse(d.Date))},${y(d.Close)})`)
+  tooltip.attr("transform", `translate(${x(d3.isoParse(d.Date))},${y1(d.Close)})`)
          .text(`AAPL share price on ${formatTime(x.invert(d3.mouse(this)[0]))}: $${d.Close}`) 
          .style("left", (d3.event.pageX - 150) + "px")
          .style("top", (d3.event.pageY - 50) +"px");
@@ -199,7 +199,7 @@ function mousemove(multiples){
   //console.log(d.Close)
   //console.log(y(d.Close))
 
-  mouseline.attr("d", `M ${x(d3.isoParse(d.Date))} ${height} V ${y(d.Close)}`).attr("opacity", "1");
+  mouseline.attr("d", `M ${x(d3.isoParse(d.Date))} ${height} V ${y1(d.Close)}`).attr("opacity", "1");
   }
 
 //-------------------------SLIDER-------------------------//
