@@ -4,8 +4,8 @@ var element = typeof module !== 'undefined' && module.exports ? 'body' : '#AAPLf
 
 //format dates and d3.bisector function
 var formatTime = d3.timeFormat("%B %d, %Y");
-var formatDate = d3.timeFormat("%Y-%m-%d");
-var bisect = d3.bisector(function(d) {return d.Date}).left;
+var formatDate = d3.timeFormat("%Y-%m-%d").parse;
+var bisect = d3.bisector(function(d) {return d.time}).left;
 
 //set margins and size of graph
 var margin = {top: 10, right: 20, bottom: 30, left: 0},
@@ -184,15 +184,15 @@ const context = svg2.selectAll("context")
 
 //map x- and y-coordinates of mouse
 function mousemove(){
-  //console.log(data)
+  console.log(data)
   const x0 = formatDate(x.invert(d3.mouse(this)[0]));
   //console.log(x0);
   const i = bisect(data, x0) 
-  //console.log(i)
+  console.log(i)
   const d0 = data[i -1]
-  //console.log(d0) 
+  //console.log('d0: ', d0) 
   const d1 = data[i]
-  //console.log(d1)
+  //console.log('d1: ', d1)
   const d = x0 - d0.time > d1.time - x0 ? d1 : d0;
   //console.log(d)
   
@@ -234,7 +234,6 @@ function mousemove(){
   function zoomed(){
     var t = d3.event.transform;
     x.domain(t.rescaleX(x2).domain());
-    focus.select(".area").attr("d", function(d) {return area(d.values); });
     focus.select(".line").attr("d", function(d) {return line(d.values); });
     focus.select(".x-axis").call(xAxis)
   }
