@@ -1,6 +1,6 @@
 //set up d3.js
 var d3 = d3 || require('d3'); 
-var element = typeof module !== 'undefined' && module.exports ? 'body' : '#AAPLforwardPE';
+var element = typeof module !== 'undefined' && module.exports ? 'body' : '#AAPLforwardPS';
 
 //format dates and d3.bisector function
 var formatTime = d3.timeFormat("%B %d, %Y");
@@ -17,16 +17,16 @@ var x = d3.scaleTime().range([0, width - margin.right])
 var x2 = d3.scaleTime().range([0, width - margin.right])
 
 //set y-axis range
-var y2 = d3.scaleLinear().range([height, 0])
+var y3 = d3.scaleLinear().range([height, 0])
 
 //draw the chart
-var svg2 = d3.select(element)
+var svg3 = d3.select(element)
               .attr("viewBox", `0 0 1150 200`)
             .append('svg')
                 .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
 //draw clip so when focus chart is zoomed in, the data lines don't extend past the border
-var clip = svg2.append("defs").append("clipPath")
+var clip = svg3.append("defs").append("clipPath")
         .attr("id", "clip")
       .append("rect")
         .attr("class", "zoom")
@@ -36,14 +36,14 @@ var clip = svg2.append("defs").append("clipPath")
         .attr("y", 0)
 
 //append the clip
-var focuschartlines = svg2.append("g")
+var focuschartlines = svg3.append("g")
          .attr("class", "focus")
          .attr("tranform", "translate(" + margin.left + "," + margin.top + ")")
          .attr("clip-path","url(#clip");                 
 
 //retrieve data from Google Spreadsheets
-//var url = "https://docs.google.com/spreadsheets/d/e/2PACX-1vTKS3FYmpBnEZde6YXzmlrpWr3hZlGqykA7FrZE2Hbdo7wn2uJnW-HRBvE7Kzqrn5cNrVLBdP6i5omY/pub?gid=1256115182&single=true&output=tsv"
-var url ="https://cors-anywhere.herokuapp.com/https://docs.google.com/spreadsheets/d/e/2PACX-1vTKS3FYmpBnEZde6YXzmlrpWr3hZlGqykA7FrZE2Hbdo7wn2uJnW-HRBvE7Kzqrn5cNrVLBdP6i5omY/pub?gid=1256115182&single=true&output=tsv"
+//var url = "https://docs.google.com/spreadsheets/d/e/2PACX-1vTKS3FYmpBnEZde6YXzmlrpWr3hZlGqykA7FrZE2Hbdo7wn2uJnW-HRBvE7Kzqrn5cNrVLBdP6i5omY/pub?gid=627892166&single=true&output=tsv"
+var url ="https://cors-anywhere.herokuapp.com/https://docs.google.com/spreadsheets/d/e/2PACX-1vTKS3FYmpBnEZde6YXzmlrpWr3hZlGqykA7FrZE2Hbdo7wn2uJnW-HRBvE7Kzqrn5cNrVLBdP6i5omY/pub?gid=627892166&single=true&output=tsv"
 
 //map data into an array
 d3.tsv(url).then(function(data){
@@ -51,7 +51,7 @@ d3.tsv(url).then(function(data){
     data.forEach(function(d) {
         d.time = d3.isoParse(d.Date),
         //console.log(d.time),
-        d.ForwardPE = +d.ForwardPE,
+        d.ForwardPS = +d.ForwardPS,
         //console.log(d.ForwardPE),
         d.Mean = +d.Mean,
         //console.log(d.Mean),
@@ -69,16 +69,16 @@ d3.tsv(url).then(function(data){
 //scale the range of the data
 x.domain(d3.extent(data, function(d) { return d.time }));
 x2.domain(x.domain())
-y2.domain([0, 45])
-  
+y3.domain([0, d3.max(data, function(d) { return d.ForwardPS })]);
+//console.log(y3.domain())  
 //-------------------------AXES-------------------------//
 const xAxis = d3.axisBottom().scale(x);
 const x2Axis = d3.axisBottom().scale(x2);
-const yAxis = d3.axisRight().scale(y2);
+const yAxis = d3.axisRight().scale(y3).ticks(5);
   
 //-------------------------GRAPH-------------------------//
 //create focus object for graph
-const focus = svg2.selectAll("lines")
+const focus = svg3.selectAll("lines")
         .data([data])
         .enter()
         .append("g");
@@ -88,7 +88,7 @@ const focus = svg2.selectAll("lines")
           .attr("class", "line-0")
           .attr("d", d3.line()
             .x(function(d) {return x(d.time) })
-            .y(function(d) {return y2(d.ForwardPE); })
+            .y(function(d) {return y3(d.ForwardPS); })
           );
 
       //add Forward P/E Mean line
@@ -96,7 +96,7 @@ const focus = svg2.selectAll("lines")
           .attr("class", "line-1")
           .attr("d", d3.line()
             .x(function(d) {return x(d.time) })
-            .y(function(d) {return y2(d.Mean); })
+            .y(function(d) {return y3(d.Mean); })
           );
 
       //add Forward P/E +2 STD line
@@ -104,7 +104,7 @@ const focus = svg2.selectAll("lines")
           .attr("class", "line-2")
           .attr("d", d3.line()
             .x(function(d) {return x(d.time) })
-            .y(function(d) {return y2(d.PlusTwoSTD); })
+            .y(function(d) {return y3(d.PlusTwoSTD); })
           );
 
       //add Forward P/E +1 STD line
@@ -112,7 +112,7 @@ const focus = svg2.selectAll("lines")
           .attr("class", "line-3")
           .attr("d", d3.line()
             .x(function(d) {return x(d.time) })
-            .y(function(d) {return y2(d.PlusOneSTD); })
+            .y(function(d) {return y3(d.PlusOneSTD); })
           );
 
       //add Forward P/E -1 STD line
@@ -120,21 +120,21 @@ const focus = svg2.selectAll("lines")
       .attr("class", "line-3")
       .attr("d", d3.line()
         .x(function(d) {return x(d.time) })
-        .y(function(d) {return y2(d.MinusOneSTD); })
+        .y(function(d) {return y3(d.MinusOneSTD); })
       );
 
       //append circle to line path
       focus.selectAll("circle")
         .attr("class", "circle")
         .attr("cx", function(d) {return x(d.time); })
-        .attr("cy", function(d) {return y2(d.ForwardPE); });
+        .attr("cy", function(d) {return y3(d.ForwardPS); });
 
       //add Forward P/E -2 STD line
       focus.append("path")
       .attr("class", "line-5")
       .attr("d", d3.line()
         .x(function(d) {return x(d.time) })
-        .y(function(d) {return y2(d.MinusTwoSTD); })
+        .y(function(d) {return y3(d.MinusTwoSTD); })
       );
 
       //add x-axis
@@ -146,11 +146,10 @@ const focus = svg2.selectAll("lines")
       //add y-axis
       focus.append("g")
         .attr("transform", "translate( "+ (width - margin.right) +" , 0)")
-        .attr("class","y-axis")
-        .call(yAxis);
+        .attr("class","y-axis");
 
 //create context area for slider bar
-const context = svg2.selectAll("context")
+const context = svg3.selectAll("context")
         .data([data])
         .enter()
         .append("g");
@@ -169,7 +168,7 @@ const context = svg2.selectAll("context")
     .on("zoom", zoomed);
 
   //overlay zoom area rectangle on top of the focus chart  
-  const rectangle = svg2.append("rect")
+  const rectangle = svg3.append("rect")
                       .attr("width", (width - margin.right))
                       .attr("height", height)
                       .attr("class", "zoom")
@@ -196,16 +195,16 @@ function mousemove(){
   const d = x0 - d0.time > d1.time - x0 ? d1 : d0;
   //console.log(d)
   
-  tooltip.attr("transform", `translate(${x(d3.isoParse(d.time))},${y2(d.ForwardPE)})`)
-         .text(`AAPL forward P/E on ${formatTime(x.invert(d3.mouse(this)[0]))}: ${d.ForwardPE}x`) 
+  tooltip.attr("transform", `translate(${x(d3.isoParse(d.time))},${y3(d.ForwardPS)})`)
+         .text(`AAPL forward P/S on ${formatTime(x.invert(d3.mouse(this)[0]))}: ${d.ForwardPS}x`) 
          .style("left", (d3.event.pageX - 150) + "px")
          .style("top", (d3.event.pageY - 50) +"px");
-  console.log(formatTime(x.invert(d3.mouse(this)[0])))
+  //console.log(formatTime(x.invert(d3.mouse(this)[0])))
   //console.log(x(d3.isoParse(d.time)))
-  //console.log(d.ForwardPE)
-  //console.log(y2(d.ForwardPE))
+  //console.log(d.ForwardPS)
+  //console.log(y2(d.ForwardPS))
 
-  mouseline.attr("d", `M ${x(d3.isoParse(d.time))} ${y2(d.ForwardPE)} V ${y2(d.PlusTwoSTD)}`).attr("opacity", "1");
+  mouseline.attr("d", `M ${x(d3.isoParse(d.time))} ${y3(d.ForwardPS)} V ${y3(d.PlusTwoSTD)}`).attr("opacity", "1");
   }
 
 //-------------------------SLIDER-------------------------//
@@ -225,7 +224,7 @@ function mousemove(){
   function brushed() {
     var s = d3.event.selection || x2.range()
     x.domain(s.map(x2.invert, x2));
-    focus.select(".line-0").attr("d", d3.line().x(function(d) {return x(d.time) }).y(function(d) {return y2(d.ForwardPE); }))
+    focus.select(".line-0").attr("d", d3.line().x(function(d) {return x(d.time) }).y(function(d) {return y3(d.ForwardPS); }))
     focus.select(".x-axis").call(xAxis)
     focus.select(".y-axis").call(yAxis);
   }
@@ -234,7 +233,7 @@ function mousemove(){
   function zoomed(){
     var t = d3.event.transform;
     x.domain(t.rescaleX(x2).domain());
-    focus.select(".area").attr("d", function(d) {return area(d.values); });
+    //focus.select(".area").attr("d", function(d) {return area(d.values); });
     focus.select(".line").attr("d", function(d) {return line(d.values); });
     focus.select(".x-axis").call(xAxis)
   }
