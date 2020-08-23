@@ -149,9 +149,9 @@ const context = svg2.selectAll("context")
 
 //-------------------------TOOLTIP-------------------------//
   //set up tooltip
-  // const tooltip = d3.select("body").append("g")
-  //   .attr("class","tooltip")
-  //   .style("opacity", 1)
+  const tooltip = d3.select("body").append("g")
+        .attr("class","tooltip")
+        .style("opacity", 1)
 
   //set up zoom
   // const zoom = d3.zoom()
@@ -161,11 +161,11 @@ const context = svg2.selectAll("context")
   //   .on("zoom", zoomed);
 
   //overlay zoom area rectangle on top of the focus chart  
-  // const rectangle = svg2.append("rect")
-  //                     .attr("width", (width - margin.right))
-  //                     .attr("height", height)
-  //                     .attr("class", "zoom")
-  //                     .on("mousemove", mousemove);
+  const rectangle = svg2.append("rect")
+                       .attr("width", (width - margin.right))
+                       .attr("height", height)
+                       .attr("class", "zoom")
+                       .on("mousemove", mousemove);
   
   //draw vertical line to follow mouse
   // const mouseline = focus.append("path")
@@ -186,7 +186,7 @@ function mousemove(multiples){
   const d1 = data[i]
   //console.log(d1)
   const d = x0 - d0.Date > d1.Date - x0 ? d1 : d0;
-  //console.log(d)
+  console.log(d)
   
   tooltip.attr("transform", `translate(${x(d3.isoParse(d.Date))},${y(d.Close)})`)
          .text(`AAPL share price on ${formatTime(x.invert(d3.mouse(this)[0]))}: $${d.Close}`) 
