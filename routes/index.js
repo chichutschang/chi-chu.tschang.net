@@ -96,11 +96,6 @@ router.get('/reading/update', function(req, res) {
   res.render('update', { title: 'reading/update' });
 });
 
-/* GET investing page. */
-// router.get('/investing', function(req, res) {
-//   res.render('investing', { title: 'investing' });
-// });
-
 /* GET projects page. */
 router.get('/projects', function(req, res) {
   res.render('projects', { title: 'projects' });
