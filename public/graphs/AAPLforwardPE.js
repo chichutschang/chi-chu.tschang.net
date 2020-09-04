@@ -69,7 +69,7 @@ d3.tsv(url).then(function(data){
 //scale the range of the data
 x.domain(d3.extent(data, function(d) { return d.time }));
 x2.domain(x.domain())
-y2.domain([0, 45])
+y2.domain([0, 15])
   
 //-------------------------AXES-------------------------//
 const xAxis = d3.axisBottom().scale(x);
