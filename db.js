@@ -2,6 +2,8 @@ require('dotenv').config()
 const MongoClient = require('mongodb').MongoClient;
 let client = null;
 const database = process.env.BOOKS_DATABASE_URL;
+//const database = "mongodb+srv://tschang:shakespeare@books-txxaw.mongodb.net/books?retryWrites=true&w=majority";
+//console.log(database)
 
 function connect(database, callback){
     if (client == null){
