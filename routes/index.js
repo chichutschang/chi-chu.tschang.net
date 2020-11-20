@@ -9,7 +9,7 @@ var moment = require('moment');
 var client = require('../db');
 let currentlyreading = require('../models/currentlyreading');
 let read = require('../models/read');
-let plants = require('../models/plants');
+//let plants = require('../models/plants');
 //let aapl = require('../models/aapl');
 
 /* GET home page. */
@@ -113,64 +113,64 @@ router.get('/projects/censor-weibo', function(req, res){
 
 /* GET projects/plants. */
 router.get('/projects/plants', function(req, res){  
-  const data = []
-  plants.moisture((err, result) => {
+  //const data = []
+  //plants.moisture((err, result) => {
     //console.log(result[result.length -1])
-    var moisture = result[result.length-1].value
-    data.push({'moisture' : moisture})
+    //var moisture = result[result.length-1].value
+    //data.push({'moisture' : moisture})
     //console.log(data)
-    plants.temperature((err, result) => {
+    //plants.temperature((err, result) => {
       //console.log(result[result.length -1])
-      var temperature = result[result.length-1].value
-      data.push({'temperature' : temperature})
+      //var temperature = result[result.length-1].value
+      //data.push({'temperature' : temperature})
       //console.log(data)
-      plants.humidity((err, result) => {
+      //plants.humidity((err, result) => {
         //console.log(result[result.length -1])
-        var humidity = result[result.length-1].value
-        data.push({'humidity' : humidity})
+        //var humidity = result[result.length-1].value
+        //data.push({'humidity' : humidity})
         //console.log(data)
           res.render('plants', {      
-            data : data,
+            //data : data,
             title: 'plants'
-          })    
-      })
-    }) 
-  })
+          });  
+      //})
+    //}) 
+  //})
 })
 
 /* GET projects/plants/moisture. */
-router.get('/projects/plants/moisture', function(req, res){
-  res.set('Content-Type', 'application/json');
-  res.set("Content-Security-Policy","img-src 'unsafe-inline' 'self'");
-  // req.once = d3jsmoisture
-  plants.moisture((err, result) => {
-    //console.log(result)
-    res.status(200).json(result);
-    //res.render('moisture', {title: 'moisture'})
-  })
-})
+// router.get('/projects/plants/moisture', function(req, res){
+//   res.set('Content-Type', 'application/json');
+//   res.set("Content-Security-Policy","img-src 'unsafe-inline' 'self'");
+//   // req.once = d3jsmoisture
+//   plants.moisture((err, result) => {
+//     //console.log(result)
+//     res.status(200).json(result);
+//     //res.render('moisture', {title: 'moisture'})
+//   })
+// })
 
 /* GET projects/plants/temperature. */
-router.get('/projects/plants/temperature', function(req, res){
-  res.set('Content-Type', 'application/json');
-  res.set("Content-Security-Policy","img-src 'unsafe-inline' 'self'");
-  plants.temperature((err, result) => {
-    //console.log(result)
-    res.status(200).json(result);
-    //res.render('humidity', {title: 'temperature'})
-  })
-})
+// router.get('/projects/plants/temperature', function(req, res){
+//   res.set('Content-Type', 'application/json');
+//   res.set("Content-Security-Policy","img-src 'unsafe-inline' 'self'");
+//   plants.temperature((err, result) => {
+//     //console.log(result)
+//     res.status(200).json(result);
+//     //res.render('humidity', {title: 'temperature'})
+//   })
+// })
 
 /* GET projects/plants/humidity. */
-router.get('/projects/plants/humidity', function(req, res){
-  res.set('Content-Type', 'application/json');
-  res.set("Content-Security-Policy","img-src 'unsafe-inline' 'self'");
-  plants.humidity((err, result) => {
-    //console.log(result)
-    res.status(200).json(result);
-    //res.render('humidity', {title: 'humidity'})
-  })
-})
+// router.get('/projects/plants/humidity', function(req, res){
+//   res.set('Content-Type', 'application/json');
+//   res.set("Content-Security-Policy","img-src 'unsafe-inline' 'self'");
+//   plants.humidity((err, result) => {
+//     //console.log(result)
+//     res.status(200).json(result);
+//     //res.render('humidity', {title: 'humidity'})
+//   })
+// })
 
 /* GET projects/stocks. */
 router.get('/projects/stocks', function(req, res){
