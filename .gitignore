@@ -12,6 +12,7 @@ views/test.ejs
 #graphs/aapl.js
 public/graphs/areachart.js
 public/graphs/AAPLforwardPE.js
+models/plants.js
 routes/places.js
 node_modules
 tschang_accessKeys.csv
