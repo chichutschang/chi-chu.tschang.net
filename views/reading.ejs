@@ -9,29 +9,43 @@
   <body>
   <div id="content">
     <content>
-      <div id="reading">
-        <table>
-          <thead>
-            <tr>
-              <font color="#999">date read</font>&nbsp;&nbsp;<b>title</b>/author
-            </tr>
-          </thead>
-          <tbody>
-          <% for (var book in books) { %>
-            <tr>
-              <td>
+      <table id="table">
+        <thead>
+          <tr>
+            <font color="#999">date read</font>&nbsp;&nbsp;<b>title</b>/author
+          </tr>
+        </thead>
+        <tbody>
+          <table>
+            <% for (var book in books) { %>
+              <tr>
+                <td>
                   <font color='#999'><%- JSON.stringify(books[book].dateread).replace(/["]+/g,'') %></font>&nbsp;<b><a href='<%- JSON.stringify(books[book].link)%>'><%- JSON.stringify(books[book].title).replace(/["]+/g,'') %></a></b> by <%- JSON.stringify(books[book].author).replace(/["]+/g,'') %> 
-              </td>
-                </tr>
-          <% } %>
-          </tbody>
-        </table>
-      </div>
+                </td>
+              </tr>
+            <% } %>
+          </table>
+        </tbody>
+      </table>
     </content>
   </div>
   </body>
-    <div id="reading">
-      <footer><% include partials/footer %></footer>
-    </div>
+  <footer><% include partials/footer %></footer>
+    <script>
+      (function(i, s, o, g, r, a, m) {
+          i['GoogleAnalyticsObject'] = r;
+          i[r] = i[r] || function() {
+              (i[r].q = i[r].q || []).push(arguments)
+          }, i[r].l = 1 * new Date();
+          a = s.createElement(o),
+          m = s.getElementsByTagName(o)[0];
+          a.async = 1;
+          a.src = g;
+          m.parentNode.insertBefore(a, m)
+      })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+
+      ga('create', 'UA-28397530-1', 'auto');
+      ga('send', 'pageview');
+    </script>
   </div>
 </html>

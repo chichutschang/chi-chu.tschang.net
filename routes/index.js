@@ -2,23 +2,21 @@
 require('dotenv').config()
 var express = require('express');
 var router = express.Router();
-var request = require('request');
 var insertcurrentlyreading = require('./currentlyreading');
 var insertread = require('./read');
+var routegrow = require('./growing');
 var moment = require('moment');
 var client = require('../db');
 let currentlyreading = require('../models/currentlyreading');
 let read = require('../models/read');
-//let plants = require('../models/plants');
-//let aapl = require('../models/aapl');
 
 /* GET home page. */
 router.get('/', (req, res) => {
+  //use routes/reading.js to check Goodreads for currently reading book
+  req.on = insertcurrentlyreading
+  console.dir(insertcurrentlyreading);
   //set header to html
   res.setHeader('Content-Type', 'text/html');
-  //use routes/reading.js to check Goodreads for currently reading book
-  req.once = insertcurrentlyreading
-  console.dir(insertcurrentlyreading);
   //retrieve currently reading book from MongoDB and render on index.ejs
   currentlyreading.book((err, result) =>{
     //console.dir(result);
@@ -32,12 +30,12 @@ router.get('/', (req, res) => {
 });
 
 /* GET about page. */
-router.get('/', function(req, res) {
+router.get('/', function(req, res, next) {
   res.redirect('index', { title: 'home' });
 });
 
 /* GET resume page. */
-router.get('/resume', function(req, res) {
+router.get('/resume', function(req, res, next) {
   res.render('resume', { title: 'resume' });
 });
 
@@ -52,7 +50,7 @@ router.get('/teaching/english2', function(req, res) {
 });
 
 /* GET learning page. */
-router.get('/learning', function(req, res) {
+router.get('/learning', function(req, res, next) {
   res.render('learning', { title: 'learning' });
 });
 
@@ -90,107 +88,43 @@ router.get('/reading', (req, res) => {
 });
 
 /* GET reading/update page. */
-router.get('/reading/update', function(req, res) {
-  req.once = insertread;
+router.get('/reading/update', function(req, res, next) {
+  req.on = insertread;
   console.dir(insertread);
   res.render('update', { title: 'reading/update' });
 });
 
+/* GET investing page. */
+router.get('/investing', function(req, res, next) {
+  res.render('investing', { title: 'investing' });
+});
+
 /* GET projects page. */
-router.get('/projects', function(req, res) {
+router.get('/projects', function(req, res, next) {
   res.render('projects', { title: 'projects' });
 });
 
 /* GET projects/shotchart page. */
-router.get('/projects/shotchart', function(req, res){
+router.get('/projects/shotchart', function(req, res, next){
   res.render('shotchart', {title: 'shot chart'});
 })
 
 /* GET projects/censor-weibo page. */
-router.get('/projects/censor-weibo', function(req, res){
+router.get('/projects/censor-weibo', function(req, res, next){
   res.render('censor-weibo', {title: 'censor weibo'});
 })
 
-/* GET projects/plants. */
-router.get('/projects/plants', function(req, res){  
-  //const data = []
-  //plants.moisture((err, result) => {
-    //console.log(result[result.length -1])
-    //var moisture = result[result.length-1].value
-    //data.push({'moisture' : moisture})
-    //console.log(data)
-    //plants.temperature((err, result) => {
-      //console.log(result[result.length -1])
-      //var temperature = result[result.length-1].value
-      //data.push({'temperature' : temperature})
-      //console.log(data)
-      //plants.humidity((err, result) => {
-        //console.log(result[result.length -1])
-        //var humidity = result[result.length-1].value
-        //data.push({'humidity' : humidity})
-        //console.log(data)
-          res.render('plants', {      
-            //data : data,
-            title: 'plants'
-          });  
-      //})
-    //}) 
-  //})
-})
-
-/* GET projects/plants/moisture. */
-// router.get('/projects/plants/moisture', function(req, res){
-//   res.set('Content-Type', 'application/json');
-//   res.set("Content-Security-Policy","img-src 'unsafe-inline' 'self'");
-//   // req.once = d3jsmoisture
-//   plants.moisture((err, result) => {
-//     //console.log(result)
-//     res.status(200).json(result);
-//     //res.render('moisture', {title: 'moisture'})
-//   })
-// })
-
-/* GET projects/plants/temperature. */
-// router.get('/projects/plants/temperature', function(req, res){
-//   res.set('Content-Type', 'application/json');
-//   res.set("Content-Security-Policy","img-src 'unsafe-inline' 'self'");
-//   plants.temperature((err, result) => {
-//     //console.log(result)
-//     res.status(200).json(result);
-//     //res.render('humidity', {title: 'temperature'})
-//   })
-// })
-
-/* GET projects/plants/humidity. */
-// router.get('/projects/plants/humidity', function(req, res){
-//   res.set('Content-Type', 'application/json');
-//   res.set("Content-Security-Policy","img-src 'unsafe-inline' 'self'");
-//   plants.humidity((err, result) => {
-//     //console.log(result)
-//     res.status(200).json(result);
-//     //res.render('humidity', {title: 'humidity'})
-//   })
-// })
-
-/* GET projects/stocks. */
-router.get('/projects/stocks', function(req, res){
-//   const data = []
-//   aapl.price((err, result) => {
-//     console.log(result)
-//     // var last = (result.length-1)
-//     // console.log(last)
-//     // console.log(result.last.Close);
-//     // // var moisture = result[result.length-1].value
-//     // data.push({'price' : result.last})
-//  })
-   res.render('stocks', 
-   { title: 'stocks' });
-})
+/* GET connect page. */
+router.get('/connect', function(req, res, next) {
+  res.render('connect', { title: 'connect' });
+});
 
 /* GET test page. */
-router.get('/test', function(req, res) {
+router.get('/test', function(req, res, next) {
   //res.setHeader('Content-Type', 'text/html');
-  res.render('test', {title: 'test'});
+  req.get() = routegrow();
+  //res.json()
+  res.send("hello, world!")
 });
 
 //send router to app.js

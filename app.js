@@ -1,18 +1,15 @@
 require('dotenv').config()
 var createError = require('http-errors');
 var express = require('express');
-var cors = require('cors');
 var path = require('path');
-var favicon = require('serve-favicon')
 var logger = require('morgan');
-//var ejsLayouts = require('express-ejs-layouts')
+var ejsLayouts = require('express-ejs-layouts')
 var app = express();
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var client = require('./db');
-const database = process.env.BOOKS_DATABASE_URL;
+const database = process.env.DATABASE_URL;
 const request = require('request');
-var d3 = require('d3');
 
 // set up view engine for views folder
 app.set('views', path.join(__dirname, 'views'));
@@ -35,8 +32,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname + '/public')));
 app.use(express.static(__dirname +'/static', {dotfiles: 'allow'}));
-app.use(favicon(__dirname +'/public/images/favicon.ico'));
-//set up routes/index.js for all pag
+//set up routes/index.js for all pages
 app.use('/', indexRouter);
 //console.dir(indexRouter);
 app.use('/users', usersRouter);
@@ -45,9 +41,6 @@ app.use('/jquery', express.static(__dirname + '/node_modules/jquery/dist/'));
 app.use(function(req, res, next) {
   next(createError(404));
 });
-
-// CORS header `Access-Control-Allow-Origin` set to accept all
-app.use(cors());
 
 // error handler
 app.use(function(err, req, res, next) {

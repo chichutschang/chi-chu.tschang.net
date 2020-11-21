@@ -5,15 +5,11 @@
 !.elasticbeanstalk/*.cfg.yml
 !.elasticbeanstalk/*.global.yml
 
-.env
-views/test.ejs
-#investing.ejs
-#graphs/investing.js
-#graphs/aapl.js
-public/graphs/areachart.js
-public/graphs/AAPLforwardPE.js
-models/plants.js
-routes/places.js
+#.env
+test.ejs
+investing.ejs
 node_modules
-tschang_accessKeys.csv
-models/prismatic-vial-760-b4c08141e236.json
+views/test.ejs
+#public/.well-known
+routes/test.js
+#routes/growing.js
