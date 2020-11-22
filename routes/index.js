@@ -93,11 +93,7 @@ router.get('/reading/update', function(req, res, next) {
   console.dir(insertread);
   res.render('update', { title: 'reading/update' });
 });
-
-/* GET investing page. */
-router.get('/investing', function(req, res, next) {
-  res.render('investing', { title: 'investing' });
-});
+  
 
 /* GET projects page. */
 router.get('/projects', function(req, res, next) {
@@ -113,6 +109,11 @@ router.get('/projects/shotchart', function(req, res, next){
 router.get('/projects/censor-weibo', function(req, res, next){
   res.render('censor-weibo', {title: 'censor weibo'});
 })
+
+/* GET projects/stocks. */
+router.get('/projects/AAPL', function(req, res){
+    res.render('AAPL', { title: 'AAPL' });
+  })
 
 /* GET connect page. */
 router.get('/connect', function(req, res, next) {
