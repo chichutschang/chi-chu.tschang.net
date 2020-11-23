@@ -237,8 +237,6 @@ function mousemove(){
     focus.select(".line").attr("d", function(d) {return line(d.values); });
     focus.select(".x-axis").call(xAxis)
   }
-    
-
 })
 
 if (typeof module !== 'undefined' && module.exports) {
