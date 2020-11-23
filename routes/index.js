@@ -110,7 +110,7 @@ router.get('/projects/censor-weibo', function(req, res, next){
   res.render('censor-weibo', {title: 'censor weibo'});
 })
 
-/* GET projects/stocks. */
+/* GET projects/investing. */
 router.get('/projects/AAPL', function(req, res){
     res.render('AAPL', { title: 'AAPL' });
   })
