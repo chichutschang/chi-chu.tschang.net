@@ -68,8 +68,9 @@ d3.tsv(url).then(function(data){
 //-------------------------SCALES-------------------------//
 //scale the range of the data
 x.domain(d3.extent(data, function(d) { return d.time }));
-x2.domain(x.domain())
-y2.domain([0, 15])
+x2.domain(x.domain());
+//y2.domain([0, d3.max(data, function(d){ return d.ForwardPE})]);
+y2.domain([0, 55]);
   
 //-------------------------AXES-------------------------//
 const xAxis = d3.axisBottom().scale(x);
