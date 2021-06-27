@@ -19,7 +19,7 @@ router.get('/', (req, res) => {
   res.setHeader('Content-Type', 'text/html');
   //retrieve currently reading book from MongoDB and render on index.ejs
   currentlyreading.book((err, result) =>{
-    //console.dir(result);
+    console.dir(result);
     res.render('index', {
       title : result[0].review[0].book[0].title[0],
       author:  result[0].review[0].book[0].authors[0].author[0].name[0],
