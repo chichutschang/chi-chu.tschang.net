@@ -4,7 +4,7 @@ var express = require('express');
 var router = express.Router();
 var insertcurrentlyreading = require('./currentlyreading');
 var insertread = require('./read');
-var routegrow = require('./growing');
+//var routegrow = require('./growing');
 var moment = require('moment');
 var client = require('../db');
 let currentlyreading = require('../models/currentlyreading');
@@ -99,6 +99,11 @@ router.get('/reading/update', function(req, res, next) {
 router.get('/projects', function(req, res, next) {
   res.render('projects', { title: 'projects' });
 });
+
+/* GET projects/shotchart page. */
+router.get('/projects/plants', function(req, res, next){
+  res.render('plants', {title: 'plants'});
+})
 
 /* GET projects/shotchart page. */
 router.get('/projects/shotchart', function(req, res, next){
