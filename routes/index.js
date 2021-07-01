@@ -21,9 +21,9 @@ router.get('/', (req, res) => {
   currentlyreading.book((err, result) =>{
     console.dir(result);
     res.render('index', {
-      title : result[0].review[0].book[0].title[0],
-      author:  result[0].review[0].book[0].authors[0].author[0].name[0],
-      link: result[0].review[0].book[0].link[0],  
+      title : result[result.length - 1].review[0].book[0].title[0],
+      author:  result[result.length - 1].review[0].book[0].authors[0].author[0].name[0],
+      link: result[result.length - 1].review[0].book[0].link[0],  
       page: 'home', menuID: 'home'
     });
   })

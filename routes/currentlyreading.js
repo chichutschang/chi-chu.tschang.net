@@ -29,8 +29,8 @@ async function currentlyreadingbook() {
                     }
                     else {
                         //4. delete existing collection in MongoDB
-                        currentlyreadingcollection.drop();
-                        console.log('Deleted currently reading book collection in MongoDB...')
+                        //currentlyreadingcollection.drop();
+                        //console.log('Deleted currently reading book collection in MongoDB...')
                             //5. parse XML to JSON; change attrkey from '$' to something else so MongoDB accepts data
                             parseString(book, { attrkey: '@' }, function (err, read) {
                                 console.dir(read.GoodreadsResponse.reviews)
