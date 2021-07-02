@@ -98,9 +98,9 @@ router.get('/reading/update', function(req, res, next) {
 /* GET projects page. */
 router.get('/projects', function(req, res, next) {
   res.render('projects', { title: 'projects' });
-});
+})
 
-/* GET projects/shotchart page. */
+/* GET projects/plants page. */
 router.get('/projects/plants', function(req, res, next){
   res.render('plants', {title: 'plants'});
 })

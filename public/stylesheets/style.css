@@ -211,8 +211,14 @@ a:link:hover, a:visited:hover {text-decoration: none; color: #B90000;}
 
   /* projects style sheet */
   #projects {
-    margin: 0px 0px 0px 0px;
-    padding: 0px 0px 0px 14px;
+    margin: 50px 0px 0px 0px;
+    padding: 10px 0px 0px 14px;
+    font-size: 12px;
+    font-family: monospace;
+    /* font-weight: normal; */
+    align-content: center;
+    /* border: solid 1px black;  */
+
   }
 
   /* d3js chart style sheet */

@@ -12,4 +12,3 @@ node_modules
 views/test.ejs
 #public/.well-known
 routes/test.js
-#routes/growing.js
