@@ -244,4 +244,4 @@ function mousemove(){
 
 if (typeof module !== 'undefined' && module.exports) {
     module.exports = svg;
-  }c
+  }
