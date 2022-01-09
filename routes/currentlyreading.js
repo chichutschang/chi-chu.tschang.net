@@ -19,6 +19,7 @@ async function currentlyreadingbook() {
     try {
         //1. connect to MongoDB database 'currently-reading' collection
         let currentlyreadingcollection = client.db('books').collection('currently-reading');
+ 
         //2. request read books from Goodreads XML
             //console.log(currentlyreadURL)
             request(currentlyreadURL, (error, req, book) => {
@@ -28,18 +29,23 @@ async function currentlyreadingbook() {
                     console.log('Need new book recommendations');
                     }
                     else {
-                        //4. delete existing collection in MongoDB
-                        //currentlyreadingcollection.drop();
-                        //console.log('Deleted currently reading book collection in MongoDB...')
-                            //5. parse XML to JSON; change attrkey from '$' to something else so MongoDB accepts data
-                            parseString(book, { attrkey: '@' }, function (err, read) {
-                                console.dir(read.GoodreadsResponse.reviews)
-                                //6. insert read books into MongoDB database
-                                currentlyreadingcollection.insertMany(read.GoodreadsResponse.reviews);
-                                console.log('Inserted currently reading book collection into MongoDB...');
-                            });
+                        //4. delete existing collection in MongoDB after every 1000 entries
+                        currentlyreadingcollection.countDocuments(function(error, result) {
+                            console.log(result)
+                            if (result > 1000){
+                                currentlyreadingcollection.drop()
+                                console.log('Deleted currently reading book collection in MongoDB...')
+                            }
+                        })    
+                        //5. parse XML to JSON; change attrkey from '$' to something else so MongoDB accepts data
+                        parseString(book, { attrkey: '@' }, function (err, read) {
+                            //console.dir(read.GoodreadsResponse.reviews)
+                            //6. insert read books into MongoDB database
+                            currentlyreadingcollection.insertMany(read.GoodreadsResponse.reviews);
+                            console.log('Inserted currently reading book collection into MongoDB...');
+                        });
                     }
-                });
+                })
             })
     } catch (err) {
         console.error(err)
