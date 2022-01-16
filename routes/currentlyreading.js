@@ -31,8 +31,8 @@ async function currentlyreadingbook() {
                     else {
                         //4. delete existing collection in MongoDB after every 1000 entries
                         currentlyreadingcollection.countDocuments(function(error, result) {
-                            console.log(result)
-                            if (result > 1000){
+                            console.log('# of documents in currently reading database: ' + result)
+                            if (result > 999){
                                 currentlyreadingcollection.drop()
                                 console.log('Deleted currently reading book collection in MongoDB...')
                             }
