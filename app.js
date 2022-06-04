@@ -37,9 +37,14 @@ app.use('/', indexRouter);
 //console.dir(indexRouter);
 app.use('/users', usersRouter);
 app.use('/jquery', express.static(__dirname + '/node_modules/jquery/dist/'));
-// catch 404 and forward to error handler
+//catch 404 and forward to error handler
 app.use(function(req, res, next) {
   next(createError(404));
+});
+
+//respond with 204 error code (no content) when getting favicon.ico
+app.get('/favicon.ico', function(req, res) { 
+  res.sendStatus(204); 
 });
 
 // error handler

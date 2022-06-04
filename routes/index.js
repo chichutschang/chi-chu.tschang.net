@@ -40,13 +40,13 @@ router.get('/resume', function(req, res, next) {
 });
 
 /* GET teaching page. */
-router.get('/teaching/english1', function(req, res) {
-  res.render('english1', { title: 'English 1' });
+router.get('/teaching/english9', function(req, res) {
+  res.render('english9', { title: 'English 9' });
 });
 
 /* GET teaching page. */
-router.get('/teaching/english2', function(req, res) {
-  res.render('english2', { title: 'English 2' });
+router.get('/teaching/english10', function(req, res) {
+  res.render('english10', { title: 'English 10' });
 });
 
 /* GET learning page. */
