@@ -27,6 +27,7 @@ a:link:hover, a:visited:hover {text-decoration: none; color: #B90000;}
           padding-right: 10px;
           margin-left: auto;
           margin-right: auto;
+          font-size: 4vw;
         }
         footer{
           /* border: solid 1px black; */
