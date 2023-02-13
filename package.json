@@ -12,7 +12,7 @@
     "cors": "^2.8.5",
     "debug": "^2.6.9",
     "dotenv": "^8.6.0",
-    "ejs": "^2.7.4",
+    "ejs": "^3.1.7",
     "express": "^4.17.1",
     "express-ejs-layouts": "^2.5.0",
     "http-errors": "~1.6.2",
