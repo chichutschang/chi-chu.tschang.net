@@ -33,7 +33,7 @@
   "description": "This is the personal website of Chi-Chu Tschang",
   "main": "app.js",
   "devDependencies": {
-    "webpack": "^5.53.0",
+    "webpack": "^5.76.0",
     "webpack-dev-server": "^4.2.1"
   },
   "keywords": [
