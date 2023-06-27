@@ -5,8 +5,8 @@ const fetch = require('node-fetch');
 const request = require('request');
 const app = express();
 var router = express.Router();
-const parseString = require('xml2js');
-//const parseString = require('xml2js').parseString;
+//const parseString = require('xml2js');
+const parseString = require('xml2js').parseString;
 var client = require('../db');
 //key, URL and UserID to access Goodreads API
 const key = process.env.GOODREADS_KEY;
@@ -14,6 +14,8 @@ const database = process.env.DATABASE_URL;
 const userID=process.env.userID;
 //Goodreads XML URL
 const currentlyreadURL = 'https://www.goodreads.com/review/list/'+userID+'.xml?key='+key+'&v=2&shelf=currently-reading'
+
+
 
 //Retrieve currently reading book from Goodreads and insert into MongoDB database
 async function currentlyreadingbook() {
@@ -24,29 +26,40 @@ async function currentlyreadingbook() {
         //2. request read books from Goodreads XML
             //console.log(currentlyreadURL)
             request(currentlyreadURL, (error, req, book) => {
-                parseString(book, function (err, read) {
-                    //3. check if there is book on currently reading shelf on Goodreads                   
-                    if (read.GoodreadsResponse.reviews[0]['$'].start == 0) {
-                    console.log('Need new book recommendations');
-                    }
-                    else {
-                        //4. delete existing collection in MongoDB after every 1000 entries
-                        currentlyreadingcollection.countDocuments(function(error, result) {
-                            console.log('# of documents in currently reading database: ' + result)
-                            if (result > 999){
-                                currentlyreadingcollection.drop()
-                                console.log('Deleted currently reading book collection in MongoDB...')
+                return new Promise(function(resolve, reject){
+                    parseString(book, function (err, read) {
+                        if (err){
+                            reject(err);
+                        } else {
+                            resolve(result)
+                        //3. check if there is book on currently reading shelf on Goodreads                   
+                        if (read.GoodreadsResponse.reviews[0]['$'].start == 0) {
+                            console.log('Need new book recommendations');
                             }
-                        })    
-                        //5. parse XML to JSON; change attrkey from '$' to something else so MongoDB accepts data
-                        parseString(book, { attrkey: '@' }, function (err, read) {
-                            //console.dir(read.GoodreadsResponse.reviews)
-                            //6. insert read books into MongoDB database
-                            currentlyreadingcollection.insertMany(read.GoodreadsResponse.reviews);
-                            console.log('Inserted currently reading book collection into MongoDB...');
-                        });
-                    }
+                            else {
+                                //4. delete existing collection in MongoDB after every 1000 entries
+                                currentlyreadingcollection.countDocuments(function(error, result) {
+                                    console.log('# of documents in currently reading database: ' + result)
+                                    if (result > 999){
+                                        currentlyreadingcollection.drop()
+                                        console.log('Deleted currently reading book collection in MongoDB...')
+                                    }
+                                })    
+                                //5. parse XML to JSON; change attrkey from '$' to something else so MongoDB accepts data
+                                parseString(book, { attrkey: '@' }, function (err, read) {
+                                    //console.dir(read.GoodreadsResponse.reviews)
+                                    //6. insert read books into MongoDB database
+                                    currentlyreadingcollection.insertMany(read.GoodreadsResponse.reviews);
+                                    console.log('Inserted currently reading book collection into MongoDB...');
+                                });
+                            }
+    
+                        }
+                    })
+
                 })
+                
+
             })
     } catch (err) {
         console.error(err)
