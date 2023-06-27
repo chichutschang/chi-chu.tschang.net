@@ -4,7 +4,6 @@ var express = require('express');
 var router = express.Router();
 var insertcurrentlyreading = require('./currentlyreading');
 var insertread = require('./read');
-//var routegrow = require('./growing');
 var moment = require('moment');
 var client = require('../db');
 let currentlyreading = require('../models/currentlyreading');
@@ -14,12 +13,12 @@ let read = require('../models/read');
 router.get('/', (req, res) => {
   //use routes/reading.js to check Goodreads for currently reading book
   req.on = insertcurrentlyreading
-  console.dir(insertcurrentlyreading);
+  //console.dir(insertcurrentlyreading);
   //set header to html
   res.setHeader('Content-Type', 'text/html');
   //retrieve currently reading book from MongoDB and render on index.ejs
   currentlyreading.book((err, result) =>{
-    console.dir(result);
+    //console.dir(result);
     res.render('index', {
       title : result[result.length - 1].review[0].book[0].title[0],
       author:  result[result.length - 1].review[0].book[0].authors[0].author[0].name[0],
@@ -27,11 +26,6 @@ router.get('/', (req, res) => {
       page: 'home', menuID: 'home'
     });
   })
-});
-
-/* GET about page. */
-router.get('/', function(req, res, next) {
-  res.redirect('index', { title: 'home' });
 });
 
 /* GET resume page. */
@@ -119,19 +113,6 @@ router.get('/projects/censor-weibo', function(req, res, next){
 router.get('/projects/AAPL', function(req, res){
     res.render('AAPL', { title: 'AAPL' });
   })
-
-/* GET connect page. */
-router.get('/connect', function(req, res, next) {
-  res.render('connect', { title: 'connect' });
-});
-
-/* GET test page. */
-router.get('/test', function(req, res, next) {
-  //res.setHeader('Content-Type', 'text/html');
-  req.get() = routegrow();
-  //res.json()
-  res.send("hello, world!")
-});
 
 //send router to app.js
 module.exports = router;

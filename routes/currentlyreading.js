@@ -5,7 +5,8 @@ const fetch = require('node-fetch');
 const request = require('request');
 const app = express();
 var router = express.Router();
-const parseString = require('xml2js').parseString;
+const parseString = require('xml2js');
+//const parseString = require('xml2js').parseString;
 var client = require('../db');
 //key, URL and UserID to access Goodreads API
 const key = process.env.GOODREADS_KEY;

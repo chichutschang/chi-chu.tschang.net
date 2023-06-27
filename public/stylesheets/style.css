@@ -1,3 +1,11 @@
+body {
+  padding: 0px;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+a {
+  color: #00B7FF;
+}
 @font-face {
   font-family: Gotham;
   src: url('/stylesheets/Gotham-Book.otf')
@@ -23,7 +31,7 @@ a:link:hover, a:visited:hover {text-decoration: none; color: #B90000;}
         }
         body {
           background-color: white;
-          padding-left: 10px;
+          padding-left: 0px;
           padding-right: 10px;
           margin-left: auto;
           margin-right: auto;
@@ -42,7 +50,7 @@ a:link:hover, a:visited:hover {text-decoration: none; color: #B90000;}
 
 @media (min-width: 1020px){
         .container-fluid {
-          /* border: solid 1px black; */
+          /* border: solid 1px black;  */
           padding:0px;
           margin:0px;
         }
@@ -103,18 +111,18 @@ a:link:hover, a:visited:hover {text-decoration: none; color: #B90000;}
 
   #content {
     margin: 50px 0px 0px 0px;
-  	padding: 10px 0px 0px 0px;
+  	padding: 10px 0px 0px 14px;
     font-size: 12px;
     font-family: monospace;
     /* font-weight: normal; */
     align-content: center;
-    /* border: solid 1px black;  */
+    /* border: solid 1px black;   */
   }
 
   /* resume style sheet */
   #resume {
     margin: 0px 0px 0px 0px;
-  	padding: 0px 0px 0px 14px;
+  	padding: 0px 0px 0px 0px;
     font-family: Gotham-Book, Arial, monospace;
     font-size: 10px;
     /* color: black; */
@@ -137,6 +145,7 @@ a:link:hover, a:visited:hover {text-decoration: none; color: #B90000;}
     margin: 0px 0px 0px 0px;
     padding: 0px 0px 0px 0px;
     width: 1200px;
+    font-family: Gotham-Book, Arial, monospace;
     font-size: 12px;
     vertical-align: text-top;
     /* border: solid 1px black; */
@@ -146,6 +155,7 @@ a:link:hover, a:visited:hover {text-decoration: none; color: #B90000;}
     margin: 0px 0px 0px 0px;
     padding: 0px 0px 0px 0px;
     width: 400px;
+    font-family: Gotham-Book, Arial, monospace;
     font-size: 12px;
     vertical-align: text-top;
     /* border: solid 1px black; */
@@ -156,6 +166,7 @@ a:link:hover, a:visited:hover {text-decoration: none; color: #B90000;}
     padding: 0px 0px 10px 0px;
     width: 1200px;
     font-size: 12px;
+    font-family: Gotham-Book, Arial, monospace;
     vertical-align: text-top;
     /* border: solid 1px black; */
     }
@@ -164,6 +175,7 @@ a:link:hover, a:visited:hover {text-decoration: none; color: #B90000;}
     margin: 0px 0px 0px 0px;
     padding: 0px 0px 10px 0px;
     width: 400px;
+    font-family: Gotham-Book, Arial, monospace;
     font-size: 12px;
     vertical-align: text-top;
     /* border: solid 1px black; */
@@ -180,9 +192,9 @@ a:link:hover, a:visited:hover {text-decoration: none; color: #B90000;}
   /* reading style sheet */
   #reading {
     margin: 0px 0px 0px 0px;
-    padding: 0px 0px 0px 14px;
+    padding: 0px 0px 0px 0px;
   }
-
+/* 
   #dateread {
     color: #999;
     border: solid 1px black;
@@ -208,12 +220,12 @@ a:link:hover, a:visited:hover {text-decoration: none; color: #B90000;}
   /* #progress {
     height: 1px;
     background-color: black;
-  } */
+  } */ */
 
   /* projects style sheet */
   #projects {
-    margin: 50px 0px 0px 0px;
-    padding: 10px 0px 0px 14px;
+    margin: 0px 0px 0px 0px;
+  	padding: 0px 0px 0px 0px;
     font-size: 12px;
     font-family: monospace;
     /* font-weight: normal; */

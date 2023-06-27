@@ -1,35 +1,35 @@
+<%- include('partials/head') %>
+
 <!doctype html>
-<html>
-  <div class="container-fluid">
-  <head>
-    <nav>
-      <% include partials/header %>
-    </nav>
-  </head>
-  <body>
-  <div id="content">
-    <content>
-      <div id="reading">
-        <thead>
-          <tr>
-            <font color="#999">date read</font>&nbsp;&nbsp;<b>title</b>/author
-          </tr>
-        </thead>
-        <tbody>
-          <table>
-            <% for (var book in books) { %>
-              <tr>
-                <td>
-                  <font color='#999'><%- JSON.stringify(books[book].dateread).replace(/["]+/g,'') %></font>&nbsp;<b><a href=<%- JSON.stringify(books[book].link)%>><%- JSON.stringify(books[book].title).replace(/["]+/g,'') %></a></b> by <%- JSON.stringify(books[book].author).replace(/["]+/g,'') %> 
-                </td>
-              </tr>
-            <% } %>
-          </table>
-        </tbody>
-      </div>
-    </content>
-  </div>
-  </body>
-  <footer><% include partials/footer %></footer>
-  </div>
+  <html>
+    <div class="container-fluid">
+        <head>
+            <%- include('partials/header') %>
+        </head>
+        <body>
+            <div id="content">
+            <content>
+              <div id="reading">
+                <thead>
+                  <tr>
+                    <font color="#999">date read</font>&nbsp;&nbsp;<b>title</b>/author
+                  </tr>
+                </thead>
+                <tbody>
+                  <table>
+                    <% for (var book in books) { %>
+                      <tr>
+                        <td>
+                          <font color='#999'><%- JSON.stringify(books[book].dateread).replace(/["]+/g,'') %></font>&nbsp;<b><a href=<%- JSON.stringify(books[book].link)%>><%- JSON.stringify(books[book].title).replace(/["]+/g,'') %></a></b> by <%- JSON.stringify(books[book].author).replace(/["]+/g,'') %> 
+                        </td>
+                      </tr>
+                    <% } %>
+                  </table>
+                </tbody>
+              </div>
+
+            </content>  
+        </body>  
+      <%- include('partials/footer') %>
+    </div>
 </html>

@@ -1,14 +1,4 @@
 #ignore the following files:
 
-# Elastic Beanstalk Files
-.elasticbeanstalk/*
-!.elasticbeanstalk/*.cfg.yml
-!.elasticbeanstalk/*.global.yml
-
-#.env
-test.ejs
-investing.ejs
-node_modules
-views/test.ejs
-#public/.well-known
-#routes/test.js
+.env
+routes/test.js
