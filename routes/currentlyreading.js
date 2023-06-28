@@ -5,8 +5,8 @@ const fetch = require('node-fetch');
 const request = require('request');
 const app = express();
 var router = express.Router();
-const parseString = require('xml2js');
-//const parseString = require('xml2js').parseString;
+//const parseString = require('xml2js');
+const parseString = require('xml2js').parseString;
 var client = require('../db');
 //key, URL and UserID to access Goodreads API
 const key = process.env.GOODREADS_KEY;
@@ -26,7 +26,7 @@ async function currentlyreadingbook() {
         //2. request read books from Goodreads XML
             //console.log(currentlyreadURL)
             request(currentlyreadURL, (error, req, book) => {
-                parseString.parseString(book, function (err, read) {
+                parseString(book, function (err, read) {
                     //3. check if there is book on currently reading shelf on Goodreads                   
                     if (read.GoodreadsResponse.reviews[0]['$'].start == 0) {
                     console.log('Need new book recommendations');
