@@ -21,39 +21,6 @@ var app = express();
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
-//set up MongoDB
-//console.log(client);
-// app.use(function(req, res, next){
-//   req.db = db;
-//   next();
-// });
-
-//db.establishConnection();
-
-//MongoDB connection options
-// const mongoOptions = {
-//   useNewUrlParser: true,
-//   useUnifiedTopology: true,
-//   poolSize: 10, //set the maximum number of connections in the pool;
-// };
-// let client;
-// client = new MongoClient(database, mongoOptions)
-
-// database.connect(function(){
-//   app.listen(`${PORT}`)
-//   console.log(`Connected to MongoDB from app.js ${PORT}`)
-// })
-
-// MongoClient.connect(database, function (err) {
-//   if (err) {
-//     console.log('Unable to connect to MongoDB...')
-//     console.err(err);
-//     process.exit(1);
-//   } else {
-//     console.log('Connected to MongoDB from app.js...')
-//   }
-// });
-
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
