@@ -1,0 +1,415 @@
+body {
+  padding: 0px;
+  font: "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+a {
+  color: #00B7FF;
+}
+@font-face {
+  font-family: Gotham;
+  src: url('/stylesheets/Gotham-Book.otf')
+}
+
+/* link style sheet */
+a:link, a:visited {text-decoration: none; color: black;}
+a:link:hover, a:visited:hover {text-decoration: none; color: #B90000;}
+
+@import url(styles.css) all and (max-width: 1024px); 
+    section, aside
+    { 
+      float:none;
+      width: auto;
+    }
+
+/*responsive design*/
+@media (min-width: 360px) {
+        .container-fluid .row {
+          /* border: solid 1px black; */
+          padding:0px;
+          margin:0px;
+        }
+        body {
+          background-color: white;
+          padding-left: 0px;
+          padding-right: 10px;
+          margin-left: auto;
+          margin-right: auto;
+          font-size: 4vw;
+        }
+        footer{
+          /* border: solid 1px black; */
+          position: relative;
+          bottom: 0px;
+          left: 0px;
+          padding: 0px;
+          margin-left: auto;
+          margin-right: auto;
+        }
+      }
+
+@media (min-width: 1020px){
+        .container-fluid {
+          /* border: solid 1px black;  */
+          padding:0px;
+          margin:0px;
+        }
+        body {
+          background-color: white;
+          /* border: solid 1px black; */
+          padding-left: 12.5%;
+          padding-right: 12.5%;
+          margin-left: auto;
+          margin-right: auto;
+        }
+        footer{
+          /* border: solid 1px black; */
+          position: relative;
+          bottom: 0px;
+          left: 0px;
+          padding: 0px;
+          margin-left: auto;
+          margin-right: auto;
+        }
+      }
+
+  /* header and nav bar style sheet */
+  .nav {
+    /* border: solid 1px black; */
+    padding: 0px;
+    margin: 0px;
+    width: 100%;
+    }
+
+  #header {
+    /* border: solid 1px black; */
+    margin: 0px;
+    padding: 0px;
+    width: 100%;
+  }
+
+  #header_left {
+    /* border: solid 1px black;  */
+    margin-left: 10px;
+    padding-left: 4px;
+    position:absolute;
+    }
+
+  #header_right  {
+    margin-left: 70px;
+    /* border: solid 1px black; */
+    position:absolute;
+    }
+
+  #menu {
+    margin: 0px;
+    padding: 0px;
+    font-size: 12px;
+    /* border: solid 1px black; */
+    width:100%;
+    }
+
+  #content {
+    margin: 50px 0px 0px 0px;
+  	padding: 10px 0px 0px 14px;
+    /* font-size: 12px; */
+    font-family: monospace;
+    /* font-weight: normal; */
+    align-content: center;
+    /* border: solid 1px black;   */
+  }
+
+  /* resume style sheet */
+  #resume {
+    margin: 0px 0px 0px 0px;
+  	padding: 0px 0px 0px 0px;
+    font-family: Gotham-Book, Arial, monospace;
+    font-size: 10px;
+    /* color: black; */
+    align-content: center;
+    }
+
+  #resumeleft {
+    margin: 0px 0px 0px 0px;
+    padding: 0px 0px 0px 0px;
+    width: 190px;
+    font-family: Gotham-Book, Arial, monospace;
+    font-weight: bold;
+    font-size: 12px;
+    color: #999;
+    /* border: solid 1px black; */
+    vertical-align: text-top;
+    }
+
+  #resumecenter {
+    margin: 0px 0px 0px 0px;
+    padding: 0px 0px 0px 0px;
+    width: 1200px;
+    font-family: Gotham-Book, Arial, monospace;
+    font-size: 12px;
+    vertical-align: text-top;
+    /* border: solid 1px black; */
+    }
+
+  #resumeright {
+    margin: 0px 0px 0px 0px;
+    padding: 0px 0px 0px 0px;
+    width: 400px;
+    font-family: Gotham-Book, Arial, monospace;
+    font-size: 12px;
+    vertical-align: text-top;
+    /* border: solid 1px black; */
+    }
+
+  #resumecenterbottom {
+    margin: 0px 0px 0px 0px;
+    padding: 0px 0px 10px 0px;
+    width: 1200px;
+    font-size: 12px;
+    font-family: Gotham-Book, Arial, monospace;
+    vertical-align: text-top;
+    /* border: solid 1px black; */
+    }
+
+  #resumerightbottom {
+    margin: 0px 0px 0px 0px;
+    padding: 0px 0px 10px 0px;
+    width: 400px;
+    font-family: Gotham-Book, Arial, monospace;
+    font-size: 12px;
+    vertical-align: text-top;
+    /* border: solid 1px black; */
+    }
+
+  #lastupdate {
+    margin: 0px 0px 0px 0px;
+    padding: 10px 0px 10px 0px;
+    font-family: Gotham-Book, Arial, monospace;
+    font-size: 8px;
+    color: #999;
+  }
+
+  /* reading style sheet */
+  #reading {
+    /* font-size: 12px; */
+    margin: 0px 0px 0px 0px;
+    padding: 0px 0px 0px 0px;
+  }
+
+  /* #dateread {
+    color: #999;
+    border: solid 1px black;
+    margin: 0px 0px 0px 0px;
+  } */
+
+  /* #title {
+    text-align: left;
+    /* border: solid 1px black; */
+  /* } */
+
+  /* #author {
+    font-weight: lighter;
+    /* border: solid 1px black; */
+  /* } */ 
+
+  /* learning style sheet */
+  /* #learningprojects {
+    font-size: 9px;
+  } */ 
+
+  /* #progress {
+    height: 1px;
+    background-color: black;
+  } */
+
+  /* projects style sheet */
+  #projects {
+    margin: 0px 0px 0px 0px;
+  	padding: 0px 0px 0px 0px;
+    /* font-size: 12px; */
+    font-family: monospace;
+    /* font-weight: normal; */
+    align-content: center;
+    /* border: solid 1px black;  */
+  }
+
+  /* d3js chart style sheet */
+  .moistureline {
+    fill: none;
+    stroke: dodgerblue;
+    stroke-width: 1px;
+  }
+  .temperatureline {
+    fill: none;
+    stroke: red;
+    stroke-width: 1px;
+  }
+  .humidityline {
+    fill: none;
+    stroke: green;
+    stroke-width: 1px;
+  }
+  .x-axis {
+    font-family: 'monospace';
+    font-size: 8;
+    color: #999
+  }
+  .y-axis {
+    font-family: 'monospace';
+    font-size: 8;
+    color: #999
+  }
+
+  #sensor {
+    padding-left: 10;
+    border: 1 px solid #000;
+  } */
+
+  td, th {
+    border: 1 px solid #000;
+  }
+
+/* .hiddenRow {
+    padding: 0 !important;
+} */
+ul {
+  list-style-type: none;
+}
+
+.outside {
+  list-style-position: outside;
+  padding-left: 0;
+}
+
+.english1 {
+  background-color: whitesmoke;
+}
+
+.english2 {
+  background-color: whitesmoke;
+}
+
+/* .line {
+  fill: none;
+  stroke: #4285F4;
+  stroke-width: 1px;
+}    
+
+.area {
+  fill: slategrey
+} */
+
+.area {
+  fill: #A3AAAE;
+  clip-path: url(#clip);
+}
+
+.line {
+  fill: none;
+  stroke: #A3AAAE;
+  stroke-width: 1px;
+  clip-path: url(#clip);
+}
+
+/* forward P/E color black */
+path.line-0 {
+  fill: none;
+  stroke: #A3AAAE;
+  stroke-width: 1px;
+  clip-path: url(#clip);
+}  
+
+/* mean forward P/E red */
+path.line-1 {
+  fill: none;
+  stroke: dodgerblue;
+  stroke-width: 1px;
+  clip-path: url(#clip);
+}  
+
+/* +2 st dev forward P/E yellow */
+path.line-2 {
+  fill: none;
+  stroke: lightsteelblue;
+  stroke-width: 1px;  
+  clip-path: url(#clip);
+}  
+
+/* +1 st dev forward P/E green */
+path.line-3 {
+  fill: none;
+  stroke: lightskyblue;
+  stroke-width: 1px;
+  clip-path: url(#clip);
+}  
+
+/* -1 st dev forward P/E purple */
+path.line-4 {
+  fill: none;
+  stroke: lightskyblue;
+  stroke-width: 1px;
+  clip-path: url(#clip);
+}  
+
+/* -2 st dev forward P/E  purple */
+path.line-5 {
+  fill: none;
+  stroke: lightsteelblue;
+  stroke-width: 1px;
+  clip-path: url(#clip);
+}  
+
+.tooltip {
+  /* fill: #4285F4; */
+  font-family: monospace;
+  font-size: 100%;
+  position: absolute;
+}
+
+.point {
+  stroke: none;
+  fill: #4285F4;
+}
+
+.track {
+  stroke: #000;
+  stroke-opacity: 0.3;
+  stroke-width: 10px;
+}
+
+.track-inset {
+  stroke: #ddd;
+  stroke-width: 8px;
+}
+
+.track-overlay {
+  pointer-events: stroke;
+  stroke-width: 50px;
+  stroke: transparent;
+  cursor: ew-resize;
+}
+
+.handle {
+  stroke: #ddd;
+  stroke: #000;
+  stroke-opacity: 0.5;
+  stroke-width: 1.25px;
+}
+
+.brush-x-axis {
+  font-family: 'monospace';
+  font-size: 8;
+  color: #000
+}
+
+.zoom {
+  /* cursor: move; */
+  fill: none;
+  pointer-events: all;
+} 
+
+/* rect.selection {
+	stroke: none;
+  fill: steelblue;
+  fill-opacity: 0.6;
+} */
