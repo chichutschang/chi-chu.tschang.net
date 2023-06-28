@@ -1,66 +1,65 @@
-//require dependencies
 require('dotenv').config()
-const express = require('express');
-const fetch = require('node-fetch');
+const database = process.env.DATABASE_URL;
+const { MongoClient } = require('mongodb');
+const client = new MongoClient(database);
 const request = require('request');
-const app = express();
-var router = express.Router();
-//const parseString = require('xml2js');
 const parseString = require('xml2js').parseString;
-var client = require('../db');
+const dbname = "MongoDB"
 //key, URL and UserID to access Goodreads API
 const key = process.env.GOODREADS_KEY;
-const database = process.env.DATABASE_URL;
 const userID=process.env.userID;
 //Goodreads XML URL
 const currentlyreadURL = 'https://www.goodreads.com/review/list/'+userID+'.xml?key='+key+'&v=2&shelf=currently-reading'
+console.log(currentlyreadURL)
+//const currentlyreadingcollection = client.db('books').collection('currently-reading');
 
-
-
-//Retrieve currently reading book from Goodreads and insert into MongoDB database
-async function currentlyreadingbook() {
+const refreshDatabase = async () => {
     try {
-        //1. connect to MongoDB database 'currently-reading' collection
-        let currentlyreadingcollection = client.db('books').collection('currently-reading');
- 
-        //2. request read books from Goodreads XML
-            //console.log(currentlyreadURL)
-            request(currentlyreadURL, (error, req, book) => {
-                parseString(book, function (err, read) {
-                    //3. check if there is book on currently reading shelf on Goodreads                   
-                    if (read.GoodreadsResponse.reviews[0]['$'].start == 0) {
-                    console.log('Need new book recommendations');
-                    }
-                    else {
-                        //4. delete existing collection in MongoDB after every 1000 entries
-                        currentlyreadingcollection.countDocuments(function(error, result) {
-                            console.log('# of documents in currently reading database: ' + result)
-                            if (result > 999){
-                                currentlyreadingcollection.drop()
-                                console.log('Deleted currently reading book collection in MongoDB...')
-                            }
-                        })    
-                        //5. parse XML to JSON; change attrkey from '$' to something else so MongoDB accepts data
-                        parseString(book, { attrkey: '@' }, function (err, read) {
-                            //console.dir(read.GoodreadsResponse.reviews)
-                            //6. insert read books into MongoDB database
-                            currentlyreadingcollection.insertMany(read.GoodreadsResponse.reviews);
-                            console.log('Inserted currently reading book collection into MongoDB...');
-                        });
-                    }
-                })
-            })
+        await client.connect()
+            //1. connect to MongoDB database 'currently-reading' collection
+            const currentlyreadingcollection = client.db('books').collection('currently-reading');
+            //console.log(`Connected to the ${dbname} database from routes/currentlyreading.js`)    
+            //2. count number of books in 'currently-reading' collection in MongoDB
+            const count = await currentlyreadingcollection.countDocuments()
+            //console.log(count);
+            const filter = {read_count: {$ne: '0'}}
+            //3. delete all but one entry after 100 entries
+            if (count > 99) {
+                currentlyreadingcollection.deleteMany(filter)
+                console.log('Deleted all but one books from MongoDB currently reading...')
+            }
     } catch (err) {
-        console.error(err)
-    } finally {
-        client.close
-        console.log('Closed connection to MongoDB...')
+    console.error(`Error connecting to the database: ${err}`);
     }
 }
+refreshDatabase()
 
-module.exports = async (req, res) => {
-    const currentlyreading = currentlyreadingbook()
-    return {
-        currentlyreading
+const updateCurrentlyReading = async () => {
+    try {
+        //1. connect to MongoDB database 'currently-reading' collection
+        await client.connect()
+        const currentlyreadingcollection = client.db('books').collection('currently-reading');
+        //console.dir(currentlyreadingcollection);
+        console.log(`Connected to the ${dbname} database from routes/currentlyreading.js`)    
+        //2. request currently reading books from Goodreads XML
+        request(currentlyreadURL, (error, req, book) =>{
+        //console.log(book);
+        //3. parse XML to JSON; change attrkey from '$' to something else so MongoDB accepts data
+        parseString(book, {attrkey: '@' }, function(err, read){
+            console.log(read.GoodreadsResponse.reviews);
+            //console.dir(read.GoodreadsResponse.reviews)
+            currentlyreadingcollection.insertMany(read.GoodreadsResponse.reviews);
+            console.log('Inserted currently reading book collection into MongoDB')
+            })
+        })
+    } catch (err) {
+        console.error(`Error connecting to the database: ${err}`);
+        throw err;
     }
-};
+} 
+updateCurrentlyReading()
+
+module.exports = {
+    refreshDatabase,
+    updateCurrentlyReading
+}

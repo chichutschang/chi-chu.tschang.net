@@ -1,55 +1,87 @@
 require('dotenv').config()
 var createError = require('http-errors');
 var express = require('express');
-var path = require('path');
-var logger = require('morgan');
-var ejsLayouts = require('express-ejs-layouts')
-var app = express();
-var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
-var client = require('./db');
-const database = process.env.DATABASE_URL;
-const request = require('request');
+var expressLayouts = require('express-ejs-layouts');
 
-// set up view engine for views folder
+var path = require('path');
+var cookieParser = require('cookie-parser');
+var logger = require('morgan');
+
+var indexRouter = require('./routes/index.js');
+var usersRouter = require('./routes/users');
+
+const db = require('./db.js');
+//var client = require('./db.js');
+const database = process.env.DATABASE_URL;
+const { MongoClient } = require('mongodb');
+
+var app = express();
+
+// view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
 //set up MongoDB
-client.connect(database, (err) => {
-  if (err) {
-    console.log('Unable to connect to MongoDB...')
-    console.err(err);
-    process.exit(1);
-  } else {
-    console.log('Connected to MongoDB from app.js...')
-  }
-});
+//console.log(client);
+// app.use(function(req, res, next){
+//   req.db = db;
+//   next();
+// });
 
-//set up folders to use
+//db.establishConnection();
+
+//MongoDB connection options
+// const mongoOptions = {
+//   useNewUrlParser: true,
+//   useUnifiedTopology: true,
+//   poolSize: 10, //set the maximum number of connections in the pool;
+// };
+// let client;
+// client = new MongoClient(database, mongoOptions)
+
+// database.connect(function(){
+//   app.listen(`${PORT}`)
+//   console.log(`Connected to MongoDB from app.js ${PORT}`)
+// })
+
+// MongoClient.connect(database, function (err) {
+//   if (err) {
+//     console.log('Unable to connect to MongoDB...')
+//     console.err(err);
+//     process.exit(1);
+//   } else {
+//     console.log('Connected to MongoDB from app.js...')
+//   }
+// });
+
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-//app.use(express.static(path.join(__dirname + '/public')));
+app.use(cookieParser());
+//app.use(express.static(path.join(__dirname, '../public')));
 app.use(express.static('public'));
-app.use(express.static(__dirname +'/static', {dotfiles: 'allow'}));
-//set up routes/index.js for all pages
+
 app.use('/', indexRouter);
-//console.dir(indexRouter);
 app.use('/users', usersRouter);
-app.use('/jquery', express.static(__dirname + '/node_modules/jquery/dist/'));
-//catch 404 and forward to error handler
+
+// catch 404 and forward to error handler
 app.use(function(req, res, next) {
   next(createError(404));
 });
 
-//respond with 204 error code (no content) when getting favicon.ico
-app.get('/favicon.ico', function(req, res) { 
-  res.sendStatus(204); 
-});
-
 // error handler
 app.use(function(err, req, res, next) {
+  //set up MongoDB
+  db.establishConnection()
+    .then(() => {
+      console.log('Connected to MongoDB from app.js...')
+      next();
+    })
+    .catch((error) => {
+      console.error('Error connecting to MongoDB from app.js:', error)
+      next(error);
+    });
+  
   // set locals, only providing error in development
   res.locals.message = err.message;
   res.locals.error = req.app.get('env') === 'development' ? err : {};
@@ -60,4 +92,3 @@ app.use(function(err, req, res, next) {
 });
 
 module.exports = app;
-

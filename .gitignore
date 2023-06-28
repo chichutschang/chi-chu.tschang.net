@@ -1,4 +1,3 @@
 #ignore the following files:
 
 .env
-routes/test.js

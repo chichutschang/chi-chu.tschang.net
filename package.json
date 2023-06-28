@@ -1,50 +1,27 @@
 {
   "name": "chi-chu.tschang.net",
-  "version": "0.5.0",
+  "version": "0.0.0",
   "private": true,
   "scripts": {
     "start": "node ./bin/www"
   },
   "dependencies": {
-    "async": "^3.2.0",
-    "body-parser": "^1.19.0",
-    "cors": "^2.8.5",
-    "debug": "^2.6.9",
-    "dotenv": "^8.6.0",
-    "ejs": "^2.7.4",
-    "express": "^4.17.1",
-    "express-ejs-layouts": "^2.5.0",
-    "http-errors": "~1.6.2",
-    "jquery": "^3.5.1",
-    "moment": "^2.23.0",
-    "mongodb": "^3.5.7",
-    "morgan": "~1.9.0",
-    "node-fetch": "^2.6.1",
-    "nodemon": "^2.0.20",
-    "normalize-url": "^6.0.1",
-    "progress": "^2.0.3",
-    "request": "^2.88.0",
-    "xml2js": "^0.4.23"
-  },
-  "description": "This is the personal website of Chi-Chu Tschang",
-  "main": "app.js",
-  "devDependencies": {
-    "webpack": "^5.53.0",
-    "webpack-dev-server": "^4.2.1"
-  },
-  "keywords": [
-    "Chi-Chu",
-    "Tschang",
-    "Chi-Chu Tschang"
-  ],
-  "author": "Chi-Chu Tschang",
-  "license": "MIT",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/chichutschang/chi-chu.tschang.net.git"
-  },
-  "bugs": {
-    "url": "https://github.com/chichutschang/chi-chu.tschang.net/issues"
-  },
-  "homepage": "https://github.com/chichutschang/chi-chu.tschang.net#readme"
+    "constantinople": "^4.0.1",
+    "cookie-parser": "~1.4.4",
+    "debug": "~2.6.9",
+    "dotenv": "^16.3.1",
+    "ejs": "^3.1.9",
+    "express": "~4.16.1",
+    "express-ejs-layouts": "^2.5.1",
+    "http-errors": "~1.6.3",
+    "jade": "~1.11.0",
+    "moment": "^2.29.4",
+    "mongodb": "^5.6.0",
+    "morgan": "~1.9.1",
+    "node-fetch": "^2.6.11",
+    "nodemon": "^2.0.22",
+    "request": "^2.88.2",
+    "uglify-js": "^3.17.4",
+    "xml2js": "^0.6.0"
+  }
 }

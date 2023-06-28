@@ -1,6 +1,6 @@
 body {
   padding: 0px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  font: "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
 a {
@@ -89,9 +89,9 @@ a:link:hover, a:visited:hover {text-decoration: none; color: #B90000;}
   }
 
   #header_left {
+    /* border: solid 1px black;  */
     margin-left: 10px;
     padding-left: 4px;
-    /* border: solid 1px black;  */
     position:absolute;
     }
 
@@ -112,7 +112,7 @@ a:link:hover, a:visited:hover {text-decoration: none; color: #B90000;}
   #content {
     margin: 50px 0px 0px 0px;
   	padding: 10px 0px 0px 14px;
-    font-size: 12px;
+    /* font-size: 12px; */
     font-family: monospace;
     /* font-weight: normal; */
     align-content: center;
@@ -191,47 +191,46 @@ a:link:hover, a:visited:hover {text-decoration: none; color: #B90000;}
 
   /* reading style sheet */
   #reading {
+    /* font-size: 12px; */
     margin: 0px 0px 0px 0px;
     padding: 0px 0px 0px 0px;
   }
-/* 
-  #dateread {
+
+  /* #dateread {
     color: #999;
     border: solid 1px black;
     margin: 0px 0px 0px 0px;
+  } */
 
-  }
-
-  #title {
+  /* #title {
     text-align: left;
     /* border: solid 1px black; */
-  }
+  /* } */
 
-  #author {
+  /* #author {
     font-weight: lighter;
     /* border: solid 1px black; */
-  }
+  /* } */ 
 
   /* learning style sheet */
-  #learningprojects {
+  /* #learningprojects {
     font-size: 9px;
-  }
+  } */ 
 
   /* #progress {
     height: 1px;
     background-color: black;
-  } */ */
+  } */
 
   /* projects style sheet */
   #projects {
     margin: 0px 0px 0px 0px;
   	padding: 0px 0px 0px 0px;
-    font-size: 12px;
+    /* font-size: 12px; */
     font-family: monospace;
     /* font-weight: normal; */
     align-content: center;
     /* border: solid 1px black;  */
-
   }
 
   /* d3js chart style sheet */
