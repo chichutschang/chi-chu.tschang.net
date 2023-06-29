@@ -112,7 +112,7 @@ a:link:hover, a:visited:hover {text-decoration: none; color: #B90000;}
   #content {
     margin: 50px 0px 0px 0px;
   	padding: 10px 0px 0px 14px;
-    /* font-size: 12px; */
+    font-size: 12px; 
     font-family: monospace;
     /* font-weight: normal; */
     align-content: center;
@@ -191,42 +191,14 @@ a:link:hover, a:visited:hover {text-decoration: none; color: #B90000;}
 
   /* reading style sheet */
   #reading {
-    /* font-size: 12px; */
     margin: 0px 0px 0px 0px;
     padding: 0px 0px 0px 0px;
   }
-
-  /* #dateread {
-    color: #999;
-    border: solid 1px black;
-    margin: 0px 0px 0px 0px;
-  } */
-
-  /* #title {
-    text-align: left;
-    /* border: solid 1px black; */
-  /* } */
-
-  /* #author {
-    font-weight: lighter;
-    /* border: solid 1px black; */
-  /* } */ 
-
-  /* learning style sheet */
-  /* #learningprojects {
-    font-size: 9px;
-  } */ 
-
-  /* #progress {
-    height: 1px;
-    background-color: black;
-  } */
 
   /* projects style sheet */
   #projects {
     margin: 0px 0px 0px 0px;
   	padding: 0px 0px 0px 0px;
-    /* font-size: 12px; */
     font-family: monospace;
     /* font-weight: normal; */
     align-content: center;
