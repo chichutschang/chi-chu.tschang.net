@@ -10,7 +10,7 @@ const key = process.env.GOODREADS_KEY;
 const userID=process.env.userID;
 //Goodreads XML URL
 const currentlyreadURL = 'https://www.goodreads.com/review/list/'+userID+'.xml?key='+key+'&v=2&shelf=currently-reading'
-console.log(currentlyreadURL)
+//console.log(currentlyreadURL)
 //const currentlyreadingcollection = client.db('books').collection('currently-reading');
 
 const refreshDatabase = async () => {
@@ -21,7 +21,7 @@ const refreshDatabase = async () => {
             //console.log(`Connected to the ${dbname} database from routes/currentlyreading.js`)    
             //2. count number of books in 'currently-reading' collection in MongoDB
             const count = await currentlyreadingcollection.countDocuments()
-            //console.log(count);
+            console.log(`There are ${count} books in currently reading collection in MongoDB`);
             const filter = {read_count: {$ne: '0'}}
             //3. delete all but one entry after 100 entries
             if (count > 99) {
@@ -46,10 +46,10 @@ const updateCurrentlyReading = async () => {
         //console.log(book);
         //3. parse XML to JSON; change attrkey from '$' to something else so MongoDB accepts data
         parseString(book, {attrkey: '@' }, function(err, read){
-            console.log(read.GoodreadsResponse.reviews);
+            //console.log(read.GoodreadsResponse.reviews);
             //console.dir(read.GoodreadsResponse.reviews)
             currentlyreadingcollection.insertMany(read.GoodreadsResponse.reviews);
-            console.log('Inserted currently reading book collection into MongoDB')
+            console.log(`Inserted new book into currently reading book collection in MongoDB`)
             })
         })
     } catch (err) {
