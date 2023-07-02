@@ -6,10 +6,12 @@ const { book } = require('../models/currentlyreading');
 const { books } = require('../models/read');
 const { updateRead } = require('./read');
 const { updateCurrentlyReading } = require('./currentlyreading');
+const { refreshDatabase } = require('./currentlyreading');
 
 /* GET home page. */
 router.get('/', async (req, res) => {
-  updateCurrentlyReading()
+  updateCurrentlyReading(),
+  refreshDatabase()
   //set header to html
   res.setHeader('Content-Type', 'text/html');
   //retrieve currently reading book from MongoDB and render on index.ejs
