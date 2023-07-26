@@ -1,6 +1,6 @@
 require('dotenv').config()
 const fetch = require('node-fetch');
-const { MongoClient, FindOperators } = require('mongodb');
+const { MongoClient } = require('mongodb');
 const parseString = require('xml2js').parseString;
 const dbname = "MongoDB"
 //key, URL and UserID to access Goodreads API

@@ -276,6 +276,18 @@ ul {
   clip-path: url(#clip);
 }
 
+#legend {
+  margin: 0px;
+  padding: 0px;
+  font-size: 12px;
+  /* border: solid 1px black;  */
+  width:100%;
+  }
+
+.stddev {
+  padding-right: 10px;
+  }
+
 .line {
   fill: none;
   stroke: #A3AAAE;
