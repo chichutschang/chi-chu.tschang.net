@@ -24,7 +24,7 @@ const books = async () => {
     try {
         const data = await connectToDatabase();
         return data;
-        console.log(data);
+        //console.log(data);
     } catch (err) {
         console.error(`Error inserting document: ${err}`)
     } finally {

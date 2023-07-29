@@ -13,9 +13,8 @@ const client = new MongoClient(database, {useUnifiedTopology: true});
 const readURL1 = 'https://www.goodreads.com/review/list/'+userID+'.xml?key='+key+'&v=2&shelf=read&per_page=200&page=1'
 const readURL2 = 'https://www.goodreads.com/review/list/'+userID+'.xml?key='+key+'&v=2&shelf=read&per_page=200&page=2'
 const readURL3 = 'https://www.goodreads.com/review/list/'+userID+'.xml?key='+key+'&v=2&shelf=read&per_page=200&page=3'
-
+//console.log(readURL1)
 var urls = [readURL1, readURL2, readURL3]
-
 const updateRead = async () => {
     try {
         //1. connect to MongoDB database 'reads' collection

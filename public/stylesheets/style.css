@@ -35,7 +35,7 @@ a:link:hover, a:visited:hover {text-decoration: none; color: #B90000;}
           padding-right: 10px;
           margin-left: auto;
           margin-right: auto;
-          font-size: 4vw;
+          /* font-size: 4vw; */
         }
         footer{
           /* border: solid 1px black; */
@@ -193,6 +193,7 @@ a:link:hover, a:visited:hover {text-decoration: none; color: #B90000;}
   #reading {
     margin: 0px 0px 0px 0px;
     padding: 0px 0px 0px 0px;
+    font-size: large;
   }
 
   /* projects style sheet */
@@ -237,9 +238,10 @@ a:link:hover, a:visited:hover {text-decoration: none; color: #B90000;}
     border: 1 px solid #000;
   } */
 
-  td, th {
-    border: 1 px solid #000;
-  }
+  /* td, tr, th {
+    border: 1 px solid #000; 
+    font-size: 12px;
+  } */
 
 /* .hiddenRow {
     padding: 0 !important;
