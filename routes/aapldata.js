@@ -5,7 +5,7 @@ const data3 = "./public/graphs/AAPLPS.json"
 const fs = require('fs');
 
 //read AAPLprice, AAPLPE & AAPLPS data from 3 json files asynchronousesly
-  const readFiles = async () => {
+  const readAAPLdata = async () => {
     try {
       const [priceData, peData, psData] = await Promise.all(
         [
@@ -38,8 +38,8 @@ const readFileAsync = (path, encoding) => {
   });
 };
 //call the async function to read files and render the view
-readFiles();
+readAAPLdata();
 
 module.exports = {
-    readFiles
+    readAAPLdata
 }

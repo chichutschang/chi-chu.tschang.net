@@ -10,7 +10,7 @@ const { updateRead } = require('./read');
 const { updateCurrentlyReading } = require('./currentlyreading');
 const { refreshDatabase } = require('./currentlyreading');
 const { AAPLprice, AAPLPE, AAPLPS } = require('./aapl');
-const { readFiles } = require('./aapldata');
+const { readAAPLdata } = require('./aapldata');
 
 /* GET home page. */
 router.get('/', async (req, res) => {
@@ -110,11 +110,11 @@ router.get('/projects', function(req, res) {
 /* GET projects/AAPL */
 router.get('/projects/AAPL', async (req, res)  => {
   AAPLprice(), AAPLPE(), AAPLPS()
-  const { priceJsonData, peJsonData, psJsonData } = await readFiles();
+  const { priceJsonData, peJsonData, psJsonData } = await readAAPLdata();
   //console.log(priceJsonData);
   //console.log(peJsonData);
   //console.log(psJsonData);
-  const date = priceJsonData[priceJsonData.length-1][0]
+  const date = moment(priceJsonData[priceJsonData.length-1][0], 'YYYY-MM-DD').format('MM/DD/YYYY')
   //console.log(date)
   const price = priceJsonData[priceJsonData.length-1][1]
   //console.log(price)
