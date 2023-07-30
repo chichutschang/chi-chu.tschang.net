@@ -9,7 +9,7 @@ const { books } = require('../models/read');
 const { updateRead } = require('./read');
 const { updateCurrentlyReading } = require('./currentlyreading');
 const { refreshDatabase } = require('./currentlyreading');
-const { AAPL } = require('./aapl');
+const { AAPLprice, AAPLPE, AAPLPS } = require('./aapl');
 const { readFiles } = require('./aapldata');
 
 /* GET home page. */
@@ -109,6 +109,7 @@ router.get('/projects', function(req, res) {
 
 /* GET projects/AAPL */
 router.get('/projects/AAPL', async (req, res)  => {
+  AAPLprice(), AAPLPE(), AAPLPS()
   const { priceJsonData, peJsonData, psJsonData } = await readFiles();
   //console.log(priceJsonData);
   //console.log(peJsonData);
