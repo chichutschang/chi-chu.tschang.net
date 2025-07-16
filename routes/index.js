@@ -11,7 +11,8 @@ const { updateCurrentlyReading } = require('./currentlyreading');
 const { refreshDatabase } = require('./currentlyreading');
 const { AAPLprice, AAPLPE, AAPLPS } = require('./aapl');
 const { readAAPLdata } = require('./aapldata');
-// const { data4 }= require('./public/graphs/webfinger.json')
+const { webfinger } = require('./webfinger');
+
 
 /* GET home page. */
 router.get('/', async (req, res) => {
@@ -106,7 +107,6 @@ router.get('/reading/update', async function (req, res) {
   console.error(`Error updating read database: ${err}`);
   res.status(500).send('Error updating read database');
 }
-
 });
 
 /* GET projects */
@@ -177,12 +177,19 @@ router.get('/projects/censor-weibo', function(req, res) {
   res.render('censor-weibo', { title: 'censor weibo' });
 });
 
-/*GET .well-known/webfinger page */
-// console.log(data4)
-// router.get('/.well-known', function(req, res) {
-//   res.header("Content-Type",'application/json')
-//   res.json(data4); 
-// });
+// /*GET .well-known/webfinger page */
+router.get('/.well-known/webfinger', async function(req, res) {
+   try {
+    const { webfingerData } = await webfinger();
+    console.log(webfingerData);
+    //set correct content type for webfinger
+    res.setHeader('Content-Type', 'application/jrd+json');
+    res.json(webfingerData)
+  } catch (err) {
+    console.error(`Error reading webfinger JSON file: ${err}`); 
+    res.status(500).send('Error reading webfinger JSON file');
+    }
+});
 
 module.exports = router;
 
