@@ -6,7 +6,7 @@ const webfinger = async () => {
         const webfinger = await fs.promises.readFile('./public/graphs/webfinger.json', 'utf8');
         //return webfinger;
         const webfingerData = JSON.parse(webfinger);
-      //console.log('Webfinger data loaded:', webfingerData);
+        //console.log('Webfinger data loaded:', webfingerData);
         return { webfingerData }
         //console.log(webfingerData)
     }  

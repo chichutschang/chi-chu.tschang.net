@@ -177,7 +177,7 @@ router.get('/projects/censor-weibo', function(req, res) {
   res.render('censor-weibo', { title: 'censor weibo' });
 });
 
-// /*GET .well-known/webfinger page */
+/* GET .well-known/webfinger page */
 router.get('/.well-known/webfinger', async function(req, res) {
    try {
     const { webfingerData } = await webfinger();
