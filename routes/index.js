@@ -11,6 +11,7 @@ const { updateCurrentlyReading } = require('./currentlyreading');
 const { refreshDatabase } = require('./currentlyreading');
 const { AAPLprice, AAPLPE, AAPLPS } = require('./aapl');
 const { readAAPLdata } = require('./aapldata');
+// const { data4 }= require('./public/graphs/webfinger.json')
 
 /* GET home page. */
 router.get('/', async (req, res) => {
@@ -96,10 +97,16 @@ router.get('/reading', async (req, res) => {
 })
 
 /*GET reading/update page */
-router.get('/reading/update', function(req, res){
-  updateRead();
-  console.dir(updateDatabase);
-  res.render('update', {title: 'reading/update'});
+router.get('/reading/update', async function (req, res) {
+  try {
+    await updateRead();
+  //console.dir(updateDatabase);
+  res.render('update', { title: 'update' });
+} catch (err) {
+  console.error(`Error updating read database: ${err}`);
+  res.status(500).send('Error updating read database');
+}
+
 });
 
 /* GET projects */
@@ -170,4 +177,12 @@ router.get('/projects/censor-weibo', function(req, res) {
   res.render('censor-weibo', { title: 'censor weibo' });
 });
 
+/*GET .well-known/webfinger page */
+// console.log(data4)
+// router.get('/.well-known', function(req, res) {
+//   res.header("Content-Type",'application/json')
+//   res.json(data4); 
+// });
+
 module.exports = router;
+
