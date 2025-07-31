@@ -1,0 +1,67 @@
+<%- include('partials/head') %>
+
+<!doctype html>
+  <html>
+    <div class="container-fluid">
+      <head>
+        <%- include('partials/header') %>
+        <!-- ObservableHQ code for AAPL share price -->
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@observablehq/inspector@5/dist/inspector.css">
+        <script type="module">
+          import {Runtime, Inspector} from "https://cdn.jsdelivr.net/npm/@observablehq/runtime@5/dist/runtime.js";
+          import define from "https://api.observablehq.com/d/b36f5c1105c65b32.js?v=3";
+          new Runtime().module(define, Inspector.into("#observablehq-40edf2ce"));
+        </script>
+        <!-- ObservableHQ code for AAPL PE price -->
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@observablehq/inspector@5/dist/inspector.css">
+        <script type="module">
+        import {Runtime, Inspector} from "https://cdn.jsdelivr.net/npm/@observablehq/runtime@5/dist/runtime.js";
+        import define from "https://api.observablehq.com/d/b801d7342a3390a3.js?v=3";
+        new Runtime().module(define, Inspector.into("#observablehq-80f27877"));
+        </script>
+        <!-- ObservableHQ code for AAPL PS price -->        
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@observablehq/inspector@5/dist/inspector.css">
+        <script type="module">
+        import {Runtime, Inspector} from "https://cdn.jsdelivr.net/npm/@observablehq/runtime@5/dist/runtime.js";
+        import define from "https://api.observablehq.com/d/d05d6660c56a13d3.js?v=3";
+        new Runtime().module(define, Inspector.into("#observablehq-98daea9b"));
+        </script>
+      </head>
+      <body>
+        <div id="content">
+            <content>
+                <div id="projects">
+                        <h1>Apple Inc. <font color="gray">[AAPL]</font></h1>
+                        <p><h4>share price: <font color="gray">$<%= price %> as of <%= date %></font></h4></p> 
+                          <div id="observablehq-40edf2ce"></div>
+                          <p><h4>1-year forward P/E: <font color="gray"><%= pe %>x from <%= date %></font></h4></p>
+                          <ul class="nav">
+                            <div class="row" id="legend"> 
+                              <li class="stddev">-2 std dev: <font color="#fc9272"><%= PEminus2stddev %>x</font> ::</li>
+                              <li class="stddev">-1 std dev: <font color="#ef3b2c"><%= PEminus1stddev %>x</font> ::</li>
+                              <li class="stddev">mean: <font color="#a50f15"><%= PEmean %>x</font> ::</li>
+                              <li class="stddev">+1 std dev: <font color="#ef3b2c"><%= PEplus1stddev %>x</font> ::</li>
+                              <li class="stddev">+2 std dev: <font color="#fc9272"><%= PEplus2stddev %>x</font></li>
+                            </div>
+                          </ul>
+                          <div id="observablehq-80f27877"></div>
+                        <p><h4>1-year forward P/S: <font color="gray"><%= ps %>x from <%= date %></font></h4></p> 
+                        <ul class="nav">
+                          <div class="row" id="legend"> 
+                            <li class="stddev">-2 std dev: <font color="#fc9272"><%= PSminus2stddev %>x</font> ::</li>
+                            <li class="stddev">-1 std dev: <font color="#ef3b2c"><%= PSminus1stddev %>x</font> ::</li>
+                            <li class="stddev">mean: <font color="#a50f15"><%= PSmean %>x</font> ::</li>
+                            <li class="stddev">+1 std dev: <font color="#ef3b2c"><%= PSplus1stddev %>x</font> ::</li>
+                            <li class="stddev">+2 std dev: <font color="#fc9272"><%= PSplus2stddev %>x</font></li>
+                          </div>
+                        </ul>
+                        <div id="observablehq-98daea9b"></div>
+                </div>
+                <div id="lastupdate">last updated: 7/2025</div>
+                <%- include('partials/footer') %>
+            </content>  
+          </div>
+      </body>  
+    </div>
+</html>
+

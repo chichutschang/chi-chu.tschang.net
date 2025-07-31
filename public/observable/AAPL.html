@@ -1,0 +1,713 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="generator" content="Observable Framework v1.13.3">
+<title>AAPL | chi-chu.tschang.net/projects</title>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,200..900;1,8..60,200..900&amp;display=swap" crossorigin>
+<link rel="preload" as="style" href="./_observablehq/theme-air.aad62322.css">
+<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,200..900;1,8..60,200..900&amp;display=swap" crossorigin>
+<link rel="stylesheet" type="text/css" href="./_observablehq/theme-air.aad62322.css">
+<link rel="modulepreload" href="./_observablehq/client.26e2ef9c.js">
+<link rel="modulepreload" href="./_observablehq/runtime.e080113b.js">
+<link rel="modulepreload" href="./_observablehq/stdlib.24b62b2e.js">
+<link rel="modulepreload" href="./_npm/d3@7.9.0/e780feca.js">
+<link rel="modulepreload" href="./_npm/htl@0.3.1/72f4716c.js">
+<link rel="modulepreload" href="./_npm/@observablehq/plot@0.6.17/d761ef9b.js">
+<link rel="modulepreload" href="./_npm/d3-array@3.2.4/e93ca09f.js">
+<link rel="modulepreload" href="./_npm/d3-axis@3.0.0/0f2de24d.js">
+<link rel="modulepreload" href="./_npm/d3-brush@3.0.0/65eb105b.js">
+<link rel="modulepreload" href="./_npm/d3-chord@3.0.1/7ef8fb2e.js">
+<link rel="modulepreload" href="./_npm/d3-color@3.1.0/aeb57b94.js">
+<link rel="modulepreload" href="./_npm/d3-contour@4.0.2/1d2aed74.js">
+<link rel="modulepreload" href="./_npm/d3-delaunay@6.0.4/5ced1d52.js">
+<link rel="modulepreload" href="./_npm/d3-dispatch@3.0.1/9ba9c7f3.js">
+<link rel="modulepreload" href="./_npm/d3-drag@3.0.0/4202580c.js">
+<link rel="modulepreload" href="./_npm/d3-dsv@3.0.1/9cffc2bd.js">
+<link rel="modulepreload" href="./_npm/d3-ease@3.0.1/cdd7e898.js">
+<link rel="modulepreload" href="./_npm/d3-fetch@3.0.1/b4e2ad9a.js">
+<link rel="modulepreload" href="./_npm/d3-force@3.0.0/5e804d15.js">
+<link rel="modulepreload" href="./_npm/d3-format@3.1.0/86074ef6.js">
+<link rel="modulepreload" href="./_npm/d3-geo@3.1.1/40599fb3.js">
+<link rel="modulepreload" href="./_npm/d3-hierarchy@3.1.2/e49e792c.js">
+<link rel="modulepreload" href="./_npm/d3-interpolate@3.0.1/8d1e5425.js">
+<link rel="modulepreload" href="./_npm/d3-path@3.1.0/20d3f133.js">
+<link rel="modulepreload" href="./_npm/d3-polygon@3.0.1/7553081f.js">
+<link rel="modulepreload" href="./_npm/d3-quadtree@3.0.1/0dfd751c.js">
+<link rel="modulepreload" href="./_npm/d3-random@3.0.1/3c90ee06.js">
+<link rel="modulepreload" href="./_npm/d3-scale@4.0.2/843b6a76.js">
+<link rel="modulepreload" href="./_npm/d3-scale-chromatic@3.1.0/ba24c2e7.js">
+<link rel="modulepreload" href="./_npm/d3-selection@3.0.0/4d94e5b7.js">
+<link rel="modulepreload" href="./_npm/d3-shape@3.2.0/6d3a6726.js">
+<link rel="modulepreload" href="./_npm/d3-time@3.1.0/9f03c579.js">
+<link rel="modulepreload" href="./_npm/d3-time-format@4.1.0/07c9626f.js">
+<link rel="modulepreload" href="./_npm/d3-timer@3.0.1/b58a267d.js">
+<link rel="modulepreload" href="./_npm/d3-transition@3.0.1/004da2ac.js">
+<link rel="modulepreload" href="./_npm/d3-zoom@3.0.0/b5786b3f.js">
+<link rel="modulepreload" href="./_npm/isoformat@0.2.1/18cbf477.js">
+<link rel="modulepreload" href="./_npm/interval-tree-1d@1.0.4/53fe8176.js">
+<link rel="modulepreload" href="./_npm/internmap@2.0.3/e08981d9.js">
+<link rel="modulepreload" href="./_npm/delaunator@5.0.1/02d43215.js">
+<link rel="modulepreload" href="./_npm/binary-search-bounds@2.0.5/cbf6ba23.js">
+<link rel="modulepreload" href="./_npm/robust-predicates@3.0.2/aa00730b.js">
+<script type="module">
+
+import {define} from "./_observablehq/client.26e2ef9c.js";
+import {registerFile} from "./_observablehq/stdlib.24b62b2e.js";
+
+registerFile("./data/AAPLPE.json", {"name":"./data/AAPLPE.json","mimeType":"application/json","path":"./_file/data/AAPLPE.d3757896.json","lastModified":1753922525748,"size":620828});
+registerFile("./data/AAPLPS.json", {"name":"./data/AAPLPS.json","mimeType":"application/json","path":"./_file/data/AAPLPS.78306324.json","lastModified":1753922525841,"size":585126});
+registerFile("./data/AAPLprice.json", {"name":"./data/AAPLprice.json","mimeType":"application/json","path":"./_file/data/AAPLprice.48884550.json","lastModified":1753922525654,"size":251201});
+
+define({id: "9746e5b4", inputs: ["FileAttachment"], outputs: ["stock","forwardPE","forwardPS"], body: async (FileAttachment) => {
+const stock = await FileAttachment("./data/AAPLprice.json").json();
+console.log(stock);
+const forwardPE = await FileAttachment("./data/AAPLPE.json").json();
+const forwardPS = await FileAttachment("./data/AAPLPS.json").json();
+return {stock,forwardPE,forwardPS};
+}});
+
+define({id: "c39ccea4", inputs: ["stock"], outputs: ["header","dataRows","price"], body: (stock) => {
+//Convert row of arrays to array of objects for AAPL share price 
+const [header, ...dataRows] = stock; //header = ["Date", "Close"]
+const price = dataRows.map(row => ({
+    [header[0]]: new Date(row[0]), //"Data" -> Date object
+    [header[1]]:+row[1] //"Close" -> number
+})) 
+//display(price)
+return {header,dataRows,price};
+}});
+
+define({id: "b0ed4299", inputs: ["forwardPE"], outputs: ["header","dataRows","AAPLforwardPE"], body: (forwardPE) => {
+//convert row of arrays to array of objects for AAPL forward PE
+const [header, ...dataRows] = forwardPE;
+const AAPLforwardPE = dataRows.flatMap(row => [
+    {
+        [header[0]]: new Date(row[0]),
+        [header[1]]: +row[1],
+        [header[2]]: +row[2],
+        [header[3]]: +row[3],
+        [header[4]]: +row[4],
+        [header[5]]: +row[5],
+        [header[6]]: +row[6]
+    }
+]);
+return {header,dataRows,AAPLforwardPE};
+}});
+
+define({id: "47aab277", inputs: ["forwardPS"], outputs: ["header","dataRows","AAPLforwardPS"], body: (forwardPS) => {
+//convert row of arrays to array of objects for AAPL forward PS
+const [header, ...dataRows] = forwardPS;
+const AAPLforwardPS = dataRows.flatMap(row => [
+    {
+        [header[0]]: new Date(row[0]),
+        [header[1]]: +row[1],
+        [header[2]]: +row[2],
+        [header[3]]: +row[3],
+        [header[4]]: +row[4],
+        [header[5]]: +row[5],
+        [header[6]]: +row[6]
+    }
+]);
+//display(AAPLforwardPS);
+return {header,dataRows,AAPLforwardPS};
+}});
+
+define({id: "329c4063", inputs: ["price","Mutable"], outputs: ["defaultStartEnd","startEnd","setStartEnd","getStartEnd","currentSelection","filteredPrice"], body: (price,Mutable) => {
+const defaultStartEnd = [price[8584].Date, price.at(-1).Date]; //start graph on December 20, 2014
+const startEnd = Mutable(defaultStartEnd);
+const setStartEnd = (se) => startEnd.value = (se ?? defaultStartEnd);
+//display(startEnd)
+const getStartEnd = () => startEnd.value;
+//display(getStartEnd)
+const currentSelection = startEnd.value;
+const filteredPrice = price.filter((d) => currentSelection[0] <= d.Date && d.Date < currentSelection[1]);
+return {defaultStartEnd,startEnd,setStartEnd,getStartEnd,currentSelection,filteredPrice};
+}});
+
+define({id: "4a3122f0", inputs: ["html"], outputs: ["trend"], body: (html) => {
+function trend(v) {
+    return v >= 0.00 ? html `<span class="green">↗︎</span>`
+    : v < 0.00 ? html `<span class="red">↘︎</span>`
+    : "→";
+}
+return {trend};
+}});
+
+define({id: "015b0103", outputs: ["formatPercent"], body: () => {
+function formatPercent(value, format){
+    return value == null
+    ? "N/A"
+    : (value / 100).toLocaleString("en-US", {minimumFractionDigits: 2, style: "percent", ...format});
+}
+return {formatPercent};
+}});
+
+define({id: "0983a057", inputs: ["d3","html","formatPercent","trend","resize","Plot"], outputs: ["currentprice"], body: (d3,html,formatPercent,trend,resize,Plot) => {
+function currentprice (price) {
+    const range = d3.extent(price.slice(-251), (d) => d.Close); //sets range of 1 year (251 trading days)
+    const latestPrice = price.slice(-1)[0]; // get the latest share price data point
+    const oneMChange = (( price.slice(-1)[0].Close / price.slice(-26)[0].Close ) - 1 ) * 100 //calculates share price change over last 26 trading days
+    const oneYrChange = (( price.slice(-1)[0].Close / price.slice(-251)[0].Close ) - 1 ) * 100 //calculates share price change over last 251 trading days
+    const fiveYrChange = (( price.slice(-1)[0].Close / price.slice(-1255)[0].Close ) - 1 ) * 100 //calculates share price change over last 251 * 5 trading days
+    const tenYrChange = (( price.slice(-1)[0].Close / price.slice(-2510)[0].Close ) - 1 ) * 100 //calculates share price change over last 251 * 10 trading days
+    const all = (( price.slice(-1)[0].Close / price[0].Close ) - 1 ) * 100 //calculates share price change since IPO
+    // Create color scale or get stroke color based on latest price
+    // const color = d3.scaleOrdinal(d3.schemeBlues[9]); // or whatever color scheme you want
+    // const stroke = color(`${latestPrice.Close}Y FRM`); // Now using latestPrice instead of undefined 'd'
+    return html.fragment`
+    <h1>share price: $${latestPrice.Close} </h1><h3>as of ${latestPrice.Date.toLocaleString("en-US", 
+        {
+            year: 'numeric', 
+            month: 'long', 
+            day: 'numeric' 
+        })}
+    </h3> 
+        <table>
+            <tr>
+                <td>1-month change: </td>
+                <td align="right">${formatPercent(oneMChange)}</td>
+                <td>${trend(oneMChange)}</td>
+            </tr>
+            <tr>
+                <td>1-year change: </td>
+                <td align="right">${formatPercent(oneYrChange)}</td>
+                <td>${trend(oneYrChange)}</td>
+            </tr>
+            <tr>
+                <td>5-year change: </td>
+                <td align="right">${formatPercent(fiveYrChange)}</td>
+                <td>${trend(fiveYrChange)}</td>
+            </tr>
+            <tr>
+                <td>10-year change: </td>
+                <td align="right">${formatPercent(tenYrChange)}</td>
+                <td>${trend(tenYrChange)}</td>
+            </tr>
+            <tr>
+                <td>all-time change: </td>
+                <td align="right">${formatPercent(all)}</td>
+                <td>${trend(all)}</td>
+            </tr>
+        </table>
+    
+    ${resize((width) =>
+    (Plot.plot({
+                width,
+                //height: 40,
+                axis: null,
+                x: {
+                    domain: d3.extent(price.slice(-251), d => d.Close),
+                    inset: 40
+                    },
+                marks: [
+                    Plot.tickX(price.slice(-251),{
+                        x: "Close",
+                        //y: "Close",
+                        stroke: "lightgray",
+                        insetTop: 10,
+                        insetBottom: 10,
+                        tip: {anchor: "top"}
+                    }), //adds tick mark of the latest closing price
+                    Plot.tickX(price.slice(-1), {
+                        x: "Close",
+                        //y: "Close",
+                        stroke: "darkgray",
+                        strokeWidth: 3,
+                    }),
+                    Plot.text([`$${range[0]}`], {frameAnchor: "left"}),
+                    Plot.text([`$${range[1]}`], {frameAnchor: "right"})
+                ]
+        }))
+    )}
+    `;
+}
+return {currentprice};
+}});
+
+define({id: "78c3dbcc", inputs: ["html"], outputs: ["currentforwardPE"], body: (html) => {
+function currentforwardPE (AAPLforwardPE) {
+    const latestforwardPE = AAPLforwardPE.slice(-1)[0]; // get the latest forward PE price data point
+    return html.fragment`
+    <h1>forward P/E: ${latestforwardPE["Forward PE"]}x </h1><h3>as of ${latestforwardPE.Date.toLocaleString("en-US", 
+        {
+            year: 'numeric', 
+            month: 'long', 
+            day: 'numeric' 
+        })}
+    </h3> 
+    <table>
+            <tr>
+                <td>+2 Standard Deviation: </td>
+                <td align="right">${latestforwardPE["+2 Standard Deviation"]}x</td>
+           </tr>
+                       <tr>
+                <td>+1 Standard Deviation: </td>
+                <td align="right">${latestforwardPE["+1 Standard Deviation"]}x</td>
+           </tr>
+           <tr>
+                <td>Mean: </td>
+                <td align="right">${latestforwardPE["Mean"]}x</td>
+           </tr>
+                    <tr>
+                <td>-1 Standard Deviation: </td>
+                <td align="right">${latestforwardPE["-1 Standard Deviation"]}x</td>
+           </tr>
+                       <tr>
+                <td>-2 Standard Deviation: </td>
+                <td align="right">${latestforwardPE["-2 Standard Deviation"]}x</td>
+           </tr>
+    </table>
+    `;
+}
+
+return {currentforwardPE};
+}});
+
+define({id: "4c801cce", inputs: ["html"], outputs: ["currentforwardPS"], body: (html) => {
+function currentforwardPS (AAPLforwardPS) {
+    const latestforwardPS = AAPLforwardPS.slice(-1)[0]; // get the latest forward PS price data point
+    return html.fragment`
+    <h1>forward P/S: ${latestforwardPS["Forward PS"]}x </h1><h3>as of ${latestforwardPS.Date.toLocaleString("en-US", 
+        {
+            year: 'numeric', 
+            month: 'long', 
+            day: 'numeric' 
+        })}
+    </h3> 
+    <table>
+            <tr>
+                <td>+2 Standard Deviation: </td>
+                <td align="right">${latestforwardPS["+2 Standard Deviation"]}x</td>
+           </tr>
+                       <tr>
+                <td>+1 Standard Deviation: </td>
+                <td align="right">${latestforwardPS["+1 Standard Deviation"]}x</td>
+           </tr>
+           <tr>
+                <td>Mean: </td>
+                <td align="right">${latestforwardPS["Mean"]}x</td>
+           </tr>
+                    <tr>
+                <td>-1 Standard Deviation: </td>
+                <td align="right">${latestforwardPS["-1 Standard Deviation"]}x</td>
+           </tr>
+                       <tr>
+                <td>-2 Standard Deviation: </td>
+                <td align="right">${latestforwardPS["-2 Standard Deviation"]}x</td>
+           </tr>
+    </table>
+    `;
+}
+return {currentforwardPS};
+}});
+
+define({id: "aac3a5bc", mode: "inline", inputs: ["currentprice","price","display"], body: async (currentprice,price,display) => {
+display(await(
+currentprice(price)
+))
+}});
+
+define({id: "83ad2f9c", mode: "inline", inputs: ["currentforwardPE","AAPLforwardPE","display"], body: async (currentforwardPE,AAPLforwardPE,display) => {
+display(await(
+currentforwardPE(AAPLforwardPE)
+))
+}});
+
+define({id: "802a46d4", mode: "inline", inputs: ["currentforwardPS","AAPLforwardPS","display"], body: async (currentforwardPS,AAPLforwardPS,display) => {
+display(await(
+currentforwardPS(AAPLforwardPS)
+))
+}});
+
+define({id: "8ed6ff43", mode: "inline", inputs: ["resize","Plot","price","d3","setStartEnd","PointerEvent","getStartEnd","display"], body: async (resize,Plot,price,d3,setStartEnd,PointerEvent,getStartEnd,display) => {
+display(await(
+resize((width) =>
+                    Plot.plot({
+                        width, 
+                        x: {label: "Date:"}, 
+                        y: {grid: true, label: "Share Price:"}, 
+                        marks: [ 
+                            Plot.frame(), 
+                            Plot.ruleY([0]), 
+                            Plot.areaY(price, {
+                                x: "Date", 
+                                y: "Close",
+                                fillOpacity: 0.2
+                            }),
+                            Plot.lineY(price, {
+                                x: "Date", 
+                                y: "Close",
+                                stroke: "gray",
+                                tip: {
+                                    format: {
+                                        x: (d) => (d.toLocaleDateString("en-US", {
+                                            month: "long",
+                                            year: "numeric",
+                                            day: "numeric"
+                                        })),
+                                        y: (d) => `$${d.toFixed(2)}`
+                                    }
+                                }
+                            }),
+                            Plot.tip(
+                                [`Apple names Steve Jobs interim CEO`],{x: new Date("1997-09-16"), y:0.2, dy: -40, anchor: "bottom"},
+                            ),
+                                //https://www.apple.com/newsroom/2006/05/16Apple-Unveils-New-MacBook-Featuring-Intel-Core-Duo-Processors/
+                            Plot.tip(
+                                [`Apple starts selling MacBook`],{x: new Date("2006-05-16"), y:2.32, dy: -3, anchor: "bottom"}, 
+                            ),
+                                //https://www.apple.com/newsroom/2007/06/28iPhone-Premieres-This-Friday-Night-at-Apple-Retail-Stores/
+                            Plot.tip(
+                                [`Apple starts selling iPhone`],{x: new Date("2007-06-29"), y:4.36, dy: -26, anchor: "bottom"}, 
+                            ),
+                                //https://www.apple.com/newsroom/2010/01/27Apple-Launches-iPad/
+                            Plot.tip(
+                                [`Apple starts selling iPad`],{x: new Date("2010-04-03"), y:8.52, dy: -46, anchor: "bottom"},
+                            ),
+                                //https://www.apple.com/newsroom/2011/08/24Steve-Jobs-Resigns-as-CEO-of-Apple/
+                            Plot.tip(
+                                [`Tim Cook suceeds Steve Jobs as Apple's CEO`],{x: new Date("2011-08-24"), y:13.44, dy: -64, dx: 10, anchor: "bottom"},
+                            ),
+                                //https://www.apple.com/newsroom/2015/03/09Apple-Watch-Available-in-Nine-Countries-on-April-24/
+                            Plot.tip(
+                                [`Apple starts selling Apple Watch`],{x: new Date("2015-04-24"), y:32.57, dy: 10, anchor: "top"},
+                            ),
+                            Plot.tip(
+                                [`Apple starts selling Apple TV+`],{x: new Date("2019-11-01"), y:63.96, dy: -3, anchor: "top"},
+                            ),
+                                (index, scales, channels, dimensions, context) => {
+                                    const x1 = dimensions.marginLeft; 
+                                    const y1 = 20; 
+                                    const x2 = dimensions.width - dimensions.marginRight; 
+                                    const y2 = dimensions.height - 28; 
+                                    const brushed = (event) => {
+                                        if(!event.sourceEvent) return; 
+                                        let {selection} = event; 
+                                        if(!selection) {
+                                            const r = 10; 
+                                            let [px] = d3.pointer(event, context.ownerSVGElement); 
+                                            px = Math.max(x1 + r, Math.min(x2 - r, px)); 
+                                            selection = [px - r, px + r]; 
+                                            g.call(brush.move, selection) 
+                                        }
+                                    setStartEnd(selection.map(scales.x.invert));
+                                };
+                                const pointerdowned = (event) => {
+                                    const pointerleave = new PointerEvent("pointerleave", {bubbles: true, pointerType: "mouse"});
+                                    event.target.dispatchEvent(pointerleave);
+                                };
+                                const brush = d3.brushX().extent([[x1, y1], [x2, y2]]).on("brush end", brushed);
+                                const g = d3.create("svg:g").call(brush);
+                                g.call(brush.move, getStartEnd().map(scales.x));
+                                g.on("pointerdown", pointerdowned);
+                                return g.node();            
+                            },
+                        ]
+                    })
+                )
+))
+}});
+
+define({id: "d3666a5e", mode: "inline", inputs: ["startEnd","display"], body: async (startEnd,display) => {
+display(await(
+startEnd.map((d) => d.toLocaleDateString("en-US")).join("-")
+))
+}});
+
+define({id: "e6166fb3", mode: "inline", inputs: ["resize","Plot","price","startEnd","display"], body: async (resize,Plot,price,startEnd,display) => {
+display(await(
+resize((width) =>
+                    Plot.plot({
+                        width, 
+                        x: {label: "Date:"}, 
+                        y: {grid: true, label: "Share Price:"},
+                        marks: [
+                            Plot.frame(),
+                            Plot.ruleY([0]),
+                            Plot.areaY(price.filter((d) => startEnd[0] <= d.Date && d.Date < startEnd[1]), {
+                                x: "Date", 
+                                y: "Close",
+                                fillOpacity: 0.2,
+                            }),
+                            Plot.lineY(price.filter((d) => startEnd[0] <= d.Date && d.Date < startEnd[1]), {
+                                x: "Date", 
+                                y: "Close",
+                                stroke: "gray",
+                                tip: {
+                                    format: {
+                                        x: (d) => (d.toLocaleDateString("en-US", {
+                                            month: "long",
+                                            year: "numeric",
+                                            day: "numeric"
+                                        })),
+                                        y: (d) => `$${d.toFixed(2)}`
+                                    }
+                                }
+                            }),
+                        ]   
+                    })
+                )
+))
+}});
+
+define({id: "d3666a5e-1", mode: "inline", inputs: ["startEnd","display"], body: async (startEnd,display) => {
+display(await(
+startEnd.map((d) => d.toLocaleDateString("en-US")).join("-")
+))
+}});
+
+define({id: "b8d5f409", mode: "inline", inputs: ["resize","Plot","AAPLforwardPE","startEnd","display"], body: async (resize,Plot,AAPLforwardPE,startEnd,display) => {
+display(await(
+resize((width) =>
+                    Plot.plot({
+                        width, 
+                        x: {label: "Date:"}, 
+                        y: {label: "Forward P/E:"},
+                        marks: [
+                            Plot.frame(),
+                            Plot.ruleY([0]),
+                            Plot.lineY(AAPLforwardPE.filter((d) => startEnd[0] <= d.Date && d.Date < startEnd[1]), {
+                                x: "Date", 
+                                y: "Forward PE",
+                                stroke: "gray",
+                                tip: {
+                                    format: {
+                                        x: (d) => (d.toLocaleDateString("en-US", {
+                                            month: "long",
+                                            year: "numeric",
+                                            day: "numeric"
+                                        })),
+                                        y: (d) => `${d.toFixed(1)}x`
+                                    }
+                                }
+                            }),
+                            Plot.lineY(AAPLforwardPE.filter((d) => startEnd[0] <= d.Date && d.Date < startEnd[1]), {
+                                x: "Date", 
+                                y: "+2 Standard Deviation", 
+                                stroke: "darkred",
+                                strokeOpacity: 0.5,
+                            }),
+                            Plot.text(AAPLforwardPE.filter((d) => startEnd[0] <= d.Date && d.Date < startEnd[1]), 
+                            Plot.selectFirst({x: "Date", y: "+2 Standard Deviation", text: (d) => `+2 Standard Deviation: ${d["+2 Standard Deviation"]}x`, dx: 128, dy: 6, textAnchor: "end", fill: "darkred"})),
+                            Plot.lineY(AAPLforwardPE.filter((d) => startEnd[0] <= d.Date && d.Date < startEnd[1]), {
+                                x: "Date", 
+                                y: "+1 Standard Deviation",
+                                stroke: "orangered",
+                                strokeOpacity: 0.5,
+                            }),
+                            Plot.text(AAPLforwardPE.filter((d) => startEnd[0] <= d.Date && d.Date < startEnd[1]), 
+                            Plot.selectFirst({x: "Date", y: "+1 Standard Deviation", text: (d) => `+1 Standard Deviation: ${d["+1 Standard Deviation"]}x`, dx: 128, dy: 6, textAnchor: "end", fill: "orangered"})),
+                            Plot.lineY(AAPLforwardPE.filter((d) => startEnd[0] <= d.Date && d.Date < startEnd[1]), {
+                                x: "Date", 
+                                y: "Mean",
+                                stroke: "crimson",
+                                strokeOpacity: 0.5,
+                            }),
+                            Plot.text(AAPLforwardPE.filter((d) => startEnd[0] <= d.Date && d.Date < startEnd[1]), 
+                            Plot.selectFirst({x: "Date", y: "Mean", text: (d) => `Mean: ${d.Mean}x`, dx: 55, dy: -6, textAnchor: "end", fill: "crimson"})),
+                            Plot.lineY(AAPLforwardPE.filter((d) => startEnd[0] <= d.Date && d.Date < startEnd[1]), {
+                                x: "Date", 
+                                y: "-1 Standard Deviation",
+                                stroke: "orangered",
+                                strokeOpacity: 0.5,
+                            }),
+                            Plot.text(AAPLforwardPE.filter((d) => startEnd[0] <= d.Date && d.Date < startEnd[1]), 
+                            Plot.selectFirst({x: "Date", y: "-1 Standard Deviation", text: (d) => `-1 Standard Deviation: ${d["-1 Standard Deviation"]}x`, dx: 121, dy: 6, textAnchor: "end", fill: "orangered"})),
+                            Plot.lineY(AAPLforwardPE.filter((d) => startEnd[0] <= d.Date && d.Date < startEnd[1]), {
+                                x: "Date", 
+                                y: "-2 Standard Deviation",
+                                stroke: "darkred",
+                                strokeOpacity: 0.5,
+                            }),
+                            Plot.text(AAPLforwardPE.filter((d) => startEnd[0] <= d.Date && d.Date < startEnd[1]), 
+                            Plot.selectFirst({x: "Date", y: "-2 Standard Deviation", text: (d) => `-2 Standard Deviation: ${d["-2 Standard Deviation"]}x`, dx: 125, dy: -6, textAnchor: "end", fill: "darkred"})),
+                        ]   
+                    })
+                )
+))
+}});
+
+define({id: "d3666a5e-2", mode: "inline", inputs: ["startEnd","display"], body: async (startEnd,display) => {
+display(await(
+startEnd.map((d) => d.toLocaleDateString("en-US")).join("-")
+))
+}});
+
+define({id: "1dc3458a", mode: "inline", inputs: ["resize","Plot","AAPLforwardPS","startEnd","display"], body: async (resize,Plot,AAPLforwardPS,startEnd,display) => {
+display(await(
+resize((width) =>
+                    Plot.plot({
+                        width, 
+                        x: {label: "Date:"}, 
+                        y: {label: "Forward P/S:"},
+                        marks: [
+                            Plot.frame(),
+                            Plot.ruleY([0]),
+                            Plot.lineY(AAPLforwardPS.filter((d) => startEnd[0] <= d.Date && d.Date < startEnd[1]), {
+                                x: "Date", 
+                                y: "Forward PS",
+                                stroke: "gray",
+                                tip: {
+                                    format: {
+                                        x: (d) => (d.toLocaleDateString("en-US", {
+                                            month: "long",
+                                            year: "numeric",
+                                            day: "numeric"
+                                        })),
+                                        y: (d) => `${d.toFixed(1)}x`
+                                    }
+                                }
+                            }),
+                            Plot.lineY(AAPLforwardPS.filter((d) => startEnd[0] <= d.Date && d.Date < startEnd[1]), {
+                                x: "Date", 
+                                y: "+2 Standard Deviation", 
+                                stroke: "darkred",
+                                strokeOpacity: 0.5,
+                            }),
+                            Plot.text(AAPLforwardPS.filter((d) => startEnd[0] <= d.Date && d.Date < startEnd[1]), 
+                            Plot.selectFirst({x: "Date", y: "+2 Standard Deviation", text: (d) => `+2 Standard Deviation: ${d["+2 Standard Deviation"]}x`, dx: 128, dy: 6, textAnchor: "end", fill: "darkred"})),
+                            Plot.lineY(AAPLforwardPS.filter((d) => startEnd[0] <= d.Date && d.Date < startEnd[1]), {
+                                x: "Date", 
+                                y: "+1 Standard Deviation",
+                                stroke: "orangered",
+                                strokeOpacity: 0.5,
+                            }),
+                            Plot.text(AAPLforwardPS.filter((d) => startEnd[0] <= d.Date && d.Date < startEnd[1]), 
+                            Plot.selectFirst({x: "Date", y: "+1 Standard Deviation", text: (d) => `+1 Standard Deviation: ${d["+1 Standard Deviation"]}x`, dx: 128, dy: 6, textAnchor: "end", fill: "orangered"})),
+                            Plot.lineY(AAPLforwardPS.filter((d) => startEnd[0] <= d.Date && d.Date < startEnd[1]), {
+                                x: "Date", 
+                                y: "Mean",
+                                stroke: "crimson",
+                                strokeOpacity: 0.5,
+                            }),
+                            Plot.text(AAPLforwardPS.filter((d) => startEnd[0] <= d.Date && d.Date < startEnd[1]), 
+                            Plot.selectFirst({x: "Date", y: "Mean", text: (d) => `Mean: ${d.Mean}x`, dx: 55, dy: -6, textAnchor: "end", fill: "crimson"})),
+                            Plot.lineY(AAPLforwardPS.filter((d) => startEnd[0] <= d.Date && d.Date < startEnd[1]), {
+                                x: "Date", 
+                                y: "-1 Standard Deviation",
+                                stroke: "orangered",
+                                strokeOpacity: 0.5,
+                            }),
+                            Plot.text(AAPLforwardPS.filter((d) => startEnd[0] <= d.Date && d.Date < startEnd[1]), 
+                            Plot.selectFirst({x: "Date", y: "-1 Standard Deviation", text: (d) => `-1 Standard Deviation: ${d["-1 Standard Deviation"]}x`, dx: 121, dy: 6, textAnchor: "end", fill: "orangered"})),
+                            Plot.lineY(AAPLforwardPS.filter((d) => startEnd[0] <= d.Date && d.Date < startEnd[1]), {
+                                x: "Date", 
+                                y: "-2 Standard Deviation",
+                                stroke: "darkred",
+                                strokeOpacity: 0.5,
+                            }),
+                            Plot.text(AAPLforwardPS.filter((d) => startEnd[0] <= d.Date && d.Date < startEnd[1]), 
+                            Plot.selectFirst({x: "Date", y: "-2 Standard Deviation", text: (d) => `-2 Standard Deviation: ${d["-2 Standard Deviation"]}x`, dx: 125, dy: -6, textAnchor: "end", fill: "darkred"})),
+                        ]   
+                    })
+                )
+))
+}});
+
+</script>
+</head>
+<body>
+<div id="observablehq-center">
+<main id="observablehq-main" class="observablehq">
+<div class="observablehq observablehq--block"><!--:9746e5b4:--></div>
+<div class="observablehq observablehq--block"><!--:c39ccea4:--></div>
+<div class="observablehq observablehq--block"><!--:b0ed4299:--></div>
+<div class="observablehq observablehq--block"><!--:47aab277:--></div>
+<div class="observablehq observablehq--block"><!--:329c4063:--></div>
+<div class="observablehq observablehq--block"><!--:4a3122f0:--></div>
+<div class="observablehq observablehq--block"><!--:015b0103:--></div>
+<div class="observablehq observablehq--block"><!--:0983a057:--></div>
+<div class="observablehq observablehq--block"><!--:78c3dbcc:--></div>
+<div class="observablehq observablehq--block"><!--:4c801cce:--></div>
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
+<meta name="author" content="Chi-Chu Tschang">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+<meta name="description" content="chi-chu.tschang.net is the personal website of Chi-Chu Tschang">
+<link rel="icon" href="./_file/images/favicon.9be008db.ico" type="image/x-icon">
+<title>chi-chu.tschang.net</title>
+
+  
+    <div class="container-fluid">
+      
+        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<!-- <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script> -->
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+<!-- Google Analytics -->
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-TFGKC2X8JB"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-TFGKC2X8JB');
+</script>
+<!-- End Google Analytics -->  
+<link rel="stylesheet" type="text/css" href="./_file/stylesheets/style.4daef57c.css">
+<link rel="stylesheet" type="text/css" href="./_file/stylesheets/iPython.04196508.css">
+<link rel="stylesheet" type="text/css" href="./_file/stylesheets/fontawesome/css/fontawesome.c73c2994.css">
+<link rel="stylesheet" type="text/css" href="./_file/stylesheets/fontawesome/css/regular.fb5022db.css">
+<link rel="stylesheet" type="text/css" href="./_file/stylesheets/fontawesome/css/solid.bf693919.css">
+<link rel="stylesheet" type="text/css" href="./_file/stylesheets/fontawesome/css/brands.db6bb6c2.css">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <ul class="nav">
+        <div class="row" id="menu">
+            <li class="nav-link"><a href="../../">home</a></li>
+            <li class="nav-link"><a href="../../resume">resume</a></li>
+            <li class="nav-link"><a href="../../learning">learning</a></li>
+            <li class="nav-link"><a href="../../teaching/english9">teaching</a></li> 
+            <li class="nav-link"><a href="../../reading">reading</a></li>
+            <li class="nav-link"><a href="https://www.bloomberg.com/authors/AE_Git5xwiE/chichu-tschang" target="_blank" rel="noopener noreferrer">writing</a></li>
+            <li class="nav-link"><a href="../../projects">projects</a></li>
+        </div>  
+    </ul>
+     <div id="header">
+        <!-- add icon link -->
+        <link rel="icon" href="./_file/images/favicon.9be008db.ico" type="image/x-icon">
+        <a href="./"><div id="header_left"><img src="./_file/images/chichutschanglogo.c1c92c35.jpg" width="50" height="auto"></div></a>
+        <a href="./"><div id="header_right"><img src="./_file/images/chi-chu.tschang.e95431e2.png" width="175" height="auto"></div></a>
+     </div>
+      
+      
+        <div id="content">
+            <content>
+                <h1>Apple Inc. <font color="gray">[AAPL]</font></h1>
+                <div class="grid grid-cols-2 grid-rows-2" style="margin-top: 2rem; grid-template-rows: 215px 215px;">
+                <div class="card grid-rowspan-2"><observablehq-loading></observablehq-loading><!--:aac3a5bc:--></div>
+                <div class="card"><observablehq-loading></observablehq-loading><!--:83ad2f9c:--></div>
+                <div class="card"><observablehq-loading></observablehq-loading><!--:802a46d4:--></div>
+                <div class="card grid-colspan-2">
+                <observablehq-loading></observablehq-loading><!--:8ed6ff43:-->
+            </div>
+            <div class="card grid-colspan-2">
+            <h3>AAPL share price between <observablehq-loading></observablehq-loading><!--:d3666a5e:--></h3>
+                <observablehq-loading></observablehq-loading><!--:e6166fb3:-->
+            </div>
+            <div class="card grid-colspan-2">
+            <h3>AAPL forward P/E price between <observablehq-loading></observablehq-loading><!--:d3666a5e-1:--></h3>
+                <observablehq-loading></observablehq-loading><!--:b8d5f409:-->
+            </div>
+            <div class="card grid-colspan-2">
+            <h3>AAPL forward P/S price between <observablehq-loading></observablehq-loading><!--:d3666a5e-2:--></h3>
+                <observablehq-loading></observablehq-loading><!--:1dc3458a:-->
+                </div>
+                <div id="footer">
+                <div id="lastupdate">last updated: 7/2025</div>
+                    <span><a href="./chi-chu@tschang.net" target="_blank"><i class="fa-regular fa-envelope" aria-hidden="true"></i></a></span>
+                    <span style="margin-left: 10px;"><a href="https://pgp.mit.edu/pks/lookup?op=get&amp;search=0x152A5675369F6C28" target="_blank" rel="noopener noreferrer"><i class="fa-solid fa-key" aria-hidden="true"></i></a></span>
+                    <span style="margin-left: 10px;"><a href="https://twitter.com/tschang" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-twitter" aria-hidden="true"></i></a></span>
+                    <span style="margin-left: 10px;"><a rel="me" href="https://mastodon.social/@tschang" target="_blank"><i class="fa-brands fa-mastodon" aria-hidden="true"></i></a></span>
+                    <span style="margin-left: 10px;"><a href="https://bsky.app/profile/chi-chu.tschang.net" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-bluesky" aria-hidden="true"></i></a></span>
+                    <span style="margin-left: 10px;"><a href="https://www.github.com/chichutschang/" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-github" aria-hidden="true"></i></a></span>
+                    <span style="margin-left: 10px;"><a href="https://www.goodreads.com/review/list/1589736/" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-goodreads-g" aria-hidden="true"></i></a></span>
+                </div>
+      
+    </div>
+      
+    </content></div>
+</div></main>
+</div>
+</body>
+</html>
