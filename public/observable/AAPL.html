@@ -57,9 +57,9 @@
 import {define} from "./_observablehq/client.26e2ef9c.js";
 import {registerFile} from "./_observablehq/stdlib.24b62b2e.js";
 
-registerFile("./data/AAPLPE.json", {"name":"./data/AAPLPE.json","mimeType":"application/json","path":"./_file/data/AAPLPE.d3757896.json","lastModified":1753922525748,"size":620828});
-registerFile("./data/AAPLPS.json", {"name":"./data/AAPLPS.json","mimeType":"application/json","path":"./_file/data/AAPLPS.78306324.json","lastModified":1753922525841,"size":585126});
-registerFile("./data/AAPLprice.json", {"name":"./data/AAPLprice.json","mimeType":"application/json","path":"./_file/data/AAPLprice.48884550.json","lastModified":1753922525654,"size":251201});
+registerFile("./data/AAPLPE.json", {"name":"./data/AAPLPE.json","mimeType":"application/json","path":"./_file/data/AAPLPE.a1facfc0.json","lastModified":1754016990320,"size":620828});
+registerFile("./data/AAPLPS.json", {"name":"./data/AAPLPS.json","mimeType":"application/json","path":"./_file/data/AAPLPS.751c9ccd.json","lastModified":1754016990484,"size":585126});
+registerFile("./data/AAPLprice.json", {"name":"./data/AAPLprice.json","mimeType":"application/json","path":"./_file/data/AAPLprice.b60842f5.json","lastModified":1754016990140,"size":251204});
 
 define({id: "9746e5b4", inputs: ["FileAttachment"], outputs: ["stock","forwardPE","forwardPS"], body: async (FileAttachment) => {
 const stock = await FileAttachment("./data/AAPLprice.json").json();
@@ -145,7 +145,7 @@ function formatPercent(value, format){
 return {formatPercent};
 }});
 
-define({id: "0983a057", inputs: ["d3","html","formatPercent","trend","resize","Plot"], outputs: ["currentprice"], body: (d3,html,formatPercent,trend,resize,Plot) => {
+define({id: "6877c651", inputs: ["d3","html","formatPercent","trend","resize","Plot"], outputs: ["currentprice"], body: (d3,html,formatPercent,trend,resize,Plot) => {
 function currentprice (price) {
     const range = d3.extent(price.slice(-251), (d) => d.Close); //sets range of 1 year (251 trading days)
     const latestPrice = price.slice(-1)[0]; // get the latest share price data point
@@ -190,6 +190,9 @@ function currentprice (price) {
                 <td>all-time change: </td>
                 <td align="right">${formatPercent(all)}</td>
                 <td>${trend(all)}</td>
+            </tr>
+            <tr>
+                <td colspan="3">AAPL's share price trading range over the past year:</td>
             </tr>
         </table>
     
@@ -619,7 +622,7 @@ resize((width) =>
 <div class="observablehq observablehq--block"><!--:329c4063:--></div>
 <div class="observablehq observablehq--block"><!--:4a3122f0:--></div>
 <div class="observablehq observablehq--block"><!--:015b0103:--></div>
-<div class="observablehq observablehq--block"><!--:0983a057:--></div>
+<div class="observablehq observablehq--block"><!--:6877c651:--></div>
 <div class="observablehq observablehq--block"><!--:78c3dbcc:--></div>
 <div class="observablehq observablehq--block"><!--:4c801cce:--></div>
 <meta http-equiv="content-type" content="text/html; charset=utf-8">
@@ -645,8 +648,8 @@ resize((width) =>
   gtag('config', 'G-TFGKC2X8JB');
 </script>
 <!-- End Google Analytics -->  
-<link rel="stylesheet" type="text/css" href="./_file/stylesheets/style.4daef57c.css">
-<link rel="stylesheet" type="text/css" href="./_file/stylesheets/iPython.04196508.css">
+<link rel="stylesheet" type="text/css" href="./_file/stylesheets/style.d1153821.css">
+<link rel="stylesheet" type="text/css" href="./_file/stylesheets/iPython.4d83471d.css">
 <link rel="stylesheet" type="text/css" href="./_file/stylesheets/fontawesome/css/fontawesome.c73c2994.css">
 <link rel="stylesheet" type="text/css" href="./_file/stylesheets/fontawesome/css/regular.fb5022db.css">
 <link rel="stylesheet" type="text/css" href="./_file/stylesheets/fontawesome/css/solid.bf693919.css">
