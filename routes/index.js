@@ -119,20 +119,25 @@ router.use('/public/_observablehq', express.static(path.join(__dirname, '../publ
 router.use('/public/_file', express.static(path.join(__dirname, '../public/observable/_file')));
 
 /* GET projects */
-router.get('/projects', (req, res, next) => {
-  AAPLprice();
-  AAPLPE();
-  AAPLPS();
-  //trigger Observable rebuild
-  const {exec} = require('child_process');
-  exec('cd observable && npm run build', (error, stdout, stderr) =>{
-    if(error) console.error('Build error:', error);
-    console.log('Observable rebuilt with new data');
-    next()
-  });
-}, express.static(path.join(__dirname, '../public/observable'), {
-  index: 'projects.html'
-}));
+// router.get('/projects', async (req, res, next) => {
+// try {
+//   AAPLprice(),
+//   AAPLPE(),
+//   AAPLPS()
+//   //trigger Observable rebuild
+//   const {exec} = require('child_process');
+//   exec('cd observable && npm run build', (error, stdout, stderr) =>{
+//     if(error) console.error('Build error:', error);
+//     console.log('Observable rebuilt with new data');
+//     next()
+//     });
+//   } catch (error) {
+//     console.error('Error updating AAPL data:', error);
+//     next(error);
+//   }
+// }, express.static(path.join(__dirname, '../public/observable'), {
+//   index: 'projects.html'
+// }));
   //   const observablePath = path.join(__dirname, '../public/observable/projects.html');
   //check if the built file exists
   // if (fs.existsSync(observablePath)){
@@ -144,61 +149,66 @@ router.get('/projects', (req, res, next) => {
   // res.render('projects', { title: 'projects' });
 // });
 
-/* GET AAPL */
-AAPLprice(); 
-AAPLPE();
-AAPLPS();
-router.use('/projects/AAPL', express.static(path.join(__dirname, '../public/observable'), {
+router.use('/projects/AAPL', async (req, res, next) => {
+  try {
+    /* GET AAPL */
+    AAPLprice(), 
+    AAPLPE(),
+    AAPLPS()
+  } catch (error) {
+    console.error('Error updating AAPL data:', error);
+    next(error);
+  }}, express.static(path.join(__dirname, '../public/observable'), {
   index: 'AAPL.html'
-}));
+  }));
 
 /* GET projects/AAPL */
-// router.get('/projects/AAPL2', async (req, res)  => {
-//   AAPLprice(), AAPLPE(), AAPLPS()
-  // const { priceJsonData, peJsonData, psJsonData } = await readAAPLdata();
+router.get('/projects/AAPL2', async (req, res)  => {
+  AAPLprice(), AAPLPE(), AAPLPS()
+  const { priceJsonData, peJsonData, psJsonData } = await readAAPLdata();
   //console.log(priceJsonData);
   //console.log(peJsonData);
   //console.log(psJsonData);
-  // const date = moment(priceJsonData[priceJsonData.length-1][0], 'YYYY-MM-DD').format('MM/DD/YYYY')
+  const date = moment(priceJsonData[priceJsonData.length-1][0], 'YYYY-MM-DD').format('MM/DD/YYYY')
   //console.log(date)
-  // const price = priceJsonData[priceJsonData.length-1][1]
+  const price = priceJsonData[priceJsonData.length-1][1]
   //console.log(price)
-  // const pe = peJsonData[peJsonData.length-1][1]
+  const pe = peJsonData[peJsonData.length-1][1]
   //console.log(pe)
-  // const PEmean = peJsonData[peJsonData.length-1][2]
-  // const PEplus2stddev = peJsonData[peJsonData.length-1][3]
-  // const PEplus1stddev = peJsonData[peJsonData.length-1][4]
-  // const PEminus1stddev = peJsonData[peJsonData.length-1][5]
-  // const PEminus2stddev = peJsonData[peJsonData.length-1][6]
-  // const ps = psJsonData[psJsonData.length-1][1]
+  const PEmean = peJsonData[peJsonData.length-1][2]
+  const PEplus2stddev = peJsonData[peJsonData.length-1][3]
+  const PEplus1stddev = peJsonData[peJsonData.length-1][4]
+  const PEminus1stddev = peJsonData[peJsonData.length-1][5]
+  const PEminus2stddev = peJsonData[peJsonData.length-1][6]
+  const ps = psJsonData[psJsonData.length-1][1]
   //console.log(ps)
-  // const PSmean = psJsonData[psJsonData.length-1][2]
+  const PSmean = psJsonData[psJsonData.length-1][2]
   //console.log(PSmean)
-  // const PSplus2stddev = psJsonData[psJsonData.length-1][3]
+  const PSplus2stddev = psJsonData[psJsonData.length-1][3]
   //console.log(PSplus2stddev)
-  // const PSplus1stddev = psJsonData[psJsonData.length-1][4]
+  const PSplus1stddev = psJsonData[psJsonData.length-1][4]
   //console.log(PSplus1stddev)
-  // const PSminus1stddev = psJsonData[psJsonData.length-1][5]
-  // const PSminus2stddev = psJsonData[psJsonData.length-1][6]
+  const PSminus1stddev = psJsonData[psJsonData.length-1][5]
+  const PSminus2stddev = psJsonData[psJsonData.length-1][6]
   // console.log('Retrieved data from json files')
   //pass the extracted data to AAPL.ejs view
-//   res.render('AAPL', {
-//     date: date,
-//     price: price,
-//     pe: pe,  
-//     PEmean: PEmean,
-//     PEplus2stddev: PEplus2stddev,
-//     PEplus1stddev: PEplus1stddev,
-//     PEminus1stddev: PEminus1stddev,
-//     PEminus2stddev: PEminus2stddev,
-//     ps: ps,
-//     PSmean: PSmean,
-//     PSplus2stddev: PSplus2stddev,
-//     PSplus1stddev: PSplus1stddev,
-//     PSminus1stddev: PSminus1stddev,
-//     PSminus2stddev: PSminus2stddev
-//     })
-// })
+  res.render('AAPL2', {
+    date: date,
+    price: price,
+    pe: pe,  
+    PEmean: PEmean,
+    PEplus2stddev: PEplus2stddev,
+    PEplus1stddev: PEplus1stddev,
+    PEminus1stddev: PEminus1stddev,
+    PEminus2stddev: PEminus2stddev,
+    ps: ps,
+    PSmean: PSmean,
+    PSplus2stddev: PSplus2stddev,
+    PSplus1stddev: PSplus1stddev,
+    PSminus1stddev: PSminus1stddev,
+    PSminus2stddev: PSminus2stddev
+    })
+})
 
 /* GET projects/plants */
 router.get('/projects/plants', function(req, res) {

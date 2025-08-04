@@ -95,7 +95,8 @@ function currentprice (price) {
         {
             year: 'numeric', 
             month: 'long', 
-            day: 'numeric' 
+            day: 'numeric',
+            timeZone: 'UTC'  
         })}
     </h3> 
         <table>
@@ -169,7 +170,8 @@ function currentforwardPE (AAPLforwardPE) {
         {
             year: 'numeric', 
             month: 'long', 
-            day: 'numeric' 
+            day: 'numeric',
+            timeZone: 'UTC'  
         })}
     </h3> 
     <table>
