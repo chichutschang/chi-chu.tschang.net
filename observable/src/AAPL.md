@@ -208,7 +208,8 @@ function currentforwardPS (AAPLforwardPS) {
         {
             year: 'numeric', 
             month: 'long', 
-            day: 'numeric' 
+            day: 'numeric',
+            timeZone: 'UTC'   
         })}
     </h3> 
     <table>
@@ -318,7 +319,8 @@ function currentforwardPS (AAPLforwardPS) {
                                         x: (d) => (d.toLocaleDateString("en-US", {
                                             month: "long",
                                             year: "numeric",
-                                            day: "numeric"
+                                            day: "numeric",
+                                            timeZone: 'UTC'  
                                         })),
                                         y: (d) => `$${d.toFixed(2)}`
                                     }
@@ -382,7 +384,7 @@ function currentforwardPS (AAPLforwardPS) {
                 )}
             </div>
             <div class="card grid-colspan-2">
-            <h3>AAPL share price between ${startEnd.map((d) => d.toLocaleDateString("en-US")).join("-")}</h3>
+            <h3>AAPL share price between ${startEnd.map((d) => d.toLocaleDateString("en-US"), {timeZone: 'UTC'}).join("-")}</h3>
                 ${resize((width) =>
                     Plot.plot({
                         width, 
@@ -405,7 +407,8 @@ function currentforwardPS (AAPLforwardPS) {
                                         x: (d) => (d.toLocaleDateString("en-US", {
                                             month: "long",
                                             year: "numeric",
-                                            day: "numeric"
+                                            day: "numeric",
+                                            timeZone: 'UTC'  
                                         })),
                                         y: (d) => `$${d.toFixed(2)}`
                                     }
@@ -416,7 +419,7 @@ function currentforwardPS (AAPLforwardPS) {
                 )}
             </div>
             <div class="card grid-colspan-2">
-            <h3>AAPL forward P/E price between ${startEnd.map((d) => d.toLocaleDateString("en-US")).join("-")}</h3>
+            <h3>AAPL forward P/E price between ${startEnd.map((d) => d.toLocaleDateString("en-US"), {timeZone: 'UTC'}).join("-")}</h3>
                 ${resize((width) =>
                     Plot.plot({
                         width, 
@@ -434,7 +437,8 @@ function currentforwardPS (AAPLforwardPS) {
                                         x: (d) => (d.toLocaleDateString("en-US", {
                                             month: "long",
                                             year: "numeric",
-                                            day: "numeric"
+                                            day: "numeric",
+                                            timeZone: 'UTC'  
                                         })),
                                         y: (d) => `${d.toFixed(1)}x`
                                     }
@@ -485,7 +489,7 @@ function currentforwardPS (AAPLforwardPS) {
                 )}
             </div>
             <div class="card grid-colspan-2">
-            <h3>AAPL forward P/S price between ${startEnd.map((d) => d.toLocaleDateString("en-US")).join("-")}</h3>
+            <h3>AAPL forward P/S price between ${startEnd.map((d) => d.toLocaleDateString("en-US"), {timeZone: 'UTC'}).join("-")}</h3>
                 ${resize((width) =>
                     Plot.plot({
                         width, 
@@ -503,7 +507,8 @@ function currentforwardPS (AAPLforwardPS) {
                                         x: (d) => (d.toLocaleDateString("en-US", {
                                             month: "long",
                                             year: "numeric",
-                                            day: "numeric"
+                                            day: "numeric",
+                                            timeZone: 'UTC'  
                                         })),
                                         y: (d) => `${d.toFixed(1)}x`
                                     }

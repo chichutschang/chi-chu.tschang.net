@@ -57,9 +57,9 @@
 import {define} from "./_observablehq/client.26e2ef9c.js";
 import {registerFile} from "./_observablehq/stdlib.24b62b2e.js";
 
-registerFile("./data/AAPLPE.json", {"name":"./data/AAPLPE.json","mimeType":"application/json","path":"./_file/data/AAPLPE.c58a3363.json","lastModified":1754450873797,"size":620996});
-registerFile("./data/AAPLPS.json", {"name":"./data/AAPLPS.json","mimeType":"application/json","path":"./_file/data/AAPLPS.a9d1b5ea.json","lastModified":1754450874322,"size":585282});
-registerFile("./data/AAPLprice.json", {"name":"./data/AAPLprice.json","mimeType":"application/json","path":"./_file/data/AAPLprice.203f8fe8.json","lastModified":1754450873295,"size":251275});
+registerFile("./data/AAPLPE.json", {"name":"./data/AAPLPE.json","mimeType":"application/json","path":"./_file/data/AAPLPE.c58a3363.json","lastModified":1754508015791,"size":620996});
+registerFile("./data/AAPLPS.json", {"name":"./data/AAPLPS.json","mimeType":"application/json","path":"./_file/data/AAPLPS.a9d1b5ea.json","lastModified":1754508016242,"size":585282});
+registerFile("./data/AAPLprice.json", {"name":"./data/AAPLprice.json","mimeType":"application/json","path":"./_file/data/AAPLprice.203f8fe8.json","lastModified":1754508015352,"size":251275});
 
 define({id: "9746e5b4", inputs: ["FileAttachment"], outputs: ["stock","forwardPE","forwardPS"], body: async (FileAttachment) => {
 const stock = await FileAttachment("./data/AAPLprice.json").json();
@@ -271,7 +271,7 @@ function currentforwardPE (AAPLforwardPE) {
 return {currentforwardPE};
 }});
 
-define({id: "4c801cce", inputs: ["html"], outputs: ["currentforwardPS"], body: (html) => {
+define({id: "b9bc06bf", inputs: ["html"], outputs: ["currentforwardPS"], body: (html) => {
 function currentforwardPS (AAPLforwardPS) {
     const latestforwardPS = AAPLforwardPS.slice(-1)[0]; // get the latest forward PS price data point
     return html.fragment`
@@ -279,7 +279,8 @@ function currentforwardPS (AAPLforwardPS) {
         {
             year: 'numeric', 
             month: 'long', 
-            day: 'numeric' 
+            day: 'numeric',
+            timeZone: 'UTC'   
         })}
     </h3> 
     <table>
@@ -327,7 +328,7 @@ currentforwardPS(AAPLforwardPS)
 ))
 }});
 
-define({id: "8ed6ff43", mode: "inline", inputs: ["resize","Plot","price","d3","setStartEnd","PointerEvent","getStartEnd","display"], body: async (resize,Plot,price,d3,setStartEnd,PointerEvent,getStartEnd,display) => {
+define({id: "b267b09e", mode: "inline", inputs: ["resize","Plot","price","d3","setStartEnd","PointerEvent","getStartEnd","display"], body: async (resize,Plot,price,d3,setStartEnd,PointerEvent,getStartEnd,display) => {
 display(await(
 resize((width) =>
                     Plot.plot({
@@ -351,7 +352,8 @@ resize((width) =>
                                         x: (d) => (d.toLocaleDateString("en-US", {
                                             month: "long",
                                             year: "numeric",
-                                            day: "numeric"
+                                            day: "numeric",
+                                            timeZone: 'UTC'  
                                         })),
                                         y: (d) => `$${d.toFixed(2)}`
                                     }
@@ -416,13 +418,13 @@ resize((width) =>
 ))
 }});
 
-define({id: "d3666a5e", mode: "inline", inputs: ["startEnd","display"], body: async (startEnd,display) => {
+define({id: "ea0e62ef", mode: "inline", inputs: ["startEnd","display"], body: async (startEnd,display) => {
 display(await(
-startEnd.map((d) => d.toLocaleDateString("en-US")).join("-")
+startEnd.map((d) => d.toLocaleDateString("en-US"), {timeZone: 'UTC'}).join("-")
 ))
 }});
 
-define({id: "e6166fb3", mode: "inline", inputs: ["resize","Plot","price","startEnd","display"], body: async (resize,Plot,price,startEnd,display) => {
+define({id: "2bdb6b8b", mode: "inline", inputs: ["resize","Plot","price","startEnd","display"], body: async (resize,Plot,price,startEnd,display) => {
 display(await(
 resize((width) =>
                     Plot.plot({
@@ -446,7 +448,8 @@ resize((width) =>
                                         x: (d) => (d.toLocaleDateString("en-US", {
                                             month: "long",
                                             year: "numeric",
-                                            day: "numeric"
+                                            day: "numeric",
+                                            timeZone: 'UTC'  
                                         })),
                                         y: (d) => `$${d.toFixed(2)}`
                                     }
@@ -458,13 +461,13 @@ resize((width) =>
 ))
 }});
 
-define({id: "d3666a5e-1", mode: "inline", inputs: ["startEnd","display"], body: async (startEnd,display) => {
+define({id: "ea0e62ef-1", mode: "inline", inputs: ["startEnd","display"], body: async (startEnd,display) => {
 display(await(
-startEnd.map((d) => d.toLocaleDateString("en-US")).join("-")
+startEnd.map((d) => d.toLocaleDateString("en-US"), {timeZone: 'UTC'}).join("-")
 ))
 }});
 
-define({id: "b8d5f409", mode: "inline", inputs: ["resize","Plot","AAPLforwardPE","startEnd","display"], body: async (resize,Plot,AAPLforwardPE,startEnd,display) => {
+define({id: "0cce2e90", mode: "inline", inputs: ["resize","Plot","AAPLforwardPE","startEnd","display"], body: async (resize,Plot,AAPLforwardPE,startEnd,display) => {
 display(await(
 resize((width) =>
                     Plot.plot({
@@ -483,7 +486,8 @@ resize((width) =>
                                         x: (d) => (d.toLocaleDateString("en-US", {
                                             month: "long",
                                             year: "numeric",
-                                            day: "numeric"
+                                            day: "numeric",
+                                            timeZone: 'UTC'  
                                         })),
                                         y: (d) => `${d.toFixed(1)}x`
                                     }
@@ -535,13 +539,13 @@ resize((width) =>
 ))
 }});
 
-define({id: "d3666a5e-2", mode: "inline", inputs: ["startEnd","display"], body: async (startEnd,display) => {
+define({id: "ea0e62ef-2", mode: "inline", inputs: ["startEnd","display"], body: async (startEnd,display) => {
 display(await(
-startEnd.map((d) => d.toLocaleDateString("en-US")).join("-")
+startEnd.map((d) => d.toLocaleDateString("en-US"), {timeZone: 'UTC'}).join("-")
 ))
 }});
 
-define({id: "1dc3458a", mode: "inline", inputs: ["resize","Plot","AAPLforwardPS","startEnd","display"], body: async (resize,Plot,AAPLforwardPS,startEnd,display) => {
+define({id: "88a96d2f", mode: "inline", inputs: ["resize","Plot","AAPLforwardPS","startEnd","display"], body: async (resize,Plot,AAPLforwardPS,startEnd,display) => {
 display(await(
 resize((width) =>
                     Plot.plot({
@@ -560,7 +564,8 @@ resize((width) =>
                                         x: (d) => (d.toLocaleDateString("en-US", {
                                             month: "long",
                                             year: "numeric",
-                                            day: "numeric"
+                                            day: "numeric",
+                                            timeZone: 'UTC'  
                                         })),
                                         y: (d) => `${d.toFixed(1)}x`
                                     }
@@ -626,7 +631,7 @@ resize((width) =>
 <div class="observablehq observablehq--block"><!--:015b0103:--></div>
 <div class="observablehq observablehq--block"><!--:53930295:--></div>
 <div class="observablehq observablehq--block"><!--:b0b692e2:--></div>
-<div class="observablehq observablehq--block"><!--:4c801cce:--></div>
+<div class="observablehq observablehq--block"><!--:b9bc06bf:--></div>
 <meta http-equiv="content-type" content="text/html; charset=utf-8">
 <meta name="author" content="Chi-Chu Tschang">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -684,19 +689,19 @@ resize((width) =>
                 <div class="card"><observablehq-loading></observablehq-loading><!--:83ad2f9c:--></div>
                 <div class="card"><observablehq-loading></observablehq-loading><!--:802a46d4:--></div>
                 <div class="card grid-colspan-2">
-                <observablehq-loading></observablehq-loading><!--:8ed6ff43:-->
+                <observablehq-loading></observablehq-loading><!--:b267b09e:-->
             </div>
             <div class="card grid-colspan-2">
-            <h3>AAPL share price between <observablehq-loading></observablehq-loading><!--:d3666a5e:--></h3>
-                <observablehq-loading></observablehq-loading><!--:e6166fb3:-->
+            <h3>AAPL share price between <observablehq-loading></observablehq-loading><!--:ea0e62ef:--></h3>
+                <observablehq-loading></observablehq-loading><!--:2bdb6b8b:-->
             </div>
             <div class="card grid-colspan-2">
-            <h3>AAPL forward P/E price between <observablehq-loading></observablehq-loading><!--:d3666a5e-1:--></h3>
-                <observablehq-loading></observablehq-loading><!--:b8d5f409:-->
+            <h3>AAPL forward P/E price between <observablehq-loading></observablehq-loading><!--:ea0e62ef-1:--></h3>
+                <observablehq-loading></observablehq-loading><!--:0cce2e90:-->
             </div>
             <div class="card grid-colspan-2">
-            <h3>AAPL forward P/S price between <observablehq-loading></observablehq-loading><!--:d3666a5e-2:--></h3>
-                <observablehq-loading></observablehq-loading><!--:1dc3458a:-->
+            <h3>AAPL forward P/S price between <observablehq-loading></observablehq-loading><!--:ea0e62ef-2:--></h3>
+                <observablehq-loading></observablehq-loading><!--:88a96d2f:-->
                 </div>
                 <div id="footer">
                 <div id="lastupdate">last updated: 7/2025</div>

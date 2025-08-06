@@ -43,7 +43,8 @@ function AAPLprice1 (price) {
                             x: (d) => (d.toLocaleDateString("en-US", {
                                 month: "long",
                                 year: "numeric",
-                                day: "numeric"
+                                day: "numeric",
+                                timeZone: 'UTC'
                         })),
                             y: (d) => `$${d.toFixed(2)}`
                         }

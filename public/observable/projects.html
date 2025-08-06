@@ -56,7 +56,7 @@
 import {define} from "./_observablehq/client.26e2ef9c.js";
 import {registerFile} from "./_observablehq/stdlib.24b62b2e.js";
 
-registerFile("./data/AAPLprice.json", {"name":"./data/AAPLprice.json","mimeType":"application/json","path":"./_file/data/AAPLprice.203f8fe8.json","lastModified":1754450873295,"size":251275});
+registerFile("./data/AAPLprice.json", {"name":"./data/AAPLprice.json","mimeType":"application/json","path":"./_file/data/AAPLprice.203f8fe8.json","lastModified":1754508015352,"size":251275});
 
 define({id: "e0d8e6a3", inputs: ["FileAttachment"], outputs: ["stock"], body: async (FileAttachment) => {
 const stock = await FileAttachment("./data/AAPLprice.json").json();
@@ -75,7 +75,7 @@ const price = dataRows.map(row => ({
 return {header,dataRows,price};
 }});
 
-define({id: "91d2c161", inputs: ["Plot","width"], outputs: ["AAPLprice1"], body: (Plot,width) => {
+define({id: "c7167691", inputs: ["Plot","width"], outputs: ["AAPLprice1"], body: (Plot,width) => {
 // Graph stock price for projects page
 function AAPLprice1 (price) {
     return(Plot.plot({
@@ -99,7 +99,8 @@ function AAPLprice1 (price) {
                             x: (d) => (d.toLocaleDateString("en-US", {
                                 month: "long",
                                 year: "numeric",
-                                day: "numeric"
+                                day: "numeric",
+                                timeZone: 'UTC'
                         })),
                             y: (d) => `$${d.toFixed(2)}`
                         }
@@ -124,7 +125,7 @@ resize((width) => AAPLprice1(price, {width}))
 <main id="observablehq-main" class="observablehq">
 <div class="observablehq observablehq--block"><!--:e0d8e6a3:--></div>
 <div class="observablehq observablehq--block"><!--:c39ccea4:--></div>
-<div class="observablehq observablehq--block"><!--:91d2c161:--></div>
+<div class="observablehq observablehq--block"><!--:c7167691:--></div>
 <meta http-equiv="content-type" content="text/html; charset=utf-8">
 <meta name="author" content="Chi-Chu Tschang">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
