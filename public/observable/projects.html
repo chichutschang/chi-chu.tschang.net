@@ -56,11 +56,11 @@
 import {define} from "./_observablehq/client.26e2ef9c.js";
 import {registerFile} from "./_observablehq/stdlib.24b62b2e.js";
 
-registerFile("./data/AAPLprice.json", {"name":"./data/AAPLprice.json","mimeType":"application/json","path":"./_file/data/AAPLprice.203f8fe8.json","lastModified":1754450404299,"size":251275});
+registerFile("./data/AAPLprice.json", {"name":"./data/AAPLprice.json","mimeType":"application/json","path":"./_file/data/AAPLprice.203f8fe8.json","lastModified":1754450873295,"size":251275});
 
-define({id: "c82c94d0", inputs: ["FileAttachment","display"], outputs: ["stock"], body: async (FileAttachment,display) => {
+define({id: "e0d8e6a3", inputs: ["FileAttachment"], outputs: ["stock"], body: async (FileAttachment) => {
 const stock = await FileAttachment("./data/AAPLprice.json").json();
-display(stock)
+//display(stock)
 return {stock};
 }});
 
@@ -122,7 +122,7 @@ resize((width) => AAPLprice1(price, {width}))
 <body>
 <div id="observablehq-center">
 <main id="observablehq-main" class="observablehq">
-<div class="observablehq observablehq--block"><!--:c82c94d0:--></div>
+<div class="observablehq observablehq--block"><!--:e0d8e6a3:--></div>
 <div class="observablehq observablehq--block"><!--:c39ccea4:--></div>
 <div class="observablehq observablehq--block"><!--:91d2c161:--></div>
 <meta http-equiv="content-type" content="text/html; charset=utf-8">

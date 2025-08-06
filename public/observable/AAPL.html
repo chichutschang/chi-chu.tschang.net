@@ -57,9 +57,9 @@
 import {define} from "./_observablehq/client.26e2ef9c.js";
 import {registerFile} from "./_observablehq/stdlib.24b62b2e.js";
 
-registerFile("./data/AAPLPE.json", {"name":"./data/AAPLPE.json","mimeType":"application/json","path":"./_file/data/AAPLPE.c58a3363.json","lastModified":1754450404782,"size":620996});
-registerFile("./data/AAPLPS.json", {"name":"./data/AAPLPS.json","mimeType":"application/json","path":"./_file/data/AAPLPS.a9d1b5ea.json","lastModified":1754450405308,"size":585282});
-registerFile("./data/AAPLprice.json", {"name":"./data/AAPLprice.json","mimeType":"application/json","path":"./_file/data/AAPLprice.203f8fe8.json","lastModified":1754450404299,"size":251275});
+registerFile("./data/AAPLPE.json", {"name":"./data/AAPLPE.json","mimeType":"application/json","path":"./_file/data/AAPLPE.c58a3363.json","lastModified":1754450873797,"size":620996});
+registerFile("./data/AAPLPS.json", {"name":"./data/AAPLPS.json","mimeType":"application/json","path":"./_file/data/AAPLPS.a9d1b5ea.json","lastModified":1754450874322,"size":585282});
+registerFile("./data/AAPLprice.json", {"name":"./data/AAPLprice.json","mimeType":"application/json","path":"./_file/data/AAPLprice.203f8fe8.json","lastModified":1754450873295,"size":251275});
 
 define({id: "9746e5b4", inputs: ["FileAttachment"], outputs: ["stock","forwardPE","forwardPS"], body: async (FileAttachment) => {
 const stock = await FileAttachment("./data/AAPLprice.json").json();
