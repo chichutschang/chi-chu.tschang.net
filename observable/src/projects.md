@@ -8,6 +8,7 @@ pager: false
 ---
 ```js
 const stock = await FileAttachment("./data/AAPLprice.json").json();
+//display(stock)
 ```
 ```js
 //Convert row of arrays to array of objects for AAPL share price 

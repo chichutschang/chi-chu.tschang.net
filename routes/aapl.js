@@ -9,6 +9,9 @@ const range2 = 'A:G'
 const data1 = "./public/graphs/AAPLprice.json"
 const data2 = "./public/graphs/AAPLPE.json" 
 const data3 = "./public/graphs/AAPLPS.json" 
+const data4 = "./observable/src/data/AAPLprice.json"
+const data5 = "./observable/src/data/AAPLPE.json"
+const data6 = "./observable/src/data/AAPLPS.json"
 const fs = require('fs');
 
 // Invoke all 3 functions to read data from both tabs and write them to their respective JSON files
@@ -57,19 +60,31 @@ async function readGoogleSheet(googleSheetClient, sheetId, tab, range) {
       if (tab === tab1) {
         fs.writeFile(data1, jsonData, err => {
           if (err) throw err;
+        console.log('Transferred data from Google Sheets to ./public/graphs/AAPLprice.json file');
         });
-        console.log('Transferred data from Google Sheets to AAPLprice.json file');
+        fs.writeFile(data4, jsonData, err => {
+          if (err) throw err;
+          console.log('Transferred data from Google Sheets to ./observable/src/data/AAPLprice.json file');
+        });      
       } else if (tab === tab2) {
         fs.writeFile(data2, jsonData, err => {
           if (err) throw err;
+          console.log('Transferred data from Google Sheets to ./public/graphs/AAPLPE.json file');
         });
-        console.log('Transferred data from Google Sheets to AAPLpe.json file');
+        fs.writeFile(data5, jsonData, err => {
+          if (err) throw err;
+          console.log('Transferred data from Google Sheets to ./observable/src/data/AAPLPE.json file');
+        });     
       }
       else if (tab === tab3) {
         fs.writeFile(data3, jsonData, err => {
           if (err) throw err;
+          console.log('Transferred data from Google Sheets to ./public/graphs/AAPLPS.json file');
         });
-        console.log('Transferred data from Google Sheets to AAPLps.json file');
+        fs.writeFile(data6, jsonData, err => {
+          if (err) throw err;
+          console.log('Transferred data from Google Sheets to ./observable/src/data/AAPLPS.json file');
+        });
       }
     } catch(err) {
       console.error(`Error reading data from Google Sheets: ${err}`);

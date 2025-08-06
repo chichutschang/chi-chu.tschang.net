@@ -57,9 +57,9 @@
 import {define} from "./_observablehq/client.26e2ef9c.js";
 import {registerFile} from "./_observablehq/stdlib.24b62b2e.js";
 
-registerFile("./data/AAPLPE.json", {"name":"./data/AAPLPE.json","mimeType":"application/json","path":"./_file/data/AAPLPE.d3757896.json","lastModified":1753922525748,"size":620828});
-registerFile("./data/AAPLPS.json", {"name":"./data/AAPLPS.json","mimeType":"application/json","path":"./_file/data/AAPLPS.78306324.json","lastModified":1753922525841,"size":585126});
-registerFile("./data/AAPLprice.json", {"name":"./data/AAPLprice.json","mimeType":"application/json","path":"./_file/data/AAPLprice.48884550.json","lastModified":1753922525654,"size":251201});
+registerFile("./data/AAPLPE.json", {"name":"./data/AAPLPE.json","mimeType":"application/json","path":"./_file/data/AAPLPE.c58a3363.json","lastModified":1754450404782,"size":620996});
+registerFile("./data/AAPLPS.json", {"name":"./data/AAPLPS.json","mimeType":"application/json","path":"./_file/data/AAPLPS.a9d1b5ea.json","lastModified":1754450405308,"size":585282});
+registerFile("./data/AAPLprice.json", {"name":"./data/AAPLprice.json","mimeType":"application/json","path":"./_file/data/AAPLprice.203f8fe8.json","lastModified":1754450404299,"size":251275});
 
 define({id: "9746e5b4", inputs: ["FileAttachment"], outputs: ["stock","forwardPE","forwardPS"], body: async (FileAttachment) => {
 const stock = await FileAttachment("./data/AAPLprice.json").json();
@@ -145,7 +145,7 @@ function formatPercent(value, format){
 return {formatPercent};
 }});
 
-define({id: "0983a057", inputs: ["d3","html","formatPercent","trend","resize","Plot"], outputs: ["currentprice"], body: (d3,html,formatPercent,trend,resize,Plot) => {
+define({id: "53930295", inputs: ["d3","html","formatPercent","trend","resize","Plot"], outputs: ["currentprice"], body: (d3,html,formatPercent,trend,resize,Plot) => {
 function currentprice (price) {
     const range = d3.extent(price.slice(-251), (d) => d.Close); //sets range of 1 year (251 trading days)
     const latestPrice = price.slice(-1)[0]; // get the latest share price data point
@@ -162,7 +162,8 @@ function currentprice (price) {
         {
             year: 'numeric', 
             month: 'long', 
-            day: 'numeric' 
+            day: 'numeric',
+            timeZone: 'UTC'  
         })}
     </h3> 
         <table>
@@ -190,6 +191,9 @@ function currentprice (price) {
                 <td>all-time change: </td>
                 <td align="right">${formatPercent(all)}</td>
                 <td>${trend(all)}</td>
+            </tr>
+            <tr>
+                <td colspan="3">AAPL's share price trading range over the past year:</td>
             </tr>
         </table>
     
@@ -227,7 +231,7 @@ function currentprice (price) {
 return {currentprice};
 }});
 
-define({id: "78c3dbcc", inputs: ["html"], outputs: ["currentforwardPE"], body: (html) => {
+define({id: "b0b692e2", inputs: ["html"], outputs: ["currentforwardPE"], body: (html) => {
 function currentforwardPE (AAPLforwardPE) {
     const latestforwardPE = AAPLforwardPE.slice(-1)[0]; // get the latest forward PE price data point
     return html.fragment`
@@ -235,7 +239,8 @@ function currentforwardPE (AAPLforwardPE) {
         {
             year: 'numeric', 
             month: 'long', 
-            day: 'numeric' 
+            day: 'numeric',
+            timeZone: 'UTC'  
         })}
     </h3> 
     <table>
@@ -619,8 +624,8 @@ resize((width) =>
 <div class="observablehq observablehq--block"><!--:329c4063:--></div>
 <div class="observablehq observablehq--block"><!--:4a3122f0:--></div>
 <div class="observablehq observablehq--block"><!--:015b0103:--></div>
-<div class="observablehq observablehq--block"><!--:0983a057:--></div>
-<div class="observablehq observablehq--block"><!--:78c3dbcc:--></div>
+<div class="observablehq observablehq--block"><!--:53930295:--></div>
+<div class="observablehq observablehq--block"><!--:b0b692e2:--></div>
 <div class="observablehq observablehq--block"><!--:4c801cce:--></div>
 <meta http-equiv="content-type" content="text/html; charset=utf-8">
 <meta name="author" content="Chi-Chu Tschang">
