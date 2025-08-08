@@ -115,22 +115,7 @@ index: 'projects.html'
 }));
 
 /* GET projects/AAPL */
-// router.use('/projects/AAPL', express.static(path.join(__dirname, '../public/observable'), {
-//   index: 'AAPL.html'
-// }));
-router.get('/projects/AAPL', async (req, res, next) => {
-  try {
-    await AAPLprice();
-    await AAPLPE();
-    await AAPLPS();
-    res.sendFile(path.join(__dirname, '../public/observable/AAPL.html'));
-  } catch (err) {
-    console.error('Error:', error);
-  }  
-});
-
-/* GET projects/AAPL2 */
-router.get('/projects/AAPL2', async (req, res)  => {
+router.get('/projects/AAPL', async (req, res)  => {
   AAPLprice(), AAPLPE(), AAPLPS()
   const { priceJsonData, peJsonData, psJsonData } = await readAAPLdata();
   //console.log(priceJsonData);
@@ -159,7 +144,7 @@ router.get('/projects/AAPL2', async (req, res)  => {
   const PSminus2stddev = psJsonData[psJsonData.length-1][6]
   // console.log('Retrieved data from json files')
   // pass the extracted data to AAPL.ejs view
-  res.render('AAPL2', {
+  res.render('AAPL', {
     date: date,
     price: price,
     pe: pe,  
@@ -176,6 +161,21 @@ router.get('/projects/AAPL2', async (req, res)  => {
     PSminus2stddev: PSminus2stddev
     })
 })
+
+/* GET projects/AAPL2 */
+router.use('/projects/AAPL2', express.static(path.join(__dirname, '../public/observable'), {
+  index: 'AAPL.html'
+}));
+// router.get('/projects/AAPL2', async (req, res, next) => {
+//   try {
+//     await AAPLprice();
+//     await AAPLPE();
+//     await AAPLPS();
+//     res.sendFile(path.join(__dirname, '../public/observable/AAPL.html'));
+//   } catch (err) {
+//     console.error('Error:', error);
+//   }  
+// });
 
 /* GET projects/plants */
 router.get('/projects/plants', function(req, res) {

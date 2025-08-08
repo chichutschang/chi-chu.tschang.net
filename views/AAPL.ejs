@@ -10,21 +10,46 @@
         <script type="module">
           import {Runtime, Inspector} from "https://cdn.jsdelivr.net/npm/@observablehq/runtime@5/dist/runtime.js";
           import define from "https://api.observablehq.com/d/b36f5c1105c65b32.js?v=3";
-          new Runtime().module(define, Inspector.into("#observablehq-40edf2ce"));
+        // Create runtime and only show specific cells (hide variables)
+          const runtime = new Runtime();
+          const main = runtime.module(define, name => {
+          // Only render cells that don't match the variables you want to hide
+          if (name === "years" || name === "arealineY" || name === "data" || name === "getCsvUrl" || name === "url") {
+            return; // Don't render these cells
+          }
+          return Inspector.into("#observablehq-40edf2ce")(name);
+        });
+        //  new Runtime().module(define, Inspector.into("#observablehq-40edf2ce"));
         </script>
         <!-- ObservableHQ code for AAPL PE price -->
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@observablehq/inspector@5/dist/inspector.css">
         <script type="module">
-        import {Runtime, Inspector} from "https://cdn.jsdelivr.net/npm/@observablehq/runtime@5/dist/runtime.js";
-        import define from "https://api.observablehq.com/d/b801d7342a3390a3.js?v=3";
-        new Runtime().module(define, Inspector.into("#observablehq-80f27877"));
+          import {Runtime, Inspector} from "https://cdn.jsdelivr.net/npm/@observablehq/runtime@5/dist/runtime.js";
+          import define from "https://api.observablehq.com/d/b801d7342a3390a3.js?v=3";
+          const runtime = new Runtime();
+          const main = runtime.module(define, name => {
+          // Only render cells that don't match the variables you want to hide
+          if (name === "years" || name === "arealineY" || name === "data" || name === "getCsvUrl" || name === "url") {
+            return; // Don't render these cells
+          }
+          return Inspector.into("#observablehq-80f27877")(name);
+        });
+        //new Runtime().module(define, Inspector.into("#observablehq-80f27877"));
         </script>
         <!-- ObservableHQ code for AAPL PS price -->        
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@observablehq/inspector@5/dist/inspector.css">
         <script type="module">
-        import {Runtime, Inspector} from "https://cdn.jsdelivr.net/npm/@observablehq/runtime@5/dist/runtime.js";
-        import define from "https://api.observablehq.com/d/d05d6660c56a13d3.js?v=3";
-        new Runtime().module(define, Inspector.into("#observablehq-98daea9b"));
+          import {Runtime, Inspector} from "https://cdn.jsdelivr.net/npm/@observablehq/runtime@5/dist/runtime.js";
+          import define from "https://api.observablehq.com/d/d05d6660c56a13d3.js?v=3";
+          const runtime = new Runtime();
+          const main = runtime.module(define, name => {
+          // Only render cells that don't match the variables you want to hide
+          if (name === "years" || name === "arealineY" || name === "data" || name === "getCsvUrl" || name === "url") {
+            return; // Don't render these cells
+          }
+          return Inspector.into("#observablehq-98daea9b")(name);
+        });
+        //new Runtime().module(define, Inspector.into("#observablehq-98daea9b"));
         </script>
       </head>
       <body>
