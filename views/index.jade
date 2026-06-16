@@ -1,0 +1,40 @@
+extends layout
+
+block content 
+      table.content   
+        tbody 
+          tr 
+            td(style='display: inline-block; vertical-align: top; padding-left: 14px; width: 84px')
+              b learning: 
+            td(style='display: inline-block; padding-left: 15px')
+              a(href='https://fresnostate.edu/kremen') Kremen School of Education and Human Development, Fresno State
+          tr 
+            td(style='display: inline-block; vertical-align: top; padding-left: 14px; width: 84px')
+              b teaching: 
+            td(style='display: inline-block; padding-left: 15px')
+              a(href='https://callejon.santaclarausd.org/') Don Callejon Middle School 
+          tr 
+            td(style='display: inline-block; vertical-align: top; padding-left: 14px')
+              b reading : 
+            td(style='display: inline-block; padding-left: 15px')
+              a(href=link)= title 
+              b  by 
+              b #{author}
+          tr 
+            td(style='display: inline-block; vertical-align: top; padding-left: 14px')
+              b writing : 
+            td(style='display: inline-block; padding-left: 15px')
+              ul(style='list-style: none; margin: 0; padding: 0')
+                li
+                  a(href='https://www.businessweek.com/stories/2008-02-11/a-french-water-companys-cautionary-tale-in-chinabusinessweek-business-news-stock-market-and-financial-advice') A French Water Company&apos;s Cautionary Tale in China
+                li
+                  a(href='https://www.businessweek.com/stories/2008-04-09/the-new-e-spionage-threat') The New E-spionage Threat
+                li
+                  a(href='https://www.businessweek.com/stories/2008-10-01/dangerous-fakes') Dangerous Fakes
+                li
+                  a(href='https://www.businessweek.com/stories/2008-12-30/the-squeeze-at-chinas-baidu') The Squeeze at China&apos;s Baidu
+                li
+                  a(href='https://www.businessweek.com/stories/2008-08-15/empty-seats-at-chinas-sellout-olympicsbusinessweek-business-news-stock-market-and-financial-advice') Empty Seats at China&apos;s Sellout Olympics
+
+if error 
+  p.error Error: #{error}

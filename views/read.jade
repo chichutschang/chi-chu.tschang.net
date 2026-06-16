@@ -1,0 +1,25 @@
+extends layout
+
+block content 
+  .content 
+    thead
+      tr 
+        span(style='display: inline-block; width: 84px;')
+          | date read
+        span(style='display: inline-block; padding-left: 15px')
+        b title 
+        | / author
+    tbody
+      if books && books.length > 0
+            each book in books 
+                .book 
+                    if book.dateread 
+                      span(style='display: inline-block; width: 84px;') #{new Date(book.dateread).toLocaleDateString()}
+                      span(style='display: inline-block; padding-left: 15px')
+                        b
+                          a(href=book.link)= book.title 
+                      |  by #{book.author} 
+                    else 
+                      p No book read yet
+
+

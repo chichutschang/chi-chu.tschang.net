@@ -1,0 +1,163 @@
+extends layout
+
+block content
+    .content
+        #projects
+          h4 Internet of Things Plant Monitor
+          p One of the problems that amateur gardeners face is that we're sometimes unsure whether we are watering our plants not enough or too much. As a side project, I installed Internet of Things sensors to track the soil moisture, temperature and humidity of my basil plants.
+          
+          .row
+            .col-md-9.col-sm-3(style='padding-top: 10px')
+              h6 Moisture [%]
+            .col-md-3.col-sm-9.text-right(style='padding-top: 10px') 7/14/2020-8/24/2020
+          iframe(width='100%' height='284' frameborder='0' src='https://observablehq.com/embed/@chichutschang/july-2020-moisture-data?cells=chart')
+          
+          .row
+            .col-md-9.col-sm-3(style='padding-top: 10px')
+              h6 Temperature [&#176;F]
+            .col-md-3.col-sm-9.text-right(style='padding-top: 10px') 7/14/2020-8/24/2020
+          iframe(width='100%' height='284' frameborder='0' src='https://observablehq.com/embed/@chichutschang/july-2020-temperature-data?cells=chart')
+          
+          h6 Equipment
+          .table-responsive
+            table.table.table-borderless
+              tr
+                td(width='40%')
+                  ul(style='list-style-type: none;')
+                    li 2 Node MCU Amica (ESP 8266 Wi-Fi Module)
+                    li 1 VMA 311 Temperature sensor
+                    li 1 YL-69 Moisture sensor
+                    li 1 Raspberry Pi
+                    li 1 LCD panel
+                    li 1 LED light
+                td
+                  img(src='/images/plants1.png' width='100%')
+          
+          h6 Architecture
+          p The architecture for this Internet of Things side project is fairly straightforward. The sensors collect data from the soil and air. The data is sent via Wi-Fi to an Internet gateway, which in this case is the MQTT program running on a Raspberry Pi. The MQTT program sends the data to a MongoDB database in the cloud. This website pulls the data from the cloud and renders the data in the form of graphs.
+          img(src='/images/plants2.png' width='100%')
+          
+          h6 Temperature
+          p
+            | For the temperature and humidity sensor, I connected a VMA 311 sensor and RGB backlight LCD panel to a 
+            u
+              a(href='https://www.nodemcu.com/index_en.html') Node MCU Amica
+            |  development board with Wi-Fi. This 
+            u
+              a(href='https://create.arduino.cc/projecthub/ThothLoki/portable-arduino-temp-humidity-sensor-with-lcd-a750f4') Portable Arduino Temp/Humidity Sensor with LCD
+            |  tutorial explains how to set up the VMA 311 sensor and LCD panel.
+          
+          .table-responsive
+            table.table.table-bordered.text-center
+              tr
+                th.col-2 Node MCU Amica
+                th.col-2 VMA 311
+                th.col-2(style='border: none')
+                th.col-2 Node MCU Amica
+                th.col-2 LCD
+              tr
+                td D4
+                td S
+                td(style='border: none')
+                td GND
+                td GND
+              tr
+                td 3V3
+                td +
+                td(style='border: none')
+                td VIN
+                td VCC
+              tr
+                td GND
+                td -
+                td(style='border: none')
+                td D2
+                td SDA
+              tr
+                td
+                td
+                td(style='border: none')
+                td D1
+                td SCL
+
+          p Here is the code:
+          pre
+            != codeSnippet1
+
+          h6 Soil Moisture Sensor
+          p
+            | For the soil moisture sensor, I connected a YL-69 sensor to a separate Node MCU Amica. The 
+            u
+              a(href='https://dzone.com/articles/measuring-soil-moisture-with-the-nodemcu-amica-esp8266') Measuring Soil Moisture With the NodeMCU Amica
+            |  and 
+            u
+              a(href='https://greensense.github.io/Blog/2017/02/17/Arduino-Soil-Moisture-Sensor-Calibration/') Arduino Soil Moisture Sensor Calibration
+            |  tutorials were helpful in setting up the YL-69 sensor.
+          
+          .table-responsive
+            table.table.table-bordered.text-center
+              tr
+                th.col-2(style='border: none')
+                th.col-2 Node MCU Amica
+                th.col-2 YL-69
+                th.col-2(style='border: none')
+              tr
+                td(style='border: none')
+                td VCC
+                td 3V3
+                td(style='border: none')
+              tr
+                td(style='border: none')
+                td GND
+                td GND
+                td(style='border: none')
+              tr
+                td(style='border: none')
+                td A0
+                td A0
+                td(style='border: none')
+
+          p Here is the code:
+          pre
+            != codeSnippet2
+
+          h6 MQTT
+          p
+            | Once the sensors are up and running, the data is sent to a MQTT broker. This 
+            u
+              a(href='https://www.mongodb.com/blog/post/implementing-an-endtoend-iot-solution-in-mongodb-from-sensor-to-cloud') MongoDB blog
+            |  explains the architecture. I wrote code in Python using the 
+            u
+              a(href='https://pypi.org/project/paho-mqtt/') Eclipse Paho MQTT Python Client
+            |  to subscribe to messages and publish to MongoDB. Here is the code:
+          pre
+            != codeSnippet3
+
+          h6 MongoDB
+          p In MongoDB, I created a new cluster called "plants" and a database for each plant. The database name is "basil" and the collection name is "july2020."
+          img(src='/images/plants3.png' width='95%')
+
+          h6 D3.js
+          p
+            s
+              | First, I posted the moisture, temperature and humidity data in json format and used 
+              u
+                a(href='https://d3js.org/') d3.js
+              |  to draw the line graphs.
+          pre
+            != codeSnippet4
+
+          p Unfortunately, the volume of data posted slowed down this website after a week. In the end, I downloaded the data from MongoDB and uploaded it into 
+            a(href='https://observablehq.com/' target='_blank') Observable
+            |  to graph the data and embed the graph on this website.
+
+          h6 Code
+          p
+            i.fab.fa-github
+            a(href='https://github.com/chichutschang/plants/blob/master/Node_MCU_Amica_VMA311_MQTT.ino')  Node_MCU_Amica_VMA311_MQTT.ino
+          p
+            i.fab.fa-github
+            a(href='https://github.com/chichutschang/plants/blob/master/Node_MCU_Amica_LED_YL-69_MQTT.ino')  Node_MCU_Amica_LED_YL-69_MQTT.ino
+          p
+            i.fab.fa-github
+            a(href='https://github.com/chichutschang/plants/blob/master/MQTT-MongoDB.py')  MQTT-MongoDB.py

@@ -1,0 +1,78 @@
+extends layout
+            
+block content 
+    .content 
+        #projects
+            h1
+                | Apple Inc. 
+                font(color='gray') [AAPL]
+            p
+            h4
+                | share price: #[font(color='gray') $#{price} as of #{date}]
+            #observablehq-a750cefb
+            p
+            h4
+                | 1-year forward P/E: #[font(color='gray') #{pe}x as of #{date}]   
+            p
+            ul.nav
+                #legend.row
+                li.stddev
+                    | -2 std dev: #[font(color='#fc9272') #{PEminus2stddev}]
+                li.stddev
+                    | -1 std dev: #[font(color='#ef3b2c') #{PEminus1stddev}] 
+                li.stddev
+                    | mean: #[font(color='#a50f15') #{PEmean}]
+                li.stddev
+                    | +1 std dev: #[font(color='#ef3b2c') #{PEplus1stddev}]
+                li.stddev
+                    | +2 std dev: #[font(color='#fc9272') #{PEplus2stddev}]
+                    
+            #observablehq-b801d7342a3390a3
+            p
+            h4
+                | 1-year forward P/S: #[font(color='gray') #{ps}x as of #{date}]
+            p
+            ul.nav
+                #legend.row
+                li.stddev
+                    | -2 std dev: #[font(color='#fc9272') #{PSminus2stddev}]                    
+                li.stddev
+                    | -1 std dev: #[font(color='#ef3b2c') #{PSminus1stddev}]
+                li.stddev
+                    | mean: #[font(color='#a50f15') #{PSmean}]                    
+                li.stddev
+                    | +1 std dev: #[font(color='#ef3b2c') #{PSplus1stddev}]
+                li.stddev
+                    | +2 std dev: #[font(color='#fc9272') #{PSplus2stddev}]
+                    
+            #observablehq-98daea9b
+
+        .lastupdate last updated: 6/2026
+
+ 
+    script(type='module').
+        import {Runtime, Inspector} from "https://cdn.jsdelivr.net/npm/@observablehq/runtime@5/dist/runtime.js";
+        import define from "https://api.observablehq.com/d/b36f5c1105c65b32.js?v=3";
+        const hidden = ["years", "arealineY", "data", "getCsvUrl", "url"];
+        new Runtime().module(define, name => {
+            if (hidden.includes(name)) return;
+            return Inspector.into("#observablehq-a750cefb")(name);
+        });
+
+    script(type='module').
+        import {Runtime, Inspector} from "https://cdn.jsdelivr.net/npm/@observablehq/runtime@5/dist/runtime.js";
+        import define from "https://api.observablehq.com/d/b801d7342a3390a3.js?v=3";
+        const hidden = ["years", "arealineY", "data", "getCsvUrl", "url"];
+        new Runtime().module(define, name => {
+            if (hidden.includes(name)) return;
+            return Inspector.into("#observablehq-b801d7342a3390a3")(name);
+        });
+
+    script(type='module').
+        import {Runtime, Inspector} from "https://cdn.jsdelivr.net/npm/@observablehq/runtime@5/dist/runtime.js";
+        import define from "https://api.observablehq.com/d/d05d6660c56a13d3.js?v=3";
+        const hidden = ["years", "arealineY", "data", "getCsvUrl", "url"];
+        new Runtime().module(define, name => {
+            if (hidden.includes(name)) return;
+            return Inspector.into("#observablehq-98daea9b")(name);
+        });

@@ -1,0 +1,56 @@
+extends layout
+
+block content 
+    .content
+        #projects
+            //- ObservableHQ Container div for the chart (id must match the querySelector in the script)
+            observablehq-chart2-b355dc98
+
+            //ObservableHQ Runtime Script
+            script(type='module').
+                import {Runtime, Inspector} from "https://cdn.jsdelivr.net/npm/@observablehq/runtime@5/dist/runtime.js";
+                import define from "https://api.observablehq.com/@tschang/aapl@982.js?v=3";
+                new Runtime().module(define, name => {
+                    if (name === "chart2") return new Inspector(document.querySelector("#observablehq-chart2-b355dc98"));
+                });
+
+            .row.no-gutters
+                .col-md-10.col-sm-6(style='padding-top: 10px')
+                    h5
+                        a(href='/projects/aapl') Apple Inc share price
+                .col-md-2.col-sm-6(style='padding-top: 10px')
+                    h5
+                        | 7/2023
+            div
+                a(href='/projects/aapl')
+                    #observablehq-chart2-b355dc98(width='100%' height='auto' style='padding-left: 0px')
+            .row.no-gutters
+                .col-md-10.col-sm-6(style='padding-top: 10px')
+                    h5
+                        a(href='/projects/plants') Internet of Things plant monitor
+                .col-md-2.col-sm-6(style='padding-top: 10px')
+                    h5
+                        | 7/2020
+            div
+                a(href='/projects/plants')
+                    img(src='/images/moisture.png' width='90%' height='auto' align-content:='' left='')
+            .row.no-gutters
+                .col-md-10.col-sm-6(style='padding-top: 10px')
+                    h5
+                        a(href='/projects/shotchart') LeBron James' career shot chart [2003-04 to 2016-17]
+                .col-md-2.col-sm-6(style='padding-top: 10px')
+                    h5
+                        | 11/2016
+                div
+                a(href='/projects/shotchart')
+                    img(src='/images/LeBron James shot chart project.png' width='90%' height='auto' style='padding-left: 0px' align-content:='' left='')
+                .row.no-gutters
+                .col-md-10.col-sm-6(style='padding-top: 10px')
+                    h5
+                        a(href='/projects/censor-weibo') Reverse Engineering Chinese censorship
+                .col-md-2.col-sm-6(style='padding-top: 10px')
+                    h5
+                        | 5/2012
+                div
+                a(href='/projects/censor-weibo')
+                    img(src='/images/censored_weibo_timeline1.png' width='90%' height='auto' style='padding-left: 0px' align-content:='' left='')

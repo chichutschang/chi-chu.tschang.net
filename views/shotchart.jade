@@ -1,0 +1,1766 @@
+extends layout
+block content 
+    .content 
+        #projects
+            h4 CS50 final project
+            p For my CS50 final project, I used Python to graph a shot chart of LeBron James&apos; shots over his NBA career. The first step was to import matplotlib, pandas, seaborn and numpy into Python. We&apos;ll also want to import IPython display so we know what we&apos;re looking at.
+            p
+                div.input
+                    div.prompt.input_prompt
+                    | In&nbsp;[1]:
+                    div.inner_cell
+                        div.input_area
+                            div.highlight.hl-ipython3
+                                pre
+                                    span
+                                    span.kn import
+                                    | &nbsp;
+                                    span.nn requests
+                                    br
+                                    span.kn import
+                                    | &nbsp;
+                                    span.nn matplotlib.pyplot
+                                    | &nbsp;
+                                    span.k as
+                                    | &nbsp;
+                                    span.nn plt
+                                    br
+                                    span.kn import
+                                    | &nbsp;
+                                    span.nn pandas
+                                    | &nbsp;
+                                    span.k as
+                                    | &nbsp;
+                                    span.nn pd
+                                    br
+                                    span.kn from
+                                    | &nbsp;
+                                    span.nn IPython.display
+                                    | &nbsp;
+                                    span.k import
+                                    | &nbsp;
+                                    span.n display
+                                    br
+                                    span.kn import
+                                    | &nbsp;
+                                    span.nn seaborn
+                                    | &nbsp;
+                                    span.k as
+                                    | &nbsp;
+                                    span.nn sns
+                                    br
+                                    span.kn import
+                                    | &nbsp;
+                                    span.nn numpy
+                                    | &nbsp;
+                                    span.k as
+                                    | &nbsp;
+                                    span.nn np
+                                    br
+                                    span.o %
+                                    span.n matplotlib
+                                    | &nbsp;
+                                    span.n inline
+                                    br
+                                    span.n pd
+                                    span.o .
+                                    span.n set_option
+                                    span.p (
+                                    span.s1 'display.max_columns'
+                                    span.p ,
+                                    span.mi 1000
+                                    span.p )
+            p Fortunately, there are already a number of tutorials that go over how to make a shot chart. And, the 
+                a(href='http://www.nba.com') NBA.com website 
+                | has the data posted on its 
+                a(href='http://stats.nba.com') stats.nba.com website.
+            p
+                div.input
+                    div.prompt.input_prompt
+                    | In&nbsp;[2]:
+                    div.inner_cell
+                        div.input_area
+                            div.highlight.hl-ipython3
+                                pre
+                                    span
+                                    span.c1 #set headers, otherwise the API may not return what we're looking for
+                                    br
+                                    span.n HEADERS
+                                    | &nbsp;
+                                    span.o =
+                                    | &nbsp;
+                                    span.p {
+                                    span.s1 'user-agent'
+                                    span.p :
+                                    | &nbsp;
+                                    span.p (
+                                    span.s1 'Mozilla/5.0(Macintosh; Intel Mac OS X 10_10_5)'
+                                    br
+                                    | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                    span.s1 'AppleWebKit/537.36(KHTML, like Gecko)'
+                                    br
+                                    | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                    span.s1 'Chrome/45.0.2454.101 Safari/537.36'
+                                    span.p ),
+                                    br
+                                    | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                    span.s1 'referer'
+                                    span.p :
+                                    | &nbsp;
+                                    span.s1 'http://stats.nba.com/scores/'
+                                    br
+                                    | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                    span.p }
+
+            p Greg Reda posted this 
+                a(href='http://www.gregreda.com/2015/02/15/web-scraping-finding-the-api/') tutorial
+                |  on how to pull John Wall&apos;s shot logs from the 
+                a(href='http://www.nba.com') NBA.com
+                |  website. Unfortunately, the NBA changed the layout of NBA.com site since he published his tutorial in 2015. The data is still on the NBA.com website. We just needed to find it. There&apos;s a couple more steps to find the shot chart data:
+                ol
+                    li
+                        | Go to the 
+                        a(href='http://www.nba.com') NBA.com
+                        |  website and click the 
+                        a(href='http://stats.nba.com/') &quot;Stats&quot;
+                        |  link
+                        P   
+                        img(src='/images/shotchartstep1.png' width='87%')
+                    li
+                        | Select the 
+                        a(href='http://stats.nba.com/players/traditional/#!?DateFrom=05/20/2017&DateTo=05/20/2017&PerMode=Totals&sort=PTS&dir=-1') &quot;See all Players Stats&quot;
+                        |  link
+                        p
+                        img(src='/images/shotchartstep2.png' width='87%')
+                    li
+                        | Select the 
+                        a(href='http://stats.nba.com/events/#!/?flag=3&CFID=&CFPARAMS=&PlayerID=2544&TeamID=1610612739&GameID=&ContextMeasure=FGA&Season=2016-17&SeasonType=Regular Season&LeagueID=00&PerMode=PerGame&GameSegment=&Period=0&PlayerPosition=&StarterBench=&PlayerExperience=&OpponentTeamID=0&VsConference=&VsDivision=&Outcome=&Location=&SeasonSegment=&Month=0&LastNGames=0&PlusMinus=N&PaceAdjust=N&Rank=N&GameScope=&DateFrom=&DateTo=&ShotClockRange=&Conference=&Division=&PORound=0&DraftYear=&DraftPick=&College=&Country=&Height=&Weight=&MeasureType=Base&section=players') &quot;FGA&quot;
+                        |  link for the player
+                        p
+                        img(src='/images/shotchartstep3.png' width='87%')
+                    li Right click the mouse and select &quot;Inspect&quot;
+                        p
+                        img(src='/images/shotchartstep4.png' width='87%')
+                    li Select &quot;Network&quot;
+                        p
+                        img(src='/images/shotchartstep5.png' width='87%')
+                    li Select the link that starts with &quot;shotchartdetail?&quot;
+                        p
+                        img(src='/images/shotchartstep6.png' width='87%')
+                    li In the &quot;Header&quot; tab, copy and paste the &quot;Request URL&quot;
+                        p
+                        img(src='/images/shotchartstep8.png' width='87%')
+            p Savvas Tjortjoglou has published a 
+                a(href='http://savvastjortjoglou.com/nba-shot-sharts.html') tutorial
+                |  on how to create a shot chart using Python. I made a couple of minor changes to his code:
+                ol
+                    li Each NBA player has a player ID number. Rather than hard code LeBron James&apos; player ID number 2544, I set the player ID number as a variable,
+                    li Since this shot chart covers LeBron James&apos; rookie season to the current NBA season, I created an array called &quot;seasons&quot; and set the range of seasons from 2003-04 season to the current 2016-17 season.
+                    li The NBA splits each players&apos; stats into regular season and post-season statistics. For LeBron James&apos; career shot chart, we need to run the stats for both the regular season and post-season then add them together.
+            p
+                div.input
+                    div.prompt.input_prompt
+                    | In&nbsp;[3]:
+                    div.inner_cell
+                        div.input_area
+                            div.highlight.hl-ipython3
+                            pre
+                                span
+                                span.c1 #get all of LeBron James' shots from 1996 to 2016 and put it into an array
+                                br
+                                span.n playerID
+                                span.o =
+                                span.s2 "2544"
+                                br
+                                span.n seasons
+                                span.o =
+                                span.p []
+                                br
+                                span.k for
+                                | &nbsp;
+                                span.n season
+                                | &nbsp;
+                                span.ow in
+                                | &nbsp;
+                                span.nb range
+                                span.p (
+                                span.mi 2003
+                                span.p ,
+                                span.mi 2016
+                                span.p ):
+                                br
+                                | &nbsp;&nbsp;&nbsp;&nbsp;
+                                span.c1 #the stats.nba.com API wants season as "1996-97"
+                                br
+                                | &nbsp;&nbsp;&nbsp;&nbsp;
+                                span.n seasonString
+                                | &nbsp;
+                                span.o =
+                                | &nbsp;
+                                span.nb str
+                                span.p (
+                                span.n season
+                                span.p )
+                                | &nbsp;
+                                span.o +
+                                | &nbsp;
+                                span.s1 '-'
+                                | &nbsp;
+                                span.o +
+                                span.nb str
+                                span.p (
+                                span.n season
+                                span.o +
+                                span.mi 1
+                                span.p )[
+                                span.mi 2
+                                span.p :]
+                                br
+                                | &nbsp;&nbsp;&nbsp;&nbsp;
+                                span.n shot_chart_url
+                                span.o =
+                                span.s1 'http://stats.nba.com/stats/shotchartdetail?CFID=33&amp;CFPARAMS='
+                                span.o +
+                                | &nbsp;
+                                span.n seasonString
+                                | &nbsp;
+                                span.o +
+                                span.s1 '&amp;ContextFilter=&amp;ContextMeasure=FGA&amp;DateFrom=&amp;DateTo=&amp;GameID=&amp;GameSegment=&amp;LastNGames=0&amp;LeagueID=00&amp;Location=&amp;MeasureType=Base&amp;Month=0&amp;OpponentTeamID=0&amp;Outcome=&amp;PORound=0&amp;PaceAdjust=N&amp;PerMode=PerGame&amp;Period=0&amp;PlayerID='
+                                span.o +
+                                | &nbsp;
+                                span.n playerID
+                                | &nbsp;
+                                span.o +
+                                span.s1 '&amp;PlayerPosition=&amp;PlusMinus=N&amp;Position=&amp;Rank=N&amp;RookieYear=&amp;Season='
+                                span.o +
+                                | &nbsp;
+                                span.n seasonString
+                                | &nbsp;
+                                span.o +
+                                span.s1 '&amp;SeasonSegment=&amp;SeasonType=Regular+Season&amp;ShotClockRange=&amp;TeamID=0&amp;VsConference=&amp;VsDivision='
+                                br
+                                | &nbsp;&nbsp;&nbsp;&nbsp;
+                                span.n response
+                                span.o =
+                                span.n requests
+                                span.o .
+                                span.n get
+                                span.p (
+                                span.n shot_chart_url
+                                span.p ,
+                                | &nbsp;
+                                span.n headers
+                                span.o =
+                                span.n HEADERS
+                                span.p )
+                                br
+                                | &nbsp;&nbsp;&nbsp;&nbsp;
+                                span.c1 #split response into headers and content
+                                br
+                                | &nbsp;&nbsp;&nbsp;&nbsp;
+                                span.n headers
+                                span.o =
+                                span.n response
+                                span.o .
+                                span.n json
+                                span.p ()[
+                                span.s1 'resultSets'
+                                span.p ][
+                                span.mi 0
+                                span.p ][
+                                span.s1 'headers'
+                                span.p ]
+                                br
+                                | &nbsp;&nbsp;&nbsp;&nbsp;
+                                span.n shots
+                                span.o =
+                                span.n response
+                                span.o .
+                                span.n json
+                                span.p ()[
+                                span.s1 'resultSets'
+                                span.p ][
+                                span.mi 0
+                                span.p ][
+                                span.s1 'rowSet'
+                                span.p ]
+                                br
+                                | &nbsp;&nbsp;&nbsp;&nbsp;
+                                span.c1 #create pandas datafram to hold the data
+                                br
+                                | &nbsp;&nbsp;&nbsp;&nbsp;
+                                span.n shot_df
+                                span.o =
+                                span.n pd
+                                span.o .
+                                span.n DataFrame
+                                span.p (
+                                span.n shots
+                                span.p ,
+                                | &nbsp;
+                                span.n columns
+                                span.o =
+                                span.n headers
+                                span.p )
+                                br
+                                | &nbsp;&nbsp;&nbsp;&nbsp;
+                                span.c1 #add extra column for season
+                                br
+                                | &nbsp;&nbsp;&nbsp;&nbsp;
+                                span.n shot_df
+                                span.p [
+                                span.s1 'SEASON'
+                                span.p ]
+                                span.o =
+                                span.n seasonString
+                                br
+                                | &nbsp;&nbsp;&nbsp;&nbsp;
+                                span.c1 #add extra column for playoff flag
+                                br
+                                | &nbsp;&nbsp;&nbsp;&nbsp;
+                                span.n shot_df
+                                span.p [
+                                span.s1 'playoffs'
+                                span.p ]
+                                span.o =
+                                span.mi 0
+                                br
+                                | &nbsp;&nbsp;&nbsp;&nbsp;
+                                span.n seasons
+                                span.o .
+                                span.n append
+                                span.p (
+                                span.n shot_df
+                                span.p )
+                                br
+                                span.c1 #playoffs stats
+                                br
+                                span.k for
+                                | &nbsp;
+                                span.n season
+                                | &nbsp;
+                                span.ow in
+                                | &nbsp;
+                                span.nb range
+                                span.p (
+                                span.mi 1996
+                                span.p ,
+                                span.mi 2016
+                                span.p ):
+                                br
+                                | &nbsp;&nbsp;&nbsp;&nbsp;
+                                span.c1 #the stats.nba.com API wants season as "1996-97"
+                                br
+                                | &nbsp;&nbsp;&nbsp;&nbsp;
+                                span.n seasonString
+                                | &nbsp;
+                                span.o =
+                                | &nbsp;
+                                span.nb str
+                                span.p (
+                                span.n season
+                                span.p )
+                                | &nbsp;
+                                span.o +
+                                | &nbsp;
+                                span.s1 '-'
+                                | &nbsp;
+                                span.o +
+                                span.nb str
+                                span.p (
+                                span.n season
+                                span.o +
+                                span.mi 1
+                                span.p )[
+                                span.mi 2
+                                span.p :]
+                                br
+                                | &nbsp;&nbsp;&nbsp;&nbsp;
+                                span.n shot_chart_url
+                                span.o =
+                                span.s1 'http://stats.nba.com/stats/shotchartdetail?CFID=33&amp;CFPARAMS='
+                                span.o +
+                                | &nbsp;
+                                span.n seasonString
+                                | &nbsp;
+                                span.o +
+                                span.s1 '&amp;ContextFilter=&amp;ContextMeasure=FGA&amp;DateFrom=&amp;DateTo=&amp;GameID=&amp;GameSegment=&amp;LastNGames=0&amp;LeagueID=00&amp;Location=&amp;MeasureType=Base&amp;Month=0&amp;OpponentTeamID=0&amp;Outcome=&amp;PORound=0&amp;PaceAdjust=N&amp;PerMode=PerGame&amp;Period=0&amp;PlayerID=977&amp;PlayerPosition=&amp;PlusMinus=N&amp;Position=&amp;Rank=N&amp;RookieYear=&amp;Season='
+                                span.o +
+                                | &nbsp;
+                                span.n seasonString
+                                | &nbsp;
+                                span.o +
+                                span.s1 '&amp;SeasonSegment=&amp;SeasonType=Playoffs&amp;ShotClockRange=&amp;TeamID=0&amp;VsConference=&amp;VsDivision='
+                                br
+                                | &nbsp;&nbsp;&nbsp;&nbsp;
+                                span.n response
+                                span.o =
+                                span.n requests
+                                span.o .
+                                span.n get
+                                span.p (
+                                span.n shot_chart_url
+                                span.p ,
+                                | &nbsp;
+                                span.n headers
+                                span.o =
+                                span.n HEADERS
+                                span.p )
+                                br
+                                | &nbsp;&nbsp;&nbsp;&nbsp;
+                                span.c1 #split response into headers and content
+                                br
+                                | &nbsp;&nbsp;&nbsp;&nbsp;
+                                span.n headers
+                                span.o =
+                                span.n response
+                                span.o .
+                                span.n json
+                                span.p ()[
+                                span.s1 'resultSets'
+                                span.p ][
+                                span.mi 0
+                                span.p ][
+                                span.s1 'headers'
+                                span.p ]
+                                br
+                                | &nbsp;&nbsp;&nbsp;&nbsp;
+                                span.n shots
+                                span.o =
+                                span.n response
+                                span.o .
+                                span.n json
+                                span.p ()[
+                                span.s1 'resultSets'
+                                span.p ][
+                                span.mi 0
+                                span.p ][
+                                span.s1 'rowSet'
+                                span.p ]
+                                br
+                                | &nbsp;&nbsp;&nbsp;&nbsp;
+                                span.c1 #create pandas datafram to hold the data
+                                br
+                                | &nbsp;&nbsp;&nbsp;&nbsp;
+                                span.n shot_df
+                                span.o =
+                                span.n pd
+                                span.o .
+                                span.n DataFrame
+                                span.p (
+                                span.n shots
+                                span.p ,
+                                | &nbsp;
+                                span.n columns
+                                span.o =
+                                span.n headers
+                                span.p )
+                                br
+                                | &nbsp;&nbsp;&nbsp;&nbsp;
+                                span.c1 #add extra column for season
+                                br
+                                | &nbsp;&nbsp;&nbsp;&nbsp;
+                                span.n shot_df
+                                span.p [
+                                span.s1 'SEASON'
+                                span.p ]
+                                span.o =
+                                span.nb str
+                                span.p (
+                                span.n season
+                                span.p )
+                                span.o +
+                                span.s1 '-'
+                                span.o +
+                                span.nb str
+                                span.p (
+                                span.n season
+                                span.o +
+                                span.mi 1
+                                span.p )[
+                                span.mi 2
+                                span.p :]
+                                br
+                                | &nbsp;&nbsp;&nbsp;&nbsp;
+                                span.n shot_df
+                                span.p [
+                                span.s1 'playoffs'
+                                span.p ]
+                                span.o =
+                                span.mi 1
+                                br
+                                | &nbsp;&nbsp;&nbsp;&nbsp;
+                                span.n seasons
+                                span.o .
+                                span.n append
+                                span.p (
+                                span.n shot_df
+                                span.p )
+            p
+                div.input
+                    div.prompt.input_prompt
+                    | In&nbsp;[4]:
+                    div.inner_cell
+                        div.input_area
+                            div.highlight.hl-ipython3
+                            pre
+                                span
+                                span.c1 #combine all season and playoffs dataframes into one dataframe
+                                br
+                                span.n all_shots
+                                span.o =
+                                span.n pd
+                                span.o .
+                                span.n concat
+                                span.p (
+                                span.n seasons
+                                span.p )
+                                br
+                                br
+                                span.c1 # dump a csv file
+                                br
+                                span.c1 #all_shots.to_csv("lebron_james_all_shots.csv")
+            p Out of curiosity, I wanted to check how many shots LeBron James has attempted in his career.
+            p
+            div.input
+                div.prompt.input_prompt
+                | In&nbsp;[5]:
+                div.inner_cell
+                    div.input_area
+                        div.highlight.hl-ipython3
+                        pre
+                            span
+                            span.nb len
+                            span.p (
+                            span.n all_shots
+                            span.p )
+
+            div.output_wrapper
+                div.output
+                    div.output_area
+                        div.prompt.output_prompt
+                        | Out[5]:
+                        div.output_text.output_subarea.output_execute_result
+                            pre 23957
+            p For each shot that LeBron James has taken, the NBA assigns a number of fields (i.e. Game ID, Period, Minutes Remaining, Seconds Remaining). For the shot chart, we want to find the X- and Y-coordinates of each shot and map it on a basketball court.
+            p
+                div.input
+                    div.prompt.input_prompt
+                    | In&nbsp;[6]:
+                    div.inner_cell
+                        div.input_area
+                            div.highlight.hl-ipython3
+                            pre
+                                span
+                                span.n all_shots
+                                span.o .
+                                span.n head
+                                span.p ()
+                div.output_wrapper
+                    div.output
+                        div.output_area
+                            div.prompt.output_prompt
+                            | Out[6]:
+                            div.output_html.rendered_html.output_subarea.output_execute_result
+                                div
+                                    table.dataframe(border="1")
+                                        thead
+                                            tr(style="text-align: right;")
+                                            th
+                                            th GRID_TYPE
+                                            th GAME_ID
+                                            th GAME_EVENT_ID
+                                            th PLAYER_ID
+                                            th PLAYER_NAME
+                                            th TEAM_ID
+                                            th TEAM_NAME
+                                            th PERIOD
+                                            th MINUTES_REMAINING
+                                            th SECONDS_REMAINING
+                                            th EVENT_TYPE
+                                            th ACTION_TYPE
+                                            th SHOT_TYPE
+                                            th SHOT_ZONE_BASIC
+                                            th SHOT_ZONE_AREA
+                                            th SHOT_ZONE_RANGE
+                                            th SHOT_DISTANCE
+                                            th LOC_X
+                                            th LOC_Y
+                                            th SHOT_ATTEMPTED_FLAG
+                                            th SHOT_MADE_FLAG
+                                            th SEASON
+                                            th playoffs
+                                        tbody
+                                            tr
+                                            th 0
+                                            td Shot Chart Detail
+                                            td 0020300014
+                                            td 20.0
+                                            td 2544.0
+                                            td LeBron James
+                                            td 1.610613e+09
+                                            td Cleveland Cavaliers
+                                            td 1.0
+                                            td 8.0
+                                            td 56.0
+                                            td Made Shot
+                                            td Jump Shot
+                                            td 2PT Field Goal
+                                            td Mid-Range
+                                            td Right Side(R)
+                                            td 8-16 ft.
+                                            td 15.0
+                                            td 158.0
+                                            td 0.0
+                                            td 1.0
+                                            td 1.0
+                                            td 2003-04
+                                            td 0
+                                            tr
+                                            th 1
+                                            td Shot Chart Detail
+                                            td 0020300014
+                                            td 28.0
+                                            td 2544.0
+                                            td LeBron James
+                                            td 1.610613e+09
+                                            td Cleveland Cavaliers
+                                            td 1.0
+                                            td 7.0
+                                            td 44.0
+                                            td Made Shot
+                                            td Jump Shot
+                                            td 2PT Field Goal
+                                            td Mid-Range
+                                            td Left Side(L)
+                                            td 8-16 ft.
+                                            td 13.0
+                                            td -131.0
+                                            td 2.0
+                                            td 1.0
+                                            td 1.0
+                                            td 2003-04
+                                            td 0
+                                            tr
+                                            th 2
+                                            td Shot Chart Detail
+                                            td 0020300014
+                                            td 35.0
+                                            td 2544.0
+                                            td LeBron James
+                                            td 1.610613e+09
+                                            td Cleveland Cavaliers
+                                            td 1.0
+                                            td 7.0
+                                            td 1.0
+                                            td Made Shot
+                                            td Fadeaway Jump Shot
+                                            td 2PT Field Goal
+                                            td Mid-Range
+                                            td Right Side(R)
+                                            td 16-24 ft.
+                                            td 16.0
+                                            td 163.0
+                                            td 5.0
+                                            td 1.0
+                                            td 1.0
+                                            td 2003-04
+                                            td 0
+                                            tr
+                                            th 3
+                                            td Shot Chart Detail
+                                            td 0020300014
+                                            td 39.0
+                                            td 2544.0
+                                            td LeBron James
+                                            td 1.610613e+09
+                                            td Cleveland Cavaliers
+                                            td 1.0
+                                            td 6.0
+                                            td 29.0
+                                            td Missed Shot
+                                            td Jump Shot
+                                            td 2PT Field Goal
+                                            td Mid-Range
+                                            td Left Side(L)
+                                            td 8-16 ft.
+                                            td 14.0
+                                            td -118.0
+                                            td 92.0
+                                            td 1.0
+                                            td 0.0
+                                            td 2003-04
+                                            td 0
+                                            tr
+                                            th 4
+                                            td Shot Chart Detail
+                                            td 0020300014
+                                            td 54.0
+                                            td 2544.0
+                                            td LeBron James
+                                            td 1.610613e+09
+                                            td Cleveland Cavaliers
+                                            td 1.0
+                                            td 4.0
+                                            td 48.0
+                                            td Made Shot
+                                            td Running Jump Shot
+                                            td 2PT Field Goal
+                                            td In The Paint (Non-RA)
+                                            td Center(C)
+                                            td Less Than 8 ft.
+                                            td 5.0
+                                            td 54.0
+                                            td 22.0
+                                            td 1.0
+                                            td 1.0
+                                            td 2003-04
+                                            td 0
+            p Since we have the data on LeBron James' shots, I figured we could break down each shot into the categories to see how he is scoring his buckets.
+            div.input
+                div.prompt.input_prompt
+                | In&nbsp;[7]:
+                div.inner_cell
+                    div.input_area
+                        div.highlight.hl-ipython3
+                        pre
+                            span
+                            span.c1 #combine shot types
+                            br
+                            span.n all_shots
+                            span.p [
+                            span.s1 'COMBINED_SHOT_TYPE'
+                            span.p ]
+                            span.o =
+                            span.n all_shots
+                            span.p [
+                            span.s1 'ACTION_TYPE'
+                            span.p ]
+                            br
+                            br
+                            span.n all_shots
+                            span.o .
+                            span.n replace
+                            span.p (
+                            span.n to_replace
+                            span.o =
+                            span.p {
+                            br
+                            | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            span.s1 'COMBINED_SHOT_TYPE'
+                            span.p :{
+                            br
+                            | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            span.s1 '(.+)?Jump (.+)?(S|s)hot'
+                            span.p :
+                            span.s1 'Jump Shot'
+                            span.p ,
+                            br
+                            | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            span.s1 '(.+)?Fadeaway(.+)?'
+                            span.p :
+                            span.s1 'Jump Shot'
+                            span.p ,
+                            br
+                            | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            span.s1 '(.+)?Dunk Shot'
+                            span.p :
+                            span.s1 'Dunk'
+                            span.p ,
+                            br
+                            | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            span.s1 '(.+)?Layup (S|s)hot'
+                            span.p :
+                            span.s2 "Layup"
+                            span.p ,
+                            br
+                            | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            span.s1 '(.+)?Hook.+'
+                            span.p :
+                            span.s2 "Hook Shot"
+                            span.p ,
+                            br
+                            | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            span.s1 '(.+)?Tip.+'
+                            span.p :
+                            span.s2 "Tip Shot"
+                            span.p ,
+                            br
+                            | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            span.s1 '(.+)?Bank.+'
+                            span.p :
+                            span.s2 "Bank Shot"
+                            span.p ,
+                            br
+                            | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            span.s1 '(.+)?Finger Roll.+'
+                            span.p :
+                            span.s2 "Layup"
+                            br
+                            | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            span.p }
+                            br
+                            | &nbsp;&nbsp;&nbsp;&nbsp;
+                            span.p },
+                            | &nbsp;
+                            span.n regex
+                            span.o =
+                            span.kc True
+                            span.p ,
+                            | &nbsp;
+                            span.n inplace
+                            span.o =
+                            span.kc True
+                            span.p )
+                            br
+                            span.n all_shots
+                            span.o .
+                            span.n COMBINED_SHOT_TYPE
+                            span.o .
+                            span.n value_counts
+                            span.p ()
+            div.output_wrapper
+                div.output
+                    div.output_area
+                        div.prompt.output_prompt
+                        | Out[7]:
+                        div.output_text.output_subarea.output_execute_result
+                            pre
+                            | Jump Shot    15333
+                            br
+                            | Layup         6077
+                            br
+                            | Dunk          1690
+                            br
+                            | Bank Shot      444
+                            br
+                            | Hook Shot      219
+                            br
+                            | Tip Shot       194
+                            br
+                            | Name: COMBINED_SHOT_TYPE, dtype: int64
+        p Next, we need to draw the basketball court. Fortunately, Savvas Tjortjoglou has done all the hard work of calculating the dimensions of a basketball court into pixels in his 
+            a(href='http://savvastjortjoglou.com/nba-shot-sharts.html') tutorial
+           | so we can just copy and paste the code.
+        p
+        div.input
+            div.prompt.input_prompt
+            | In&nbsp;[8]:
+            div.inner_cell
+                div.input_area
+                    div.highlight.hl-ipython3
+                    pre
+                        span
+                        span.c1 #draw the court
+                        br
+                        span.kn from
+                        | &nbsp;
+                        span.nn matplotlib.patches
+                        | &nbsp;
+                        span.k import
+                        | &nbsp;
+                        span.n Circle
+                        span.p ,
+                        | &nbsp;
+                        span.n Rectangle
+                        span.p ,
+                        | &nbsp;
+                        span.n Arc
+                        br
+                        br
+                        span.k def
+                        | &nbsp;
+                        span.nf draw_court
+                        span.p (
+                        span.n ax
+                        span.o =
+                        span.kc None
+                        span.p ,
+                        | &nbsp;
+                        span.n color
+                        span.o =
+                        span.s1 'black'
+                        span.p ,
+                        | &nbsp;
+                        span.n lw
+                        span.o =
+                        span.mi 2
+                        span.p ,
+                        | &nbsp;
+                        span.n outer_lines
+                        span.o =
+                        span.kc False
+                        span.p ):
+                        br
+                        | &nbsp;&nbsp;&nbsp;&nbsp;
+                        span.c1 #if an axes object isn't provided to plot onto, just get current one
+                        br
+                        | &nbsp;&nbsp;&nbsp;&nbsp;
+                        span.k if
+                        | &nbsp;
+                        span.n ax
+                        | &nbsp;
+                        span.ow is
+                        | &nbsp;
+                        span.kc None
+                        span.p :
+                        br
+                        | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        span.n ax
+                        | &nbsp;
+                        span.o =
+                        | &nbsp;
+                        span.n plt
+                        span.o .
+                        span.n gca
+                        span.p ()
+                        br
+                        br
+                        | &nbsp;&nbsp;&nbsp;&nbsp;
+                        span.c1 #create the various parts of an NBA basketball court
+                        br
+                        br
+                        | &nbsp;&nbsp;&nbsp;&nbsp;
+                        span.c1 #create the basketball hoop
+                        br
+                        | &nbsp;&nbsp;&nbsp;&nbsp;
+                        span.c1 #diameter of a hoop is 18" so it has a radius of 9", which is a value of 7.5 in our coordinate system
+                        br
+                        | &nbsp;&nbsp;&nbsp;&nbsp;
+                        span.n hoop
+                        | &nbsp;
+                        span.o =
+                        | &nbsp;
+                        span.n Circle
+                        span.p ((
+                        span.mi 0
+                        span.p ,
+                        span.mi 0
+                        span.p ),
+                        | &nbsp;
+                        span.n radius
+                        | &nbsp;
+                        span.o =
+                        | &nbsp;
+                        span.mf 7.5
+                        span.p ,
+                        | &nbsp;
+                        span.n linewidth
+                        span.o =
+                        span.n lw
+                        span.p ,
+                        | &nbsp;
+                        span.n color
+                        span.o =
+                        span.n color
+                        span.p ,
+                        | &nbsp;
+                        span.n fill
+                        span.o =
+                        span.kc False
+                        span.p )
+                        br
+                        br
+                        | &nbsp;&nbsp;&nbsp;&nbsp;
+                        span.c1 #create backboard
+                        br
+                        | &nbsp;&nbsp;&nbsp;&nbsp;
+                        span.n backboard
+                        | &nbsp;
+                        span.o =
+                        | &nbsp;
+                        span.n Rectangle
+                        span.p ((
+                        span.o -
+                        span.mi 30
+                        span.p ,
+                        | &nbsp;
+                        span.o -
+                        span.mf 7.5
+                        span.p ),
+                        | &nbsp;
+                        span.mi 60
+                        span.p ,
+                        | &nbsp;
+                        span.o -
+                        span.mi 1
+                        span.p ,
+                        | &nbsp;
+                        span.n linewidth
+                        span.o =
+                        span.n lw
+                        span.p ,
+                        | &nbsp;
+                        span.n color
+                        span.o =
+                        span.n color
+                        span.p )
+                        br
+                        br
+                        | &nbsp;&nbsp;&nbsp;&nbsp;
+                        span.c1 #the paint
+                        br
+                        | &nbsp;&nbsp;&nbsp;&nbsp;
+                        span.c1 #create the outer box of the paint, width=16 ft, height=19 ft
+                        br
+                        | &nbsp;&nbsp;&nbsp;&nbsp;
+                        span.n outer_box
+                        | &nbsp;
+                        span.o =
+                        | &nbsp;
+                        span.n Rectangle
+                        span.p ((
+                        span.o -
+                        span.mi 80
+                        span.p ,
+                        | &nbsp;
+                        span.o -
+                        span.mf 47.5
+                        span.p ),
+                        | &nbsp;
+                        span.mi 160
+                        span.p ,
+                        | &nbsp;
+                        span.mi 190
+                        span.p ,
+                        | &nbsp;
+                        span.n linewidth
+                        span.o =
+                        span.n lw
+                        span.p ,
+                        | &nbsp;
+                        span.n color
+                        span.o =
+                        span.n color
+                        span.p ,
+                        | &nbsp;
+                        span.n fill
+                        span.o =
+                        span.kc False
+                        span.p )
+                        br
+                        br
+                        | &nbsp;&nbsp;&nbsp;&nbsp;
+                        span.c1 #create the inner box of the paint, width=12 ft, hieght=19ft
+                        br
+                        | &nbsp;&nbsp;&nbsp;&nbsp;
+                        span.n inner_box
+                        | &nbsp;
+                        span.o =
+                        | &nbsp;
+                        span.n Rectangle
+                        span.p ((
+                        span.o -
+                        span.mi 60
+                        span.p ,
+                        | &nbsp;
+                        span.o -
+                        span.mf 47.5
+                        span.p ),
+                        | &nbsp;
+                        span.mi 120
+                        span.p ,
+                        | &nbsp;
+                        span.mi 190
+                        span.p ,
+                        | &nbsp;
+                        span.n linewidth
+                        span.o =
+                        span.n lw
+                        span.p ,
+                        | &nbsp;
+                        span.n color
+                        span.o =
+                        span.n color
+                        span.p ,
+                        | &nbsp;
+                        span.n fill
+                        span.o =
+                        span.kc False
+                        span.p )
+                        br
+                        br
+                        | &nbsp;&nbsp;&nbsp;&nbsp;
+                        span.c1 #create the free throw top arc
+                        br
+                        | &nbsp;&nbsp;&nbsp;&nbsp;
+                        span.n top_free_throw
+                        span.o =
+                        span.n Arc
+                        span.p ((
+                        span.mi 0
+                        span.p ,
+                        | &nbsp;
+                        span.mf 142.5
+                        span.p ),
+                        | &nbsp;
+                        span.mi 120
+                        span.p ,
+                        | &nbsp;
+                        span.mi 120
+                        span.p ,
+                        | &nbsp;
+                        span.n theta1
+                        span.o =
+                        span.mi 0
+                        span.p ,
+                        | &nbsp;
+                        span.n theta2
+                        span.o =
+                        span.mi 180
+                        span.p ,
+                        | &nbsp;
+                        span.n linewidth
+                        span.o =
+                        span.n lw
+                        span.p ,
+                        | &nbsp;
+                        span.n color
+                        span.o =
+                        span.n color
+                        span.p ,
+                        | &nbsp;
+                        span.n fill
+                        span.o =
+                        span.kc False
+                        span.p )
+                        br
+                        br
+                        | &nbsp;&nbsp;&nbsp;&nbsp;
+                        span.c1 #create the free throw bottom arc
+                        br
+                        | &nbsp;&nbsp;&nbsp;&nbsp;
+                        span.n bottom_free_throw
+                        span.o =
+                        span.n Arc
+                        span.p ((
+                        span.mi 0
+                        span.p ,
+                        | &nbsp;
+                        span.mf 142.5
+                        span.p ),
+                        | &nbsp;
+                        span.mi 120
+                        span.p ,
+                        | &nbsp;
+                        span.mi 120
+                        span.p ,
+                        | &nbsp;
+                        span.n theta1
+                        span.o =
+                        span.mi 180
+                        span.p ,
+                        | &nbsp;
+                        span.n theta2
+                        span.o =
+                        span.mi 0
+                        span.p ,
+                        | &nbsp;
+                        span.n linewidth
+                        span.o =
+                        span.n lw
+                        span.p ,
+                        | &nbsp;
+                        span.n color
+                        span.o =
+                        span.n color
+                        span.p ,
+                        | &nbsp;
+                        span.n linestyle
+                        span.o =
+                        span.s1 'dashed'
+                        span.p )
+                        br
+                        br
+                        | &nbsp;&nbsp;&nbsp;&nbsp;
+                        span.c1 #restricted zone, arc with 4 ft radius from center of the hoop
+                        br
+                        | &nbsp;&nbsp;&nbsp;&nbsp;
+                        span.n restricted
+                        span.o =
+                        span.n Arc
+                        span.p ((
+                        span.mi 0
+                        span.p ,
+                        span.mi 0
+                        span.p ),
+                        | &nbsp;
+                        span.mi 80
+                        span.p ,
+                        | &nbsp;
+                        span.mi 80
+                        span.p ,
+                        | &nbsp;
+                        span.n theta1
+                        span.o =
+                        span.mi 0
+                        span.p ,
+                        | &nbsp;
+                        span.n theta2
+                        span.o =
+                        span.mi 180
+                        span.p ,
+                        | &nbsp;
+                        span.n linewidth
+                        span.o =
+                        span.n lw
+                        span.p ,
+                        | &nbsp;
+                        span.n color
+                        span.o =
+                        span.n color
+                        span.p )
+                        br
+                        br
+                        | &nbsp;&nbsp;&nbsp;&nbsp;
+                        span.c1 #three point line
+                        br
+                        | &nbsp;&nbsp;&nbsp;&nbsp;
+                        span.c1 #create the side 3 point lines, 14 ft long before they before they begin to arc
+                        br
+                        | &nbsp;&nbsp;&nbsp;&nbsp;
+                        span.n corner_three_a
+                        | &nbsp;
+                        span.o =
+                        | &nbsp;
+                        span.n Rectangle
+                        span.p ((
+                        span.o -
+                        span.mi 220
+                        span.p ,
+                        | &nbsp;
+                        span.o -
+                        span.mf 47.5
+                        span.p ),
+                        | &nbsp;
+                        span.mi 0
+                        span.p ,
+                        | &nbsp;
+                        span.mi 140
+                        span.p ,
+                        | &nbsp;
+                        span.n linewidth
+                        span.o =
+                        span.n lw
+                        span.p ,
+                        | &nbsp;
+                        span.n color
+                        span.o =
+                        span.n color
+                        span.p )
+                        br
+                        br
+                        | &nbsp;&nbsp;&nbsp;&nbsp;
+                        span.n corner_three_b
+                        | &nbsp;
+                        span.o =
+                        | &nbsp;
+                        span.n Rectangle
+                        span.p ((
+                        span.mi 220
+                        span.p ,
+                        | &nbsp;
+                        span.o -
+                        span.mf 47.5
+                        span.p ),
+                        | &nbsp;
+                        span.mi 0
+                        span.p ,
+                        | &nbsp;
+                        span.mi 140
+                        span.p ,
+                        | &nbsp;
+                        span.n linewidth
+                        span.o =
+                        span.n lw
+                        span.p ,
+                        | &nbsp;
+                        span.n color
+                        span.o =
+                        span.n color
+                        span.p )
+                        br
+                        br
+                        | &nbsp;&nbsp;&nbsp;&nbsp;
+                        span.c1 #three point arc, center of the arc will be the hoop, arc is 23 ft 9 inches away from the hoop
+                        br
+                        | &nbsp;&nbsp;&nbsp;&nbsp;
+                        span.n three_arc
+                        | &nbsp;
+                        span.o =
+                        | &nbsp;
+                        span.n Arc
+                        span.p ((
+                        span.mi 0
+                        span.p ,
+                        span.mi 0
+                        span.p ),
+                        | &nbsp;
+                        span.mi 475
+                        span.p ,
+                        | &nbsp;
+                        span.mi 475
+                        span.p ,
+                        | &nbsp;
+                        span.n theta1
+                        span.o =
+                        span.mi 22
+                        span.p ,
+                        | &nbsp;
+                        span.n theta2
+                        span.o =
+                        span.mi 158
+                        span.p ,
+                        | &nbsp;
+                        span.n linewidth
+                        span.o =
+                        span.n lw
+                        span.p ,
+                        | &nbsp;
+                        span.n color
+                        span.o =
+                        span.n color
+                        span.p )
+                        br
+                        br
+                        | &nbsp;&nbsp;&nbsp;&nbsp;
+                        span.c1 #center court
+                        br
+                        | &nbsp;&nbsp;&nbsp;&nbsp;
+                        span.n center_outer_arc
+                        | &nbsp;
+                        span.o =
+                        | &nbsp;
+                        span.n Arc
+                        span.p ((
+                        span.mi 0
+                        span.p ,
+                        span.mf 422.5
+                        span.p ),
+                        | &nbsp;
+                        span.mi 120
+                        span.p ,
+                        | &nbsp;
+                        span.mi 120
+                        span.p ,
+                        | &nbsp;
+                        span.n theta1
+                        span.o =
+                        span.mi 180
+                        span.p ,
+                        | &nbsp;
+                        span.n theta2
+                        span.o =
+                        span.mi 0
+                        span.p ,
+                        | &nbsp;
+                        span.n linewidth
+                        span.o =
+                        span.n lw
+                        span.p ,
+                        | &nbsp;
+                        span.n color
+                        span.o =
+                        span.n color
+                        span.p )
+                        br
+                        br
+                        | &nbsp;&nbsp;&nbsp;&nbsp;
+                        span.n center_inner_arc
+                        | &nbsp;
+                        span.o =
+                        | &nbsp;
+                        span.n Arc
+                        span.p ((
+                        span.mi 0
+                        span.p ,
+                        span.mf 422.5
+                        span.p ),
+                        | &nbsp;
+                        span.mi 40
+                        span.p ,
+                        | &nbsp;
+                        span.mi 40
+                        span.p ,
+                        | &nbsp;
+                        span.n theta1
+                        span.o =
+                        span.mi 180
+                        span.p ,
+                        | &nbsp;
+                        span.n theta2
+                        span.o =
+                        span.mi 0
+                        span.p ,
+                        | &nbsp;
+                        span.n linewidth
+                        span.o =
+                        span.n lw
+                        span.p ,
+                        | &nbsp;
+                        span.n color
+                        span.o =
+                        span.n color
+                        span.p )
+                        br
+                        br
+                        | &nbsp;&nbsp;&nbsp;&nbsp;
+                        span.c1 #list of court elements to be poltted onto the axes
+                        br
+                        | &nbsp;&nbsp;&nbsp;&nbsp;
+                        span.n court_elements
+                        span.o =
+                        span.p [
+                        span.n hoop
+                        span.p ,
+                        | &nbsp;
+                        span.n backboard
+                        span.p ,
+                        | &nbsp;
+                        span.n outer_box
+                        span.p ,
+                        | &nbsp;
+                        span.n inner_box
+                        span.p ,
+                        | &nbsp;
+                        span.n top_free_throw
+                        span.p ,
+                        | &nbsp;
+                        span.n bottom_free_throw
+                        span.p ,
+                        br
+                        | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        span.n restricted
+                        span.p ,
+                        | &nbsp;
+                        span.n corner_three_a
+                        span.p ,
+                        | &nbsp;
+                        span.n corner_three_b
+                        span.p ,
+                        | &nbsp;
+                        span.n three_arc
+                        span.p ,
+                        | &nbsp;
+                        span.n center_outer_arc
+                        span.p ,
+                        | &nbsp;
+                        span.n center_inner_arc
+                        span.p ]
+                        br
+                        br
+                        | &nbsp;&nbsp;&nbsp;&nbsp;
+                        span.k if
+                        | &nbsp;
+                        span.n outer_lines
+                        span.p :
+                        br
+                        | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        span.c1 #draw the half court line, baseline and side out bound lines
+                        br
+                        | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        span.n outer_lines
+                        | &nbsp;
+                        span.o =
+                        | &nbsp;
+                        span.n Rectangle
+                        span.p ((
+                        span.o -
+                        span.mi 250
+                        span.p ,
+                        | &nbsp;
+                        span.o -
+                        span.mf 47.5
+                        span.p ),
+                        | &nbsp;
+                        span.mi 500
+                        span.p ,
+                        | &nbsp;
+                        span.mi 470
+                        span.p ,
+                        | &nbsp;
+                        span.n linewidth
+                        span.o =
+                        span.n lw
+                        span.p ,
+                        | &nbsp;
+                        span.n color
+                        span.o =
+                        span.n color
+                        span.p ,
+                        | &nbsp;
+                        span.n fill
+                        span.o =
+                        span.kc False
+                        span.p )
+                        br
+                        | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        span.n court_elements
+                        span.o .
+                        span.n append
+                        span.p (
+                        span.n outer_lines
+                        span.p )
+                        br
+                        br
+                        | &nbsp;&nbsp;&nbsp;&nbsp;
+                        span.c1 #add the court elements onto the axes
+                        br
+                        | &nbsp;&nbsp;&nbsp;&nbsp;
+                        span.k for
+                        | &nbsp;
+                        span.n element
+                        | &nbsp;
+                        span.ow in
+                        | &nbsp;
+                        span.n court_elements
+                        span.p :
+                        br
+                        | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        span.n ax
+                        span.o .
+                        span.n add_patch
+                        span.p (
+                        span.n element
+                        span.p )
+                        br
+                        br
+                        | &nbsp;&nbsp;&nbsp;&nbsp;
+                        span.k return
+                        | &nbsp;
+                        span.n ax
+        p The last step was to color the shot chart with wine for all the shots LeBron James has made and gold for all the shots he&apos;s missed. The Los Angeles Times did a similar graphic for 
+            a(href='http://graphics.latimes.com/kobe-every-shot-ever/') Every shot Kobe Bryant ever took. All 30,699 of them
+            | . Fortunately, the Los Angeles Times also published 
+            a(href='http://www.latimes.com/visuals/graphics/la-g-kobe-how-we-did-it-20160419-snap-htmlstory.html') How we mapped Kobe&apos;s 30,699 shots
+            |  and published their 
+            a(href='https://github.com/datadesk/kobe-every-shot-ever') code
+            |  in GitHub.
+
+        p
+        div.input
+            div.prompt.input_prompt
+            | In&nbsp;[9]:
+            div.inner_cell
+                div.input_area
+                    div.highlight.hl-ipython3
+                    pre
+                        span
+                        span.c1 #plot all the shots
+                        br
+                        span.n sns
+                        span.o .
+                        span.n set_style
+                        span.p (
+                        span.s2 "white"
+                        span.p )
+                        br
+                        span.n sns
+                        span.o .
+                        span.n set_color_codes
+                        span.p ()
+                        br
+                        span.n all_shot_fig
+                        span.o =
+                        span.n plt
+                        span.o .
+                        span.n figure
+                        span.p (
+                        span.n figsize
+                        span.o =
+                        span.p (
+                        span.mi 25
+                        span.p ,
+                        span.mi 47
+                        span.p ),
+                        span.n dpi
+                        span.o =
+                        span.mi 72
+                        span.p )
+                        br
+                        span.n all_shot_ax
+                        span.o =
+                        span.n all_shot_fig
+                        span.o .
+                        span.n add_subplot
+                        span.p (
+                        span.mi 111
+                        span.p )
+                        br
+                        br
+                        span.n all_shot_ax
+                        span.o .
+                        span.n set_ylim
+                        span.p ([
+                        span.o -
+                        span.mi 100
+                        span.p ,
+                        span.mi 840
+                        span.p ])
+                        br
+                        span.n all_shot_ax
+                        span.o .
+                        span.n set_xlim
+                        span.p ([
+                        span.mi 250
+                        span.p ,
+                        span.o -
+                        span.mi 250
+                        span.p ])
+                        br
+                        br
+                        span.n draw_court
+                        span.p (
+                        span.n ax
+                        span.o =
+                        span.n all_shot_ax
+                        span.p ,
+                        span.n outer_lines
+                        span.o =
+                        span.kc True
+                        span.p )
+                        br
+                        br
+                        span.c1 #first, draw the missed shots
+                        br
+                        span.n all_shot_ax
+                        span.o .
+                        span.n scatter
+                        span.p (
+                        span.n all_shots
+                        span.p [(
+                        span.n all_shots
+                        span.o .
+                        span.n EVENT_TYPE
+                        span.o ==
+                        span.s2 "Missed Shot"
+                        span.p )]
+                        span.o .
+                        span.n LOC_X
+                        span.p ,
+                        span.n all_shots
+                        span.p [(
+                        span.n all_shots
+                        span.o .
+                        span.n EVENT_TYPE
+                        span.o ==
+                        span.s2 "Missed Shot"
+                        span.p )]
+                        span.o .
+                        span.n LOC_Y
+                        span.p ,
+                        | &nbsp;
+                        span.n color
+                        span.o =
+                        span.s1 '#FDBB30'
+                        span.p ,
+                        | &nbsp;
+                        span.n alpha
+                        span.o =
+                        span.mf 0.5
+                        span.p )
+                        br
+                        br
+                        span.c1 #then made shots
+                        br
+                        span.n all_shot_ax
+                        span.o .
+                        span.n scatter
+                        span.p (
+                        span.n all_shots
+                        span.p [(
+                        span.n all_shots
+                        span.o .
+                        span.n EVENT_TYPE
+                        span.o ==
+                        span.s2 "Made Shot"
+                        span.p )]
+                        span.o .
+                        span.n LOC_X
+                        span.p ,
+                        span.n all_shots
+                        span.p [(
+                        span.n all_shots
+                        span.o .
+                        span.n EVENT_TYPE
+                        span.o ==
+                        span.s2 "Made Shot"
+                        span.p )]
+                        span.o .
+                        span.n LOC_Y
+                        span.p ,
+                        | &nbsp;
+                        span.n color
+                        span.o =
+                        span.s1 '#860038'
+                        span.p ,
+                        | &nbsp;
+                        span.n alpha
+                        span.o =
+                        span.mf 0.5
+                        span.p )
+        p Voila!
+        div.output_wrapper
+            div.output
+                div.output_area
+                    div.prompt.output_prompt 
+                    | Out[9]:
+                    div.output_text.output_subarea.output_execute_result
+                        pre &lt;matplotlib.collections.PathCollection at 0x25173a295c0&gt;
+                div.output_area
+                    div.prompt
+                div.output_png.output_subarea
+                        img(src='/images/shotchartstep9.png' width='100%')
+
+            p
+            h4 Code
+            div
+            i.fab.fa-github
+            p
+            h4 LeBron James Innovation Center
+            p
+            p In February 2018, I received the following email from Nike:
+            p
+            img(src='/images/nike_email.jpg' width='100%')
+            p
+            | Obviously, I was interested in hearing what they had to say so we set up a call. In the call, Nike explained that they were planning to build a new building at Nike&apos;s headquarters named after LeBron James. They wanted to create a shot chart of LeBron James&apos; shots in a basketball court inside the building. Apparently, they found this page from searching on the Internet for a LeBron James shot chart. By the end of the call, I agreed to help them create a shot chart of LeBron James&apos; shots until the end of the 2017/2018 NBA season with the following shots highlighted:
+            ol
+                li
+                    b 10-29-2003:
+                    |  1st NBA Shot Made (25 pts. vs. Sacremento Kings, set NBA record for most points scored by prep to pro player in debut performance).
+                li
+                    b 3-20-2005:
+                    |  1st NBA 50+ point game (56 pts. @ Toronto Raptors).
+                li
+                    b 2-22-2006:
+                    |  1st NBA Game Winning Shot (0.9 sec left vs. Charlotte Bobcats).
+                li
+                    b 2-27-2007:
+                    |  10,000th NBA Career Point (Youngest Individual to do so @ 23 years and 59 days vs. Boston Celtics @ Boston).
+                li
+                    b 6-21-2012:
+                    |  1st NBA Finals Championship Victory - Last Shot Taken (Game 5 vs. Oklahoma City in Miami. Triple Double, NBA Finals MVP).
+                li
+                    b 1-16-2013:
+                    |  20,000th NBA Career Point (Youngest Individual to do so @ 28 years and 17 days, vs. Golden State Warriors @  Warriors).
+                li
+                    b 6-18-2013:
+                    |  2nd NBA Finals Championship Victory - Last Shot Taken (Game 7 vs. San Antonio Spurs in Miami. Tied Tommy Heinsohn&apos;s record set in 1957 for most points in an NBA Finals Game 7 win).
+                li
+                    b 3-3-2014:
+                    |  NBA Career High Game Point Total (61 pts. vs. Charlotte Bobcats).
+                li
+                    b 6-19-2016:
+                    |  3rd NBA Finals Championship Victory - Last Shot Taken (Game 7 vs. Golden State Warriors in Oakland. Led all Cavaliers with 27 points and became only the 3rd player ever in NBA history to record a triple double in an NBA Finals Game 7 by adding 11 assists and 11 rebounds. 5th player in NBA history to earn Finals MVP at least three times. Overall leader in points, rebounds, steals and blocks during the series, never before accomplished in any NBA playoff series. Helped to end 52 year sports championship drought for the city of Cleveland.
+                li
+                    b 12-16-2017:
+                    |  60th NBA Career triple-double &ndash; Last Shot Taken (vs. Utah Jazz, passed Larry Bird for sixth on career list).
+                li
+                    b 1-23-2018:
+                    |  30,000th NBA Career Point (Youngest Individual to do so @ 33 years and 24 days, vs. San Antonio Spurs).
+            p In April 2018, I sent over the shot chart graphics. Several months later, Nike asked if I could update the shot chart with LeBron James&apos; shots from the 2018 NBA Finals.
+            p In November 2021, Nike announced the opening of the 
+                a(href='https://lebronjamesinnovationcenter.nike.com/') LeBron James Innovation Center
+                |  designed by Olson Kunding, with this photo:
+            img(src='https://olsonkundig.com/wp-content/uploads/2021/10/1203.jpeg' width='100%')
+            p
