@@ -112,13 +112,14 @@ router.get('/read', async(req, res) =>{
 });
 
 /* GET projects */
-router.get('/projects', function(req, res){
+router.get('/projects', async (req, res) => {
+  AAPLprice(), AAPLPE(), AAPLPS()
   res.render('projects', {title: 'projects'});
 });
 
 /* GET projects/AAPL */
 router.get('/projects/AAPL', async (req, res)  => {
-  AAPLprice(), AAPLPE(), AAPLPS()
+  //AAPLprice(), AAPLPE(), AAPLPS()
   const { priceJsonData, peJsonData, psJsonData } = await readAAPLdata();
   //console.log(priceJsonData);
   //console.log(peJsonData);
