@@ -317,7 +317,7 @@ document.addEventListener("DOMContentLoaded", () => {
         <li class="nav-link"><a href="/resume" rel="external">resume</a></li>
         <li class="nav-link"><a href="/learning" rel="external">learning</a></li>
         <li class="nav-link"><a href="/teaching/english9" rel="external">teaching</a></li> 
-        <li class="nav-link"><a href="/reading" rel="external">reading</a></li>
+        <li class="nav-link"><a href="/read" rel="external">reading</a></li>
         <li class="nav-link"><a href="https://www.bloomberg.com/authors/AE_Git5xwiE/chichu-tschang">writing</a></li>
         <li class="nav-link"><a href="/projects" rel="external">projects</a></li>
     </div>
