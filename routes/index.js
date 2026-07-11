@@ -1,6 +1,7 @@
 var express = require('express');
 const app = express();
 var router = express.Router();
+const path = require('path')
 var moment = require('moment');
 const {updateCurrentlyReading, currentlyreading} = require('./currentlyreading'); 
 const {updateRead, read} = require('./read');
@@ -99,7 +100,7 @@ router.get('/read', async(req, res) =>{
         const dateB = new Date(b.dateread);
         return dateB - dateA; //descending order
       });
-      console.log(bookshelf)
+      //console.log(bookshelf)
 
     res.render('read', { 
         books: bookshelf,
@@ -118,7 +119,19 @@ router.get('/projects', async (req, res) => {
 });
 
 /* GET projects/AAPL */
-router.get('/projects/AAPL', async (req, res)  => {
+router.get('/projects/AAPL', function(req, res){
+  const filePath = path.join(__dirname, '../observable/dist/AAPL.html');
+  console.log('Trying to send:', filePath);
+  res.sendFile(filePath, function(err) {
+    if (err) {
+      console.error('sendFile error:', err);
+      res.status(500).send('Error: ' + err.message);
+    }
+  });
+});
+
+/* GET projects/AAPL2 */
+router.get('/projects/AAPL2', async (req, res)  => {
   //AAPLprice(), AAPLPE(), AAPLPS()
   const { priceJsonData, peJsonData, psJsonData } = await readAAPLdata();
   //console.log(priceJsonData);
@@ -147,7 +160,7 @@ router.get('/projects/AAPL', async (req, res)  => {
   const PSminus2stddev = psJsonData[psJsonData.length-1][6]
   // console.log('Retrieved data from json files')
   // pass the extracted data to AAPL.ejs view
-  res.render('AAPL', {
+  res.render('AAPL2', {
     date: date,
     price: price,
     pe: pe,  

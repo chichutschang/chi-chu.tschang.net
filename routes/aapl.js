@@ -9,10 +9,10 @@ const range2 = 'A:G'
 const data1 = "./public/graphs/AAPLprice.json"
 const data2 = "./public/graphs/AAPLPE.json" 
 const data3 = "./public/graphs/AAPLPS.json" 
-// const data4 = "./observable/src/data/AAPLprice.json"
-// const data5 = "./observable/src/data/AAPLPE.json"
-// const data6 = "./observable/src/data/AAPLPS.json"
-const fs = require('fs');
+const data4 = "./observable/src/data/AAPLprice.json"
+const data5 = "./observable/src/data/AAPLPE.json"
+const data6 = "./observable/src/data/AAPLPS.json"
+const fs = require('fs').promises;
 
 // Invoke all 3 functions to read data from both tabs and write them to their respective JSON files
 Promise.all([AAPLprice(), AAPLPE(), AAPLPS()]).then(() => {
@@ -56,35 +56,36 @@ async function readGoogleSheet(googleSheetClient, sheetId, tab, range) {
         range: `${tab}!${range}`,
       });
       const jsonData = JSON.stringify(res.data.values);
+      console.log(`[${tab}] Last row fetched:`, res.data.values[res.data.values.length - 1]);
       
       if (tab === tab1) {
-        fs.writeFile(data1, jsonData, err => {
+        await fs.writeFile(data1, jsonData, err => {
           if (err) throw err;
         console.log('Transferred data from Google Sheets to ./public/graphs/AAPLprice.json file');
         });
-        // fs.writeFile(data4, jsonData, err => {
-        //   if (err) throw err;
-        //   console.log('Transferred data from Google Sheets to ./observable/src/data/AAPLprice.json file');
-        // });      
+        await fs.writeFile(data4, jsonData, err => {
+          if (err) throw err;
+          console.log('Transferred data from Google Sheets to ./observable/src/data/AAPLprice.json file');
+        });      
       } else if (tab === tab2) {
-        fs.writeFile(data2, jsonData, err => {
+        await fs.writeFile(data2, jsonData, err => {
           if (err) throw err;
           console.log('Transferred data from Google Sheets to ./public/graphs/AAPLPE.json file');
         });
-        // fs.writeFile(data5, jsonData, err => {
-        //   if (err) throw err;
-        //   console.log('Transferred data from Google Sheets to ./observable/src/data/AAPLPE.json file');
-        // });     
+        await fs.writeFile(data5, jsonData, err => {
+          if (err) throw err;
+          console.log('Transferred data from Google Sheets to ./observable/src/data/AAPLPE.json file');
+        });     
       }
       else if (tab === tab3) {
         fs.writeFile(data3, jsonData, err => {
           if (err) throw err;
           console.log('Transferred data from Google Sheets to ./public/graphs/AAPLPS.json file');
         });
-        // fs.writeFile(data6, jsonData, err => {
-        //   if (err) throw err;
-        //   console.log('Transferred data from Google Sheets to ./observable/src/data/AAPLPS.json file');
-        // });
+        fs.writeFile(data6, jsonData, err => {
+          if (err) throw err;
+          console.log('Transferred data from Google Sheets to ./observable/src/data/AAPLPS.json file');
+        });
       }
     } catch(err) {
       console.error(`Error reading data from Google Sheets: ${err}`);
