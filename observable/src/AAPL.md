@@ -602,6 +602,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 })
             )}
     </div>
+    <!-- <body> -->
     <div id="footer">
     <div class="lastupdate">last updated: ${display((latestPrice.Date).toLocaleString("en-US", { year: 'numeric', month: 'long', day: 'numeric', timeZone: 'UTC' }))} </div>
     <table>
