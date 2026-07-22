@@ -1,3 +1,8 @@
 #ignore the following files:
 
-prismatic-vial-760-6f928a53c9be.json
+prismatic-vial-760-6f928a53c9be.jsonobservable/src/data/AAPLPE.json
+observable/src/data/AAPLPS.json
+observable/src/data/AAPLprice.json
+public/graphs/AAPLPE.json
+public/graphs/AAPLPS.json
+public/graphs/AAPLprice.json
