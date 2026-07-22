@@ -118,6 +118,18 @@ router.get('/projects', async (req, res) => {
   res.render('projects', {title: 'projects'});
 });
 
+/* GET projects/travel */
+router.get('/projects/travel', function(req, res){
+  const filePath = path.join(__dirname, '../observable/dist/travel.html');
+  console.log('Trying to send:', filePath);
+  res.sendFile(filePath, function(err) {
+    if (err) {
+      console.error('sendFile error:', err);
+      res.status(500).send('Error: ' + err.message);
+    }
+  });
+});
+
 /* GET projects/AAPL */
 router.get('/projects/AAPL', function(req, res){
   const filePath = path.join(__dirname, '../observable/dist/AAPL.html');

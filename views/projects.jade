@@ -6,7 +6,7 @@ block content
             //- ObservableHQ Container div for the chart (id must match the querySelector in the script)
             observablehq-chart2-b355dc98
 
-            //ObservableHQ Runtime Script
+            //Runtime Script to render AAPL chart from ObservableHQ
             script(type='module').
                 import {Runtime, Inspector} from "https://cdn.jsdelivr.net/npm/@observablehq/runtime@5/dist/runtime.js";
                 import define from "https://api.observablehq.com/@tschang/aapl@982.js?v=3";
@@ -14,6 +14,17 @@ block content
                     if (name === "chart2") return new Inspector(document.querySelector("#observablehq-chart2-b355dc98"));
                 });
 
+            .row.no-gutters
+                .col-md-10.col-sm-6(style='padding-top: 10px')
+                    h5
+                        a(href='/projects/travel') Swarm App check-ins
+                .col-md-2.col-sm-6(style='padding-top: 10px')
+                    h5
+                        | 7/2026
+            div
+                a(href='/projects/travel')
+                    img(src='/images/foursquaremap.png' width='90%' height='auto' align-content:='' left='')
+                          
             .row.no-gutters
                 .col-md-10.col-sm-6(style='padding-top: 10px')
                     h5

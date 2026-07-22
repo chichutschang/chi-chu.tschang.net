@@ -4,6 +4,7 @@ This is the personal website of Chi-Chu Tschang. Coded with:
 	<li><a href="https://getbootstrap.com">Bootstrap</a></li>
 	<li><a href="https://fontawesome.com">Font Awesome</a></li>
 	<li><a href="https://expressjs.com/">node express</a></li>
+	<li><a href="https://observablehq.com/framework/">Observable Framework</a></li>
 	<li><a href="https://www.nodecron.com/">node-cron</a></li>
 	<li><a href="https://www.npmjs.com/package/moments">moment</a></li>
 	<li>:heart:</li>
